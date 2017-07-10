@@ -1,0 +1,66 @@
+[
+    {
+        "name": "Штукатурно-клеевая смесь универс. WEBER THERM TEPLOFASADE VETONIT 20 кг.",
+        "price": "366",
+        "number": "Арт: 11072462",
+        "image": "img/parser/ea7ab6ce51d91008871fd2fab1ce159f.jpeg",
+        "text": [],
+        "sale": "0.5"
+    },
+    {
+        "name": "Штукатурка гипс. унив. Кнауф Ротбанд 30 кг",
+        "price": "365",
+        "number": "Арт: 11003178",
+        "image": "img/parser/89e14fdc4bfc9da32dc9d0c6f345f2c0.jpeg",
+        "text": [],
+        "sale": "0.5"
+    },
+    {
+        "name": "Штукатурка гипс.белая Слой ВОЛМА 30 кг.",
+        "price": "338",
+        "number": "Арт: 11006902",
+        "image": "img/parser/79e399797b9b4244afa7e72e88fab06f.jpeg",
+        "text": [],
+        "sale": "0.5"
+    },
+    {
+        "name": "Штукатурка гипс.серая Холст ВОЛМА 30кг.",
+        "price": "338",
+        "number": "Арт: 11070651",
+        "image": "img/parser/e84856e93bef035f12149a4d1b605d59.jpeg",
+        "text": [],
+        "sale": "0.5"
+    },
+    {
+        "name": "Штукатурка цемент. универсальная WEBER VETONIT TT40  25 кг.",
+        "price": "285",
+        "number": "Арт: 11071244",
+        "image": "img/parser/8fe741e8e0727052949bb6e083d87cde.jpeg",
+        "text": [],
+        "sale": "0.5"
+    },
+    {
+        "name": "Штукатурка цем. фасадная Унтерпутц Knauf (25кг.)",
+        "price": "268",
+        "number": "Арт: 11003793",
+        "image": "img/parser/75f4c9e1d7a0b225f47af0c475ed3d17.jpeg",
+        "text": [],
+        "sale": "0.5"
+    },
+    {
+        "name": "Штукатурка цемент. Аквапласт ВОЛМА 25 кг.",
+        "price": "244",
+        "number": "Арт: 11071586",
+        "image": "img/parser/0cf90ee7a8ccc75240c0cf8c9734302b.jpeg",
+        "text": [],
+        "sale": "0.5"
+    },
+    {
+        "name": "Смесь универсальная кладочно-штукарурная СМ999 (25кг)",
+        "price": "158",
+        "number": "Арт: 11070728",
+        "image": "img/parser/cc05b53980cc25e9677b1910d2f37048.jpeg",
+        "text": [],
+        "sale": "0.5"
+    }
+]

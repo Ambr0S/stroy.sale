@@ -1,0 +1,86 @@
+extends tpl.landing-page.pug
+
+block title
+	title Строительный дискаунтер STROY.SALE
+
+block content
+	#test
+		.menu
+			.container-fluid
+				.row
+					.col-sm-8.text-left
+						.header__menu.menu
+							ul.menu__list
+								li.menu__item
+									a(@click="goModal" href="/#/catalog/0", title="", data-modal="catalog").menu__link Каталог
+								li.menu__item
+									a(@click.prevent="goModal" href="#", title="", data-modal="pay").menu__link Доставка и оплата
+								li.menu__item
+									a(@click.prevent="goModal" href="#", title="", data-modal="back").menu__link Возврат товара
+								li.menu__item
+									router-link(@click="goModal", to="/blog", title="", data-modal="blog").menu__link Блог
+								li.menu__item
+									a(@click.prevent="goModal" href="#", title="", data-modal="service").menu__link О сервисе
+								li.menu__item
+									a(@click.prevent="goModal" href="#", title="", data-modal="contacts").menu__link Контакты
+					.col-sm-4.text-right
+						.header__menu.menu
+							ul.menu__list
+								li.menu__item
+									a(@click.prevent="goModal" href="#", title="", data-modal="provider").menu__link Хотите продавать на STROY.SALE?
+		.header
+			.container
+				.row
+					.col-sm-3.text-left
+						.logo.header__logo
+							img.logo__img(src="img/logo.png", alt="")
+				.row.h1
+					.col-sm-12.text-center
+						h1 Материалы для ремонта<br>со скидкой до 50<span class="percent">%</span>!
+						button.ui.button.button--green(@click="buttonmodal=true") Откуда скидка?
+						.h1__description(v-if="buttonmodal") 
+							p Скидка формируется за счет распродажи складских остатков<br>и неликвидов строительных, торговых и производственных компаний
+
+
+		router-view(:catalogdesc="catalogArray", :target="menuTarget")
+		.footer
+			.container-fluid
+				.row
+					.col-sm-12.text-center
+						social
+				.row
+					.col-sm-12.text-center
+						.logo.footer__logo
+							img.logo__img(src="img/logo--footer.png", alt="")
+						.footer__menu.menu
+							ul.menu__list
+								li.menu__item
+									a(@click="goModal" href="/#/catalog/0", title="", data-modal="catalog").menu__link Каталог
+								li.menu__item
+									a(@click.prevent="goModal" href="#", title="", data-modal="pay").menu__link Доставка и оплата
+								li.menu__item
+									a(@click.prevent="goModal" href="#", title="", data-modal="back").menu__link Возврат товара
+								li.menu__item
+									router-link(@click="goModal", to="/blog", title="", data-modal="blog").menu__link Блог
+								li.menu__item
+									a(@click.prevent="goModal" href="#", title="", data-modal="service").menu__link О сервисе
+								li.menu__item
+									a(@click.prevent="goModal" href="#", title="", data-modal="contacts").menu__link Контакты
+								li.menu__item
+									a(@click.prevent="goModal" href="#", title="", data-modal="provider").menu__link Хотите продавать на STROY.SALE?
+						.copyright__menu.menu
+							ul.menu__list
+								li.menu__item
+									a.menu__link(href="#") Задайте вопрос
+								li.menu__item
+									a.menu__link(href="#") Пользовательское соглашение
+								li.menu__item ©STROY.SALE | 2013-2017 | Все права защищены  
+					modal(:target="menuTarget")
+		.rub500
+			a(href="#").rub500__link
+				img(src="img/rub500.png", @click="goModal", data-modal="callback", alt="")
+		.sm
+			a.sm__vk(href="https://vk.com/stroy.sale", target="_blank", onclick="yaCounter45187896.reachGoal('sm'); return true;")
+				img(src="img/vk__ico.png")
+			a.sm__fb(href="https://www.facebook.com/Строительный-дискаунтер-stroysale-798981756933631/", target="_blank", onclick="yaCounter45187896.reachGoal('sm'); return true;")
+				img(src="img/fb__ico.png")

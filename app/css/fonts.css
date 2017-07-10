@@ -1,0 +1,19 @@
+@font-face {
+  font-family: "IntroRegular";
+  src: url("../../fonts/IntroRegular/IntroRegular.eot");
+  src: url("../../fonts/IntroRegular/IntroRegular.eot?#iefix") format("embedded-opentype");
+  src: url("../../fonts/IntroRegular/IntroRegular.woff") format("woff");
+  src: url("../../fonts/IntroRegular/IntroRegular.ttf") format("truetype");
+  font-style: normal;
+  font-weight: normal; }
+
+@font-face {
+  font-family: "IntroInline";
+  src: url("../../fonts/IntroInline/IntroInline.eot");
+  src: url("../../fonts/IntroInline/IntroInline.eot?#iefix") format("embedded-opentype");
+  src: url("../../fonts/IntroInline/IntroInline.woff") format("woff");
+  src: url("../../fonts/IntroInline/IntroInline.ttf") format("truetype");
+  font-style: normal;
+  font-weight: normal; }
+
+/*# sourceMappingURL=fonts.css.map */

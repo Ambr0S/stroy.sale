@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <title>Строительный дискаунтер STROY.SALE</title>
+    <meta charset="UTF-8"/>
+    <meta name="description" content=""/>
+    <meta name="keywords" content=""/>
+    <meta name="author" content="mtsymlov"/>
+    <meta name="copyright" content="(c) stroy.sale"/>
+    <meta http-equiv="Reply-to" content="info@enocon.ru"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="format-detection" content="address=no"/>
+    <meta http-equiv="x-rim-auto-match" content="none"/>
+    <meta name="viewport" content="width=1200"/>
+    <meta name="HandheldFriendly" content="True"/>
+    <meta name="MobileOptimized" content="width"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta http-equiv="cleartype" content="on"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta http-equiv="msthemecompatible" content="no"/>
+    <meta name="SKYPE_TOOLBAR" content="SKYPE_TOOLBAR_PARSER_COMPATIBLE"/>
+    <meta http-equiv="Cache-Control" content="no-cache"/>
+    <meta name="theme-color" content="#468996"/>
+    <meta name="msapplication-navbutton-color" content="#468996"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+    <link rel="icon" type="image/x-icon" href="favicon.ico"/>
+    <link rel="canonical" href="//stroy.sale"/>
+    <link rel="dns-prefetch" href="//stroy.sale"/>
+    <link rel="stylesheet" href="css/min/style.min.css"/>
+    <link rel="stylesheet" href="css/min/libs.min.css"/>
+    <script src="https://vk.com/js/api/openapi.js?146" type="text/javascript"></script><!--[if lt IE 9]>
+    <script src="js/min/html5shiv.min.js"></script>
+    <script src="js/min/respond.min.js"></script><![endif]-->
+  </head>
+  <body>
+    <div id="test">
+      <div class="menu">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-sm-8 text-left">
+              <div class="header__menu menu">
+                <ul class="menu__list">
+                  <li class="menu__item"><a class="menu__link" @click="goModal" href="/#/catalog/0" title="" data-modal="catalog">Каталог</a></li>
+                  <li class="menu__item"><a class="menu__link" @click.prevent="goModal" href="#" title="" data-modal="pay">Доставка и оплата</a></li>
+                  <li class="menu__item"><a class="menu__link" @click.prevent="goModal" href="#" title="" data-modal="back">Возврат товара</a></li>
+                  <li class="menu__item">
+                    <router-link class="menu__link" @click="goModal" to="/blog" title="" data-modal="blog">Блог</router-link>
+                  </li>
+                  <li class="menu__item"><a class="menu__link" @click.prevent="goModal" href="#" title="" data-modal="service">О сервисе</a></li>
+                  <li class="menu__item"><a class="menu__link" @click.prevent="goModal" href="#" title="" data-modal="contacts">Контакты</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-sm-4 text-right">
+              <div class="header__menu menu">
+                <ul class="menu__list">
+                  <li class="menu__item"><a class="menu__link" @click.prevent="goModal" href="#" title="" data-modal="provider">Хотите продавать на STROY.SALE?</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="header">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-3 text-left">
+              <div class="logo header__logo"><img class="logo__img" src="img/logo.png" alt=""/></div>
+            </div>
+          </div>
+          <div class="row h1">
+            <div class="col-sm-12 text-center">
+              <h1>Материалы для ремонта<br>со скидкой до 50<span class="percent">%</span>!</h1>
+              <button class="ui button button--green" @click="buttonmodal=true">Откуда скидка?</button>
+              <div class="h1__description" v-if="buttonmodal"> 
+                <p>Скидка формируется за счет распродажи складских остатков<br>и неликвидов строительных, торговых и производственных компаний</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <router-view :catalogdesc="catalogArray" :target="menuTarget"></router-view>
+      <div class="footer">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-sm-12 text-center">
+              <social></social>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12 text-center">
+              <div class="logo footer__logo"><img class="logo__img" src="img/logo--footer.png" alt=""/></div>
+              <div class="footer__menu menu">
+                <ul class="menu__list">
+                  <li class="menu__item"><a class="menu__link" @click="goModal" href="/#/catalog/0" title="" data-modal="catalog">Каталог</a></li>
+                  <li class="menu__item"><a class="menu__link" @click.prevent="goModal" href="#" title="" data-modal="pay">Доставка и оплата</a></li>
+                  <li class="menu__item"><a class="menu__link" @click.prevent="goModal" href="#" title="" data-modal="back">Возврат товара</a></li>
+                  <li class="menu__item">
+                    <router-link class="menu__link" @click="goModal" to="/blog" title="" data-modal="blog">Блог</router-link>
+                  </li>
+                  <li class="menu__item"><a class="menu__link" @click.prevent="goModal" href="#" title="" data-modal="service">О сервисе</a></li>
+                  <li class="menu__item"><a class="menu__link" @click.prevent="goModal" href="#" title="" data-modal="contacts">Контакты</a></li>
+                  <li class="menu__item"><a class="menu__link" @click.prevent="goModal" href="#" title="" data-modal="provider">Хотите продавать на STROY.SALE?</a></li>
+                </ul>
+              </div>
+              <div class="copyright__menu menu">
+                <ul class="menu__list">
+                  <li class="menu__item"><a class="menu__link" href="#">Задайте вопрос</a></li>
+                  <li class="menu__item"><a class="menu__link" href="#">Пользовательское соглашение</a></li>
+                  <li class="menu__item">©STROY.SALE | 2013-2017 | Все права защищены  </li>
+                </ul>
+              </div>
+            </div>
+            <modal :target="menuTarget"></modal>
+          </div>
+        </div>
+      </div>
+      <div class="rub500"><a class="rub500__link" href="#"><img src="img/rub500.png" @click="goModal" data-modal="callback" alt=""/></a></div>
+      <div class="sm"><a class="sm__vk" href="https://vk.com/stroy.sale" target="_blank" onclick="yaCounter45187896.reachGoal('sm'); return true;"><img src="img/vk__ico.png"/></a><a class="sm__fb" href="https://www.facebook.com/Строительный-дискаунтер-stroysale-798981756933631/" target="_blank" onclick="yaCounter45187896.reachGoal('sm'); return true;"><img src="img/fb__ico.png"/></a></div>
+    </div>
+    <script src="js/min/libs.min.js"></script>
+    <script src="js/min/my.min.js"></script>
+    <script src="js/form.js"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script><!-- Yandex.Metrika counter --> <script type="text/javascript"> (function (d, w, c) { (w[c] = w[c] || []).push(function() { try { w.yaCounter45187896 = new Ya.Metrika({ id:45187896, clickmap:true, trackLinks:true, accurateTrackBounce:true, webvisor:true, trackHash:true }); } catch(e) { } }); var n = d.getElementsByTagName("script")[0], s = d.createElement("script"), f = function () { n.parentNode.insertBefore(s, n); }; s.type = "text/javascript"; s.async = true; s.src = "https://mc.yandex.ru/metrika/watch.js"; if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); } })(document, window, "yandex_metrika_callbacks"); </script> <noscript><div><img src="https://mc.yandex.ru/watch/45187896" style="position:absolute; left:-9999px;" alt="" /></div></noscript> <!-- /Yandex.Metrika counter -->
+  </body>
+</html>

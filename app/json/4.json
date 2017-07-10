@@ -1,0 +1,726 @@
+[
+    {
+        "name": "Металлочерепица 2250х1180х0,5 мм красный 6 волн",
+        "price": "993",
+        "number": "Арт: 11070816",
+        "image": "img/parser/feb8dd6c38dc1675ad9abee84c451731.jpeg",
+        "text": [
+            "Длина: 2250",
+            "В упаковке: 2.65м2"
+        ],
+        "sale": "0.35"
+    },
+    {
+        "name": "Металлочерепица 2250х1180х0,5 мм коричневый 6 волн",
+        "price": "993",
+        "number": "Арт: 11070815",
+        "image": "img/parser/be07e3410c3517aa710faf68e99a221c.jpeg",
+        "text": [
+            "Длина: 2250",
+            "В упаковке: 2.65м2"
+        ],
+        "sale": "0.35"
+    },
+    {
+        "name": "Металлочерепица 2250х1180х0,5 мм зеленый 6 волн",
+        "price": "993",
+        "number": "Арт: 11070814",
+        "image": "img/parser/0cfc6fc8162aeaafed51f0e1dfb56dd4.jpeg",
+        "text": [
+            "Длина: 2250",
+            "В упаковке: 2.65м2"
+        ],
+        "sale": "0.35"
+    },
+    {
+        "name": "Профнастил С10 1160х2000х0,5 мм ОПТИМА коричневый",
+        "price": "891",
+        "number": "Арт: 11071322",
+        "image": "img/parser/no_image.png",
+        "text": [
+            "Длина: 2000",
+            "Ширина: 1160",
+            "В упаковке: 2.32м2"
+        ],
+        "sale": "0.25",
+        "costm": "385"
+    },
+    {
+        "name": "Профнастил С8 1200х2000х0,5 мм ОПТИМА зеленый",
+        "price": "856",
+        "number": "Арт: 11071316",
+        "image": "img/parser/55a5341510402b6f1b2877920210ba56.jpeg",
+        "text": [
+            "Длина: 2000",
+            "Ширина: 1200",
+            "В упаковке: 2.4м2"
+        ],
+        "sale": "0.25",
+        "costm": "357"
+    },
+    {
+        "name": "Профнастил С20 1150х2000х0,5 мм ОПТИМА коричневый",
+        "price": "848",
+        "number": "Арт: 11071325",
+        "image": "img/parser/no_image.png",
+        "text": [
+            "Длина: 2000",
+            "Ширина: 1150",
+            "В упаковке: 2.3м2"
+        ],
+        "sale": "0.25",
+        "costm": "369"
+    },
+    {
+        "name": "Профнастил С20 1150х2000х0,5 мм ОПТИМА синий",
+        "price": "738",
+        "number": "Арт: 11071327",
+        "image": "img/parser/no_image.png",
+        "text": [
+            "В упаковке: 2.3м2"
+        ],
+        "sale": "0.3",
+        "costm": "321"
+    },
+    {
+        "name": "ПРОФНАСТИЛ С8 КРАСНЫЙ  ) Эконом (1,2х2м.)",
+        "price": "680",
+        "number": "Арт: 11071331",
+        "image": "img/parser/707e41cc21f9fe846179fe02d75ed315.jpeg",
+        "text": [
+            "Длина: 2000",
+            "Ширина: 1200",
+            "В упаковке: 2.4м2"
+        ],
+        "sale": "0.2",
+        "costm": "284"
+    },
+    {
+        "name": "ПРОФНАСТИЛ С8 КОРИЧНЕВЫЙ  Эконом (1,2х2м.)",
+        "price": "670",
+        "number": "Арт: 11071330",
+        "image": "img/parser/198dc5367b674211982ad04edc29aebd.jpeg",
+        "text": [
+            "Длина: 2000",
+            "Ширина: 1200",
+            "В упаковке: 2.4м2"
+        ],
+        "sale": "0.2",
+        "costm": "280"
+    },
+    {
+        "name": "Профнастил С10 1160х2000х0,4 мм красный",
+        "price": "650",
+        "number": "Арт: 11011399",
+        "image": "img/parser/6842f96938dcd9c0cf2074dffd43bd96.jpeg",
+        "text": [
+            "Длина: 2000",
+            "Ширина: 1160",
+            "В упаковке: 2.32м2"
+        ],
+        "sale": "0.2",
+        "costm": "281"
+    },
+    {
+        "name": "Профнастил С10 1160х2000х0,4 мм зеленый",
+        "price": "650",
+        "number": "Арт: 11011397",
+        "image": "img/parser/7dcb16400a27930d2a5f8fa6fdabbc94.jpeg",
+        "text": [
+            "Длина: 2000",
+            "Ширина: 1160",
+            "В упаковке: 2.32м2"
+        ],
+        "sale": "0.2",
+        "costm": "281"
+    },
+    {
+        "name": "Профнастил C20 1150х2000х0,4 мм зеленый",
+        "price": "644",
+        "number": "Арт: 11070809",
+        "image": "img/parser/no_image.png",
+        "text": [
+            "Длина: 2000",
+            "Ширина: 1150",
+            "В упаковке: 2.3м2"
+        ],
+        "sale": "0.2",
+        "costm": "280"
+    },
+    {
+        "name": "Профнастил С8 оцинкованный 1200х2000х0,5 мм ОПТИМА",
+        "price": "611",
+        "number": "Арт: 11071319",
+        "image": "img/parser/no_image.png",
+        "text": [
+            "Длина: 2000",
+            "Ширина: 1200",
+            "В упаковке: 2.4м2"
+        ],
+        "sale": "0.2",
+        "costm": "255"
+    },
+    {
+        "name": "Профнастил С20 оцинкованный 1150х2000х0,4 мм",
+        "price": "573",
+        "number": "Арт: 11070813",
+        "image": "img/parser/no_image.png",
+        "text": [
+            "Длина: 2000",
+            "Ширина: 1150",
+            "В упаковке: 2.3м2"
+        ],
+        "sale": "0.2",
+        "costm": "250"
+    },
+    {
+        "name": "Профнастил C20 1150х2000х0,4 мм красный",
+        "price": "573",
+        "number": "Арт: 11070811",
+        "image": "img/parser/no_image.png",
+        "text": [
+            "Длина: 2000",
+            "Ширина: 1150",
+            "В упаковке: 2.3м2"
+        ],
+        "sale": "0.2",
+        "costm": "250"
+    },
+    {
+        "name": "Черепица гибкая ROOFSHIELD ECO 3 кв.м 22 шт зеленый",
+        "price": "640",
+        "number": "Арт: 11071138",
+        "image": "img/parser/231a0aadc320e49fb08e98f8b3333f14.jpeg",
+        "text": [
+            "Длина: 1000",
+            "Ширина: 317",
+            "В упаковке: 3м2"
+        ],
+        "sale": "0.35"
+    },
+    {
+        "name": "Гибкая черепица RoofShield Eco Лайт Зеленый 3м2 (22 шт.)",
+        "price": "560",
+        "number": "Арт: 11072260",
+        "image": "img/parser/4c3dbdf27a8aa361d0bf9de2ceb2397a.jpeg",
+        "text": [],
+        "sale": "0.35"
+    },
+    {
+        "name": "Гибкая черепица RoofShield Eco Лайт Коричневый 3м2 (22 шт.)",
+        "price": "560",
+        "number": "Арт: 11072262",
+        "image": "img/parser/408d9fca28df7bf9f024889148e03336.jpeg",
+        "text": [],
+        "sale": "0.35"
+    },
+    {
+        "name": "Гибкая черепица RoofShield Eco Лайт Красный  3м2 (22 шт.)",
+        "price": "560",
+        "number": "Арт: 11072261",
+        "image": "img/parser/16d0dd782aedc7c422b030fc111d8109.jpeg",
+        "text": [],
+        "sale": "0.35"
+    },
+    {
+        "name": "Рубероид РПП - С 300 15м2 ТУ",
+        "price": "320",
+        "number": "Арт: 11005802",
+        "image": "img/parser/0373249ca73de7cb86380236a6a78519.jpeg",
+        "text": [
+            "В упаковке: 15м2"
+        ],
+        "sale": "0.4",
+        "costm": "22"
+    },
+    {
+        "name": "Рубероид РКП-О 350 15 кв.м",
+        "price": "267",
+        "number": "Арт: 11005811",
+        "image": "img/parser/5aa9745bd505ffb8937a936af295d667.jpeg",
+        "text": [
+            "В упаковке: 15м2"
+        ],
+        "sale": "0.35",
+        "costm": "18"
+    },
+    {
+        "name": "Рубероид РПП-300 СМ 15м2",
+        "price": "248",
+        "number": "Арт: 11003584",
+        "image": "img/parser/e265fa988429861404134a9a8869c403.jpeg",
+        "text": [
+            "В упаковке: 15м2"
+        ],
+        "sale": "0.35",
+        "costm": "17"
+    },
+    {
+        "name": "Мастика битумно-полимерная МБП-Х-100 10 л",
+        "price": "762",
+        "number": "Арт: 11071113",
+        "image": "img/parser/f89c3bc0cb94967890f67a1676ad80fd.jpeg",
+        "text": [],
+        "sale": "0.5"
+    },
+    {
+        "name": "Праймер Битумный 10 л",
+        "price": "616",
+        "number": "Арт: 11071112",
+        "image": "img/parser/d4827f10548e00ad9eeae189249fab3b.jpeg",
+        "text": [],
+        "sale": "0.35"
+    },
+    {
+        "name": "Мастика битумная универсальная (17л./16кг.)",
+        "price": "603",
+        "number": "Арт: 11071335",
+        "image": "img/parser/1c1f1d4520fb8ae2aa0fdb5581de5b97.jpeg",
+        "text": [],
+        "sale": "0.35"
+    },
+    {
+        "name": "Мастика битумная универсальная (5,4л./5кг.)",
+        "price": "371",
+        "number": "Арт: 11071582",
+        "image": "img/parser/0b793e9d8c5a4502ddbaf9e572ccc961.jpeg",
+        "text": [],
+        "sale": "0.35"
+    },
+    {
+        "name": "Мастика битумная 1,8 кг.",
+        "price": "172",
+        "number": "Арт: 11072162",
+        "image": "img/parser/3a57a77d631df4bd86ae07e13eada7e6.jpeg",
+        "text": [],
+        "sale": "0.35"
+    },
+    {
+        "name": "Планка соедин.к сайдингу SYSTEM MAX-3 ДУБ 3,05м. VOX",
+        "price": "786",
+        "number": "Арт: 11071861",
+        "image": "img/parser/3d752325894fbe545bc42cd086e89dc6.jpeg",
+        "text": [],
+        "sale": "0.4"
+    },
+    {
+        "name": "Угол наруж.к сайдингу SYSTEM MAX-3 ДУБ 3,05м.VOX",
+        "price": "786",
+        "number": "Арт: 11071858",
+        "image": "img/parser/dd4c7bc5259ccbb0592c0331591e74e9.jpeg",
+        "text": [],
+        "sale": "0.4"
+    },
+    {
+        "name": "Угол внутр.к сайдингу SYSTEM MAX-3 ДУБ 3,05м.VOX",
+        "price": "695",
+        "number": "Арт: 11071859",
+        "image": "img/parser/b04d561edce98246b2f858b6a558622b.jpeg",
+        "text": [],
+        "sale": "0.4"
+    },
+    {
+        "name": "Угол наружный к фасад. панели КАМЕНЬ SOLID STONE PORTUGAL VOX (1000х420мм.) 0,42 кв.м.",
+        "price": "614",
+        "number": "Арт: 11071863",
+        "image": "img/parser/2ed132b563b5e9acb61109c87d38ead5.jpeg",
+        "text": [],
+        "sale": "0.4"
+    },
+    {
+        "name": "Фасадная панель КАМЕНЬ SOLID STONE PORTUGAL VOX (1000х420мм.) 0,42 кв.м.",
+        "price": "558",
+        "number": "Арт: 11071862",
+        "image": "img/parser/ed6bf432e10e5752638ad5b43741d8d9.png",
+        "text": [],
+        "sale": "0.4"
+    },
+    {
+        "name": "Планка околооконная для сайдинга  белая 0,115 х3,05 м. VOX",
+        "price": "501",
+        "number": "Арт: 11072426",
+        "image": "img/parser/73c5bf729aa804a539f1dd889fb2bfdc.jpeg",
+        "text": [],
+        "sale": "0.4"
+    },
+    {
+        "name": "Фасадная панель SOLID BRICK DORSET.VOX (1000х420мм.) 0,42 кв.м.",
+        "price": "477",
+        "number": "Арт: 11071866",
+        "image": "img/parser/22b7a769e38a6109c5e9fe83784569ab.jpeg",
+        "text": [],
+        "sale": "0.4"
+    },
+    {
+        "name": "Фасадная панель SOLID BRICK BRISTOL.VOX (1000х420мм.) 0,42 кв.м.",
+        "price": "477",
+        "number": "Арт: 11071865",
+        "image": "img/parser/5eb7aab79cea8068e32714f4f580aafd.jpeg",
+        "text": [],
+        "sale": "0.4"
+    },
+    {
+        "name": "Фасадная панель SOLID BRICK YORK.VOX (1000х420мм.) 0,42 кв.м.",
+        "price": "477",
+        "number": "Арт: 11071864",
+        "image": "img/parser/0d8f631f7a1c8db5d804f24400986579.jpeg",
+        "text": [],
+        "sale": "0.4"
+    },
+    {
+        "name": "Угол наружный к фасад. панелиа SOLID BRICK YORK.VOX  (420х120мм)",
+        "price": "477",
+        "number": "Арт: 11071867",
+        "image": "img/parser/0f44d1ad91c1b47d954d929633d350e9.jpeg",
+        "text": [],
+        "sale": "0.4"
+    },
+    {
+        "name": "Угол наружный к фасад. панели SOLID BRICK DORSET.VOX (420х120мм)",
+        "price": "477",
+        "number": "Арт: 11071869",
+        "image": "img/parser/no_image.png",
+        "text": [],
+        "sale": "0.4"
+    },
+    {
+        "name": "Угол наружный к фасад. панели SOLID BRICK BRISTOL.VOX (420х120мм)",
+        "price": "477",
+        "number": "Арт: 11071868",
+        "image": "img/parser/no_image.png",
+        "text": [],
+        "sale": "0.4"
+    },
+    {
+        "name": "Сайдинг SYSTEM MAX-3 ДУБ 0,250х3,85м.VOX",
+        "price": "455",
+        "number": "Арт: 11071857",
+        "image": "img/parser/e422a03862bc021300ec2ae35e53db06.jpeg",
+        "text": [
+            "В упаковке: 0.962м2"
+        ],
+        "sale": "0.4"
+    },
+    {
+        "name": "Угол внешний бежевый 3,05м.VOX",
+        "price": "448",
+        "number": "Арт: 11072450",
+        "image": "img/parser/193dac651d87bedbd62e8cff20cdcb80.jpeg",
+        "text": [],
+        "sale": "0.4"
+    },
+    {
+        "name": "Угол внешний кремовый 3,05м.VOX",
+        "price": "448",
+        "number": "Арт: 11071848",
+        "image": "img/parser/6dcc3f20f512d79c46de83b1f6d2856c.jpeg",
+        "text": [],
+        "sale": "0.4"
+    },
+    {
+        "name": "Угол внешний светло-зеленый 3,05м.VOX",
+        "price": "448",
+        "number": "Арт: 11071847",
+        "image": "img/parser/91a067baa0fa293d6471d3a43dd2e490.jpeg",
+        "text": [],
+        "sale": "0.4"
+    },
+    {
+        "name": "Угол внешний желтый 3,05м.VOX",
+        "price": "448",
+        "number": "Арт: 11072423",
+        "image": "img/parser/no_image.png",
+        "text": [],
+        "sale": "0.4"
+    },
+    {
+        "name": "H-профиль соединительный бежевый 3,05м VOX",
+        "price": "388",
+        "number": "Арт: 11072452",
+        "image": "img/parser/5422efb3554301302e9278482b618869.jpeg",
+        "text": [],
+        "sale": "0.4"
+    },
+    {
+        "name": "H-профиль соединительный кремовый 3,05м VOX",
+        "price": "388",
+        "number": "Арт: 11071856",
+        "image": "img/parser/dd4f12c8b388af3c93f3a37bd403736d.jpeg",
+        "text": [],
+        "sale": "0.4"
+    },
+    {
+        "name": "H-профиль соединительный светло-зеленый 3,05м VOX",
+        "price": "388",
+        "number": "Арт: 11071855",
+        "image": "img/parser/87b20f5d3a765c8eb2f21ccfc73d943c.jpeg",
+        "text": [],
+        "sale": "0.4"
+    },
+    {
+        "name": "H-профиль соединительный желтый 3,05м VOX",
+        "price": "388",
+        "number": "Арт: 11072425",
+        "image": "img/parser/no_image.png",
+        "text": [],
+        "sale": "0.4"
+    },
+    {
+        "name": "Угол внутренний кремовый 3,05м.VOX",
+        "price": "371",
+        "number": "Арт: 11071850",
+        "image": "img/parser/07151c88ce569030066a9a2e14d0743c.jpeg",
+        "text": [],
+        "sale": "0.4"
+    },
+    {
+        "name": "Угол внутренний светло-зелёный 3,05м.VOX",
+        "price": "371",
+        "number": "Арт: 11071849",
+        "image": "img/parser/00457729869785ecceb2901f3f4d44af.jpeg",
+        "text": [],
+        "sale": "0.4"
+    },
+    {
+        "name": "Софит с перфорацией белый VOX 3 м.",
+        "price": "335",
+        "number": "Арт: 11072455",
+        "image": "img/parser/822cc1bc14d1f950df889a48aed138c1.jpeg",
+        "text": [],
+        "sale": "0.4"
+    },
+    {
+        "name": "J-профиль к сайдингу SYSTEM MAX-3 ДУБ 3,05м.VOX",
+        "price": "318",
+        "number": "Арт: 11071860",
+        "image": "img/parser/9d1365775f6e8821c4397e83694438db.jpeg",
+        "text": [],
+        "sale": "0.4"
+    },
+    {
+        "name": "Планка стартовая к фасад. панели 3м. VOX",
+        "price": "276",
+        "number": "Арт: 11071872",
+        "image": "img/parser/6eb960965b2ddee3094b53e3a7054b28.jpeg",
+        "text": [],
+        "sale": "0.4"
+    },
+    {
+        "name": "Финишная планка к фасад. панели 3м. VOX (темная)",
+        "price": "276",
+        "number": "Арт: 11071871",
+        "image": "img/parser/e6f3fa0c494b1e8898c242fcf2c2d48c.jpeg",
+        "text": [],
+        "sale": "0.4"
+    },
+    {
+        "name": "Финишная планка к фасад. панели 3м. VOX (светлая)",
+        "price": "276",
+        "number": "Арт: 11071870",
+        "image": "img/parser/c9cbc998857df1aaf55ede9500063db2.jpeg",
+        "text": [],
+        "sale": "0.4"
+    },
+    {
+        "name": "Сайдинг кремовый 0,250*3,85м.VOX",
+        "price": "186",
+        "number": "Арт: 11071845",
+        "image": "img/parser/566e8b5282efc8e84eb0af2556eaec11.jpeg",
+        "text": [
+            "В упаковке: 0.962м2"
+        ],
+        "sale": "0.4"
+    },
+    {
+        "name": "J-Профиль бежевый 3,05м VOX",
+        "price": "185",
+        "number": "Арт: 11072453",
+        "image": "img/parser/9671335992c8d2a85f38a7744b91e6cd.jpeg",
+        "text": [],
+        "sale": "0.4"
+    },
+    {
+        "name": "J-Профиль кремовый 3,05м VOX",
+        "price": "185",
+        "number": "Арт: 11071854",
+        "image": "img/parser/f2860b2c7c7e3fab718f4fac012f4910.jpeg",
+        "text": [],
+        "sale": "0.4"
+    },
+    {
+        "name": "J-Профиль светло-зеленый 3,05м VOX",
+        "price": "185",
+        "number": "Арт: 11071853",
+        "image": "img/parser/674641ff96e015bbcf071813d27c6811.jpeg",
+        "text": [],
+        "sale": "0.4"
+    },
+    {
+        "name": "J-Профиль желтый 3,05м VOX",
+        "price": "185",
+        "number": "Арт: 11072427",
+        "image": "img/parser/no_image.png",
+        "text": [],
+        "sale": "0.4"
+    },
+    {
+        "name": "Угол наружный для фасадных панелей FINEBER 485х119 мм кирпич облицовачный керамический",
+        "price": "380",
+        "number": "Арт: 11070944",
+        "image": "img/parser/4f321df1e2b960a23c30a5efca678aa2.jpeg",
+        "text": [
+            "Длина: 485"
+        ],
+        "sale": "0.4"
+    },
+    {
+        "name": "Угол наружный для фасадных панелей FINEBER 485х119 мм кирпич облицовачный желтый",
+        "price": "320",
+        "number": "Арт: 11070943",
+        "image": "img/parser/6cfb998cb89afedc85752d2c66a45613.jpeg",
+        "text": [
+            "Длина: 485"
+        ],
+        "sale": "0.4"
+    },
+    {
+        "name": "Угол наружный для фасадных панелей FINEBER 471х145 мм скала песочный",
+        "price": "320",
+        "number": "Арт: 11070941",
+        "image": "img/parser/cf378e941c1533e0c6657debbc8ac45d.jpeg",
+        "text": [
+            "Длина: 471"
+        ],
+        "sale": "0.4"
+    },
+    {
+        "name": "Угол внешний MONTANA 3000 мм белый",
+        "price": "290",
+        "number": "Арт: 11071753",
+        "image": "img/parser/041234ed52aac385a5bb1f56b2e2ef81.jpeg",
+        "text": [
+            "Длина: 3000"
+        ],
+        "sale": "0.4"
+    },
+    {
+        "name": "Угол внутренний для фасадных панелей FINEBER 3000 мм серый",
+        "price": "260",
+        "number": "Арт: 11070946",
+        "image": "img/parser/d5b2764e5cf4ef397a5a69d5cdfa6fb1.jpeg",
+        "text": [
+            "Длина: 3000"
+        ],
+        "sale": "0.4"
+    },
+    {
+        "name": "Сайдинг бежевый 0,250х3м.VOX",
+        "price": "145",
+        "number": "Арт: 11072449",
+        "image": "img/parser/231dbeedcfe9935a60ac89ed7baa4c31.jpeg",
+        "text": [],
+        "sale": "0.4"
+    },
+    {
+        "name": "Сайдинг кремовый 0,250х3м.VOX",
+        "price": "145",
+        "number": "Арт: 11072448",
+        "image": "img/parser/df874c0a620efcf2ff93d820d13ea5be.jpeg",
+        "text": [],
+        "sale": "0.4"
+    },
+    {
+        "name": "Сайдинг светло-зеленый 0,250х3м.VOX",
+        "price": "145",
+        "number": "Арт: 11072447",
+        "image": "img/parser/069edf9ed799abbe605ba25f50dc47fb.jpeg",
+        "text": [],
+        "sale": "0.4"
+    },
+    {
+        "name": "Сайдинг белый 0,250х3м.VOX",
+        "price": "145",
+        "number": "Арт: 11072446",
+        "image": "img/parser/a1dc63afb1b64f5a6abaf19d0410c7f8.jpeg",
+        "text": [],
+        "sale": "0.4"
+    },
+    {
+        "name": "Сайдинг желтый 0,250х3м.VOX",
+        "price": "145",
+        "number": "Арт: 11072422",
+        "image": "img/parser/fa4f69733d29227418971b1a22be84a5.jpeg",
+        "text": [],
+        "sale": "0.4"
+    },
+    {
+        "name": "Планка заканчивающая кремовая 3,05м.VOX",
+        "price": "126",
+        "number": "Арт: 11071852",
+        "image": "img/parser/53a6c7dcad2362ef42acadffcfcde9e2.jpeg",
+        "text": [],
+        "sale": "0.4"
+    },
+    {
+        "name": "Планка заканчивающая светло-зеленая 3,05м.VOX",
+        "price": "126",
+        "number": "Арт: 11071851",
+        "image": "img/parser/5cc5e5759d7e716a1ec2d1cfa9db5e3e.jpeg",
+        "text": [],
+        "sale": "0.4"
+    },
+    {
+        "name": "Профиль стартовый для сайдинга 3,05м.VOX",
+        "price": "125",
+        "number": "Арт: 11071846",
+        "image": "img/parser/cfa47b735684fd6ee2adb6c7a6dca07f.jpeg",
+        "text": [],
+        "sale": "0.4"
+    },
+    {
+        "name": "Сайдинг белый 0,210х3 м. MONTANA",
+        "price": "108",
+        "number": "Арт: 11071748",
+        "image": "img/parser/4771f3fae94021861cf296ab3742a439.jpeg",
+        "text": [
+            "Длина: 3000",
+            "Ширина: 210",
+            "В упаковке: 0.63м2"
+        ],
+        "sale": "0.4"
+    },
+    {
+        "name": "Сайдинг светлая бирюза  0,210х3 м. MONTANA",
+        "price": "100",
+        "number": "Арт: 11071750",
+        "image": "img/parser/7d5362bc2369360252afe55aac438b41.jpeg",
+        "text": [
+            "Длина: 3000",
+            "Ширина: 210",
+            "В упаковке: 0.63м2"
+        ],
+        "sale": "0.4"
+    },
+    {
+        "name": "Планка стартовая для фасадных панелей MONTANA 3000 мм",
+        "price": "92",
+        "number": "Арт: 11071755",
+        "image": "img/parser/11454fe8ef99179e58a4e320839ddfac.jpeg",
+        "text": [
+            "Длина: 3000"
+        ],
+        "sale": "0.4"
+    },
+    {
+        "name": "Сайдинг желтый  0,210х3 м. MONTANA",
+        "price": "98",
+        "number": "Арт: 11071749",
+        "image": "img/parser/d0f93724658b2b60a3ec2e67be98ec50.jpeg",
+        "text": [
+            "Длина: 3000",
+            "Ширина: 210",
+            "В упаковке: 0.63м2"
+        ],
+        "sale": "0.4"
+    }
+]

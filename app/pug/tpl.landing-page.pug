@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+html(lang="ru")
+	head
+		block title
+
+		block meta
+			include b-head/meta/tpl-meta
+
+		block ico
+			include b-head/ico/tpl-ico
+
+		block link
+			include b-head/link/tpl-link
+
+		block css
+			include b-head/css/tpl-css
+
+		block script
+			include b-head/script/tpl-script
+
+		block ie
+			include b-head/ie/tpl-ie
+
+	body
+		block content
+		include b-body/script/tpl-script
+		include b-body/analytics/tpl-analytics
