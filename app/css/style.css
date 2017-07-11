@@ -231,22 +231,48 @@ form input.catalog-unfound__input[type="submit"] {
   margin: 15px 0;
   width: 100%; }
 
-.catalog__list .col-sm-12 .col-sm-12 .product .product__name {
-  font-size: 24px;
-  line-height: 1.2em;
-  text-align: center;
-  padding: 0 2em;
-  margin-top: 0;
-  height: 50px !important; }
-
-.catalog__list .col-sm-12 .col-sm-12 .product .product__description {
-  font-size: 12px !important;
-  width: 550px;
-  margin: 0 auto;
-  text-align: center; }
-
-.catalog__list .col-sm-12 .col-sm-12 .product .product__price, .catalog__list .col-sm-12 .col-sm-12 .product .order-description__price--new {
-  border: none; }
+.catalog__list .col-sm-12 .col-sm-12 .product {
+  position: relative; }
+  .catalog__list .col-sm-12 .col-sm-12 .product .product__name {
+    font-size: 24px;
+    line-height: 1.2em;
+    text-align: center;
+    padding: 0 2em;
+    margin-top: 10px;
+    height: 50px !important;
+    overflow: hidden; }
+  .catalog__list .col-sm-12 .col-sm-12 .product .product__description {
+    font-size: 12px !important;
+    width: 550px;
+    margin: 0 auto;
+    text-align: center; }
+  .catalog__list .col-sm-12 .col-sm-12 .product .product__price--new {
+    border: none;
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold; }
+  .catalog__list .col-sm-12 .col-sm-12 .product .product__price--old {
+    text-align: center;
+    margin: 20px 0 0; }
+  .catalog__list .col-sm-12 .col-sm-12 .product .product__button {
+    position: absolute;
+    text-align: center;
+    bottom: 20px;
+    left: 40%; }
+  .catalog__list .col-sm-12 .col-sm-12 .product .button {
+    -webkit-transform: translateY(100px);
+            transform: translateY(100px);
+    opacity: 0;
+    -webkit-transition: all 0.25s ease 0.1s;
+    transition: all 0.25s ease 0.1s;
+    font-size: 18px; }
+  .catalog__list .col-sm-12 .col-sm-12 .product:hover .button {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+            transform: translateY(0); }
+  .catalog__list .col-sm-12 .col-sm-12 .product .product-compare__header {
+    margin-bottom: 8px;
+    font-size: 17px; }
 
 /* end PRODUCT */
 /* HEADER*/
