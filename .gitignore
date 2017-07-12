@@ -1,0 +1,9 @@
+*.zip
+*.log
+*.pdf
+*.xls
+*.psd
+
+/node_modules
+/dist
+/app/libs
