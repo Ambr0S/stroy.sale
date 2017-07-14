@@ -34,10 +34,10 @@
             .row
                 .catalog__list.catalog__list--full.col-sm-12
                     .row
-                        div(v-for="(item, index) in filteredName", :class='"col-sm-" + item.img__size')
+                        div(v-for="(item, index) in filteredName", :class='"col-sm-" + item.img__size' )
                             .row(v-if="item.img__size")
                                 .col-sm-12
-                                    .product.catalog__product.catalog__product--main
+                                    .product.catalog__product.catalog__product--main(:style='"background: url(" + item.img + ")"')
                                         .product__name {{item.name}}
                                         .product__description {{item.description}}
                                         .product__price--old {{item.price}} {{item.amount}}
