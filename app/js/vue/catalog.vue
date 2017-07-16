@@ -193,7 +193,7 @@
                 if (this.deliveryKind === '1') {
                     let addressInput = document.querySelector('#form__address');
                     addressInput.setAttribute('disabled', 'disabled');
-                    this.address = 'Такая-то улица';
+                    this.address = 'Варшавское шоссе, д.28 A, оф.212';
                 } else if (this.deliveryKind === '2') {
                     let addressInput = document.querySelector('#form__address');
                     addressInput.removeAttribute('disabled');
