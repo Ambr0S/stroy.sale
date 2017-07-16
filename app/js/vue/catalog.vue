@@ -40,7 +40,6 @@
                                     .product.catalog__product.catalog__product--main(:style='"background: url(" + item.img + ")"')
                                         .product__name {{item.name}}
                                         .product__description {{item.description}}
-                                        .product__price--old {{item.price}} {{item.amount}}
                                         .product__price--new {{item.price}} {{item.amount}}
                                         .product__sale Скидка {{item.sales | setSale}}%
                                         .product__compare.product-compare
@@ -183,12 +182,12 @@
         },
         watch : {
             catalogId : function() {
+                console.log('change!')
                 if (this.$route.params.id == 0 && !this.$route.params.idEnd) {
                     this.sort = 28
                 } else {
                     this.sort = 18;
                 }
-                this.sort = 18;
                 this.loadJSON();
             },
             deliveryKind : function() {

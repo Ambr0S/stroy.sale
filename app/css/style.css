@@ -399,12 +399,12 @@ form input.catalog-unfound__input[type="submit"] {
   .catalog__list .col-sm-3 .col-sm-12 .product .product-compare__header {
     text-align: center;
     margin-bottom: 2px;
-    font-size: 12px;
+    font-size: 13px;
     -webkit-transition: all 0.25s ease 0.1s;
     transition: all 0.25s ease 0.1s; }
   .catalog__list .col-sm-3 .col-sm-12 .product .compare {
     text-align: center;
-    font-size: 10px;
+    font-size: 13px;
     -webkit-transition: all 0.25s ease 0.1s;
     transition: all 0.25s ease 0.1s; }
 
@@ -480,6 +480,10 @@ h1 {
   -webkit-box-pack: start;
       -ms-flex-pack: start;
           justify-content: flex-start; }
+  .catalog__list .row {
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center; }
 
 .product__add {
   margin: 30px; }
