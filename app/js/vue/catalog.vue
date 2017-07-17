@@ -97,9 +97,10 @@
                                         img(:src='order.image | withImage', alt='')
                                     .order-description__number {{order.number}}
                                     .order-description__text {{order.text | checkoutText}}
-                                    .order-description__price--old {{order.price | deleteLastSymb}} руб.
-                                    .order-description__price--new {{order.price | deleteLastSymb(order.sale)}} руб.
-                                    .order-description__price--costm {{order.costm | withCostm(order.sale)}}
+                                    .order-description__price--new(v-if="order.sales") {{order.price}} руб.
+                                    .order-description__price--old(v-if="!order.sales") {{order.price | deleteLastSymb}} руб.
+                                    .order-description__price--new(v-if="!order.sales") {{order.price | deleteLastSymb(order.sale)}} руб.
+                                    .order-description__price--costm(v-if="!order.sales") {{order.costm | withCostm(order.sale)}}
                                 .col-sm-8.order__data.order-data
                                     .order-data__header Оформление заказа
                                     form.order-data__form.order-form#form--catalog(onsubmit="yaCounter45187896.reachGoal('order'); return true;")
@@ -169,7 +170,8 @@
                     "number": "",
                     "image": "",
                     "text": [],
-                    "sale": ""
+                    "sale": "",
+                    "sales": ""
                 },
                 orderitemamount: 1,
                 address: '',
@@ -236,7 +238,7 @@
             },
             fullcost: function() {
                 let sum = 0;
-                let k = this.order.sale;
+                let k = (this.order.sales) ? 0 : this.order.sale;
                 let payment = (this.paymentKind == 4) ? 1500 : 0;
                 sum = (( (1 - k) * (this.order.price)) * this.orderitemamount) + payment;
                 return sum.toFixed(2);
