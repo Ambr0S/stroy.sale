@@ -45,7 +45,7 @@
                             .modal__contacts.modal__content(v-if="contacts")
                                 h3 Контакты
                                 p Телефон: <b>+7 977 880-60-14, +7 904 600-80-20</b>
-                                p Email: <b>info@enocon.ru</b>
+                                p Email: <b>info@stroy.sale</b>
                                 p Адрес: <b>г. Москва: Варшавское шоссе, д.28 A</b>
                                 img(src="img/map.png" alt="")
                             .modal__callback.modal__content(v-if="callback")

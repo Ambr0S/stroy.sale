@@ -32,6 +32,12 @@
                         li.sorting__item
                             a.sorting__link(href="", v-model="sort", @click.prevent="sort=50") 50
             .row
+                .col-sm-12
+                    .catalog__header.text-center
+                        span {{ catalogdesc[this.$route.params.id].name }}
+                        span.catalog__header--separator(v-if="this.$route.params.idEnd >= 0") /
+                        span(v-if="this.$route.params.idEnd >= 0") {{ catalogdesc[this.$route.params.id].category[this.$route.params.idEnd].name }}
+            .row
                 .catalog__list.catalog__list--full.col-sm-12
                     .row
                         div(v-for="(item, index) in filteredName", :class='"col-sm-" + item.img__size' )
@@ -182,7 +188,7 @@
         },
         watch : {
             catalogId : function() {
-                console.log('change!')
+
                 if (this.$route.params.id == 0 && !this.$route.params.idEnd) {
                     this.sort = 28
                 } else {
@@ -408,7 +414,7 @@
                 return (val.length != 0) ? val.join('  ||  ') : 'Характеристик нет'
             },
             withCostm(val,k) {
-                return (val) ? 'Цена за м2 - ' + val * k + 'руб.' : '';
+                return (val) ? 'Цена за м2 - ' + (val * k) + 'руб.' : '';
             },
             withImage(val) {
                 if (val.includes('no_photo')) { return 'img/no_image.png'; }

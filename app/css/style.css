@@ -227,6 +227,10 @@ form input.catalog-unfound__input[type="submit"] {
   font-size: 11px;
   color: #281300; }
 
+@media screen and (max-width: 1205px) {
+  .product {
+    width: 250px !important; } }
+
 .catalog__product--main {
   margin: 15px 0;
   width: 100%; }
@@ -487,6 +491,16 @@ h1 {
 
 .product__add {
   margin: 30px; }
+
+.catalog__header {
+  margin: 15px;
+  padding: 10px;
+  border-top: 1px dashed #d4d8d9; }
+  .catalog__header span {
+    margin: 0 7px; }
+  .catalog__header span:last-child {
+    font-size: 18px;
+    font-family: "IntroRegular", "Tahoma", "Arial", sans-serif; }
 
 /*end CATALOG*/
 /*CONTROLLERS*/
