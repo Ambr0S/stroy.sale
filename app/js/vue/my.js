@@ -49,7 +49,7 @@ var vm = new Vue({
             catalogArray : [
                 {
                     id: 0,
-                    name: 'Весь каталог',
+                    name: 'Товары недели',
                     jsonfile: 'json/all.json'
                 },
                 {

@@ -150,7 +150,7 @@
                                             input(type="text", name="form__number", v-bind:value='order.number')
                                             input(type="text", name="form__order", v-bind:value='ordernumber')
                                             input(type="text", name="form__address", v-bind:value='address')
-                                .modal-close(@click="endModal") <i class="angle double left icon"></i>
+                                .modal-close(@click="e  ndModal") <i class="angle double left icon"></i>
         formunfound
        
 </template>
