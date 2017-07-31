@@ -56,7 +56,28 @@
                                             .compare(v-if="item.price__kastorama") <img src="img/ico__kastorama.jpg" alt="" /> <i>Касторама:</i> {{item.price__kastorama}} {{item.amount}}
                                             .compare(v-if="item.price__middle") <i>Средняя цена:</i> {{item.price__middle}} {{item.amount}}
                                         .product__button
-                                            .button.ui(:data-id='index', @click="goModal", onclick="yaCounter45187896.reachGoal('cart'); return true;") <i class="shop icon"></i> Купить со скидкой
+                                            .button.ui(:data-id='index', @click="goModal", onclick="yaCounter45187896.reachGoal('cart'); return true;") <i class="shop icon"></i> Купить со скидкой                            .row(v-if="item.img__size")
+                            .row(v-if="item.main")
+                                .col-sm-12
+                                    .product.catalog__product.catalog__product--main
+                                        .catalog__product--main-left
+                                            .product__img
+                                                img(:src='item.image | withImage', alt='')
+                                        .catalog__product--main-right
+                                            .product__name {{item.name}}
+                                            .product__description {{item.description}}
+                                            .product__price--new {{item.price}} {{item.amount}}
+                                            .product__sale Скидка {{item.sales | setSale}}%
+                                            .product__compare.product-compare
+                                                .product-compare__header <i class="search icon"></i><b>Цены в других магазинах</b>
+                                                .compare(v-if="item.price__lerua") <img src="img/ico__lerua.jpg" alt="" /> <i>Леруа:</i> {{item.price__lerua}} {{item.amount}}
+                                                .compare(v-if="item.price__obi") <img src="img/ico__obi.jpg" alt="" /> <i>Оби:</i> {{item.price__obi}} {{item.amount}}
+                                                .compare(v-if="item.price__krauta") <img src="img/ico__krauta.jpg" alt="" /> <i>К-раута:</i> {{item.price__krauta}} {{item.amount}}
+                                                .compare(v-if="item.price__kastorama") <img src="img/ico__kastorama.jpg" alt="" /> <i>Касторама:</i> {{item.price__kastorama}} {{item.amount}}
+                                                .compare(v-if="item.price__middle") <i>Средняя цена:</i> {{item.price__middle}} {{item.amount}}
+                                            .product__button
+                                                .button.ui(:data-id='index', @click="goModal", onclick="yaCounter45187896.reachGoal('cart'); return true;") <i class="shop icon"></i> Купить со скидкой
+
                             .row(v-else)
                                 .col-sm-12
                                     .product.catalog__product
@@ -150,7 +171,7 @@
                                             input(type="text", name="form__number", v-bind:value='order.number')
                                             input(type="text", name="form__order", v-bind:value='ordernumber')
                                             input(type="text", name="form__address", v-bind:value='address')
-                                .modal-close(@click="e  ndModal") <i class="angle double left icon"></i>
+                                .modal-close(@click="endModal") <i class="angle double left icon"></i>
         formunfound
        
 </template>

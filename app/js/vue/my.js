@@ -327,6 +327,10 @@ var vm = new Vue({
                     id: 9,
                     name: 'Материалы б/у, некондиция, неликвид',
                     jsonfile: 'json/80.json'
+                },                {
+                    id: 10,
+                    name: 'Акция! Материалы на штукатурные работы',
+                    jsonfile: 'json/shtukaturka.json'
                 },
             ],
             
