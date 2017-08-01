@@ -233,7 +233,31 @@ form input.catalog-unfound__input[type="submit"] {
 
 .catalog__product--main {
   margin: 15px 0;
-  width: 100%; }
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex; }
+
+.catalog__product--main-left {
+  width: 50%; }
+  .catalog__product--main-left .product__img {
+    height: auto; }
+
+.product__name--main {
+  font-size: 30px;
+  line-height: 1.2; }
+
+.product__description--main {
+  margin-top: 20px; }
+
+.product__compare--main {
+  margin-top: 20px; }
+
+.product__price--new-main {
+  font-size: 40px; }
+
+.product__button--main {
+  margin-top: 20px; }
 
 .catalog__list .col-sm-12 .col-sm-12 .product {
   position: relative; }

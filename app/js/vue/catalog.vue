@@ -46,7 +46,7 @@
                                     .product.catalog__product.catalog__product--main(:style='"background: url(" + item.img + ")"')
                                         .product__name {{item.name}}
                                         .product__description {{item.description}}
-                                        .product__price--new {{item.price}} {{item.amount}}
+                                        .product__price--new {{item.price}} {{item.amount}} <br>
                                         .product__sale Скидка {{item.sales | setSale}}%
                                         .product__compare.product-compare
                                             .product-compare__header <i class="search icon"></i><b>Цены в других магазинах</b>
@@ -56,7 +56,7 @@
                                             .compare(v-if="item.price__kastorama") <img src="img/ico__kastorama.jpg" alt="" /> <i>Касторама:</i> {{item.price__kastorama}} {{item.amount}}
                                             .compare(v-if="item.price__middle") <i>Средняя цена:</i> {{item.price__middle}} {{item.amount}}
                                         .product__button
-                                            .button.ui(:data-id='index', @click="goModal", onclick="yaCounter45187896.reachGoal('cart'); return true;") <i class="shop icon"></i> Купить со скидкой                            .row(v-if="item.img__size")
+                                            .button.ui(:data-id='index', @click="goModal", onclick="yaCounter45187896.reachGoal('cart'); return true;") <i class="shop icon"></i> Добавить в корзину
                             .row(v-if="item.main")
                                 .col-sm-12
                                     .product.catalog__product.catalog__product--main
@@ -64,19 +64,19 @@
                                             .product__img
                                                 img(:src='item.image | withImage', alt='')
                                         .catalog__product--main-right
-                                            .product__name {{item.name}}
-                                            .product__description {{item.description}}
-                                            .product__price--new {{item.price}} {{item.amount}}
+                                            .product__name.product__name--main {{item.name}}
+                                            .product__description.product__description--main <strong>Описание</strong>: <br> {{item.description}}
+                                            .product__price--new.product__price--new-main <strong> {{item.price}} {{item.amount}} </strong>
                                             .product__sale Скидка {{item.sales | setSale}}%
-                                            .product__compare.product-compare
+                                            .product__compare.product-compare.product__compare--main
                                                 .product-compare__header <i class="search icon"></i><b>Цены в других магазинах</b>
                                                 .compare(v-if="item.price__lerua") <img src="img/ico__lerua.jpg" alt="" /> <i>Леруа:</i> {{item.price__lerua}} {{item.amount}}
                                                 .compare(v-if="item.price__obi") <img src="img/ico__obi.jpg" alt="" /> <i>Оби:</i> {{item.price__obi}} {{item.amount}}
                                                 .compare(v-if="item.price__krauta") <img src="img/ico__krauta.jpg" alt="" /> <i>К-раута:</i> {{item.price__krauta}} {{item.amount}}
                                                 .compare(v-if="item.price__kastorama") <img src="img/ico__kastorama.jpg" alt="" /> <i>Касторама:</i> {{item.price__kastorama}} {{item.amount}}
                                                 .compare(v-if="item.price__middle") <i>Средняя цена:</i> {{item.price__middle}} {{item.amount}}
-                                            .product__button
-                                                .button.ui(:data-id='index', @click="goModal", onclick="yaCounter45187896.reachGoal('cart'); return true;") <i class="shop icon"></i> Купить со скидкой
+                                            .product__button.product__button--main
+                                                .button.button--green.ui(:data-id='index', @click="goModal", onclick="yaCounter45187896.reachGoal('cart'); return true;") <i class="shop icon"></i> Добавить в корзину
 
                             .row(v-else)
                                 .col-sm-12
@@ -92,7 +92,7 @@
                                             .product__price--new {{item.price | deleteLastSymb(item.sale)}} руб.
                                             .product__price--costm {{item.costm | withCostm(item.sale) }}
                                         .product__button.text-center
-                                            .button.ui(:data-id='index', @click="goModal", onclick="yaCounter45187896.reachGoal('cart'); return true;") <i class="shop icon"></i> Купить со скидкой
+                                            .button.ui(:data-id='index', @click="goModal", onclick="yaCounter45187896.reachGoal('cart'); return true;") <i class="shop icon"></i> Добавить в корзину
                                 
                     //.catalog__product.product(v-for="(item, index) in filteredName")
                         .product__sale Скидка {{ item.sale | setSale }}%
