@@ -330,7 +330,19 @@ var vm = new Vue({
                 },                {
                     id: 10,
                     name: 'Акция! Материалы на штукатурные работы',
-                    jsonfile: 'json/shtukaturka.json'
+                    category: [
+											{
+												id: 0,
+												name: 'Первая категория',
+												jsonfile: 'json/shtukaturka.json'
+											},
+											{
+												id: 1,
+												name: 'Вторая категория',
+												jsonfile: 'json/71.json'
+											},
+                    ]
+
                 },
             ],
             

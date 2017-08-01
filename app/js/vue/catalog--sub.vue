@@ -1,26 +1,68 @@
 <template lang="jade">
     .container-fluid
-        //.row
-            .col-sm-12
-                .catalog__search.search
-                    label(for="search__input" class="search__label") <i class="search icon"></i> Я ищу...
-                    input(type="text" id="search__input" class="search__input" v-model="search")
         .row
-            div.catalog__list.col-sm-12
-                .catalog__product.product(v-for="(item, index) in filteredName")
-                    .product__sale Скидка {{(item.sale * 100).toFixed(0)}}%
-                    .product__name {{item.name}}
-                    .product__img
-                        img(:src='item.image | withImage', alt='')
-                    .product__number {{item.number}}
-                    .product__text(:data-tooltip='item.text | checkoutText' data-inverted="" data-position="bottom center") Характеристики <i class="info circle icon"></i>
-                    .product__price
-                        .product__price--old {{item.price | deleteLastSymb}}.00 руб.
-                        .product__price--new {{item.price | deleteLastSymb(item.sale)}} руб.
-                        .product__price--costm {{item.costm | withCostm(item.sale) }}
-                        
-                    .product__button.text-center
-                        .button.ui(:data-id='index', @click="goModal",onclick="yaCounter45187896.reachGoal('cart'); return true;") <i class="shop icon"></i> Купить со скидкой 
+            .catalog__list.catalog__list--full.col-sm-12
+                .row
+                    div(v-for="(item, index) in filteredName", :class='"col-sm-" + item.img__size' )
+                        .row(v-if="item.img__size")
+                            .col-sm-12
+                                .product.product--week.catalog__product.catalog__product(:style='"background: url(" + item.img + ")"')
+                                    .product__name {{item.name}}
+                                    .product__description {{item.description}}
+                                    .product__price--new {{item.price}} {{item.amount}} <br>
+                                    .product__sale Скидка {{item.sales | setSale}}%
+                                    .product__compare.product-compare
+                                        .product-compare__header <i class="search icon"></i><b>Цены в других магазинах</b>
+                                        .compare(v-if="item.price__lerua") <img src="img/ico__lerua.jpg" alt="" /> <i>Леруа:</i> {{item.price__lerua}} {{item.amount}}
+                                        .compare(v-if="item.price__obi") <img src="img/ico__obi.jpg" alt="" /> <i>Оби:</i> {{item.price__obi}} {{item.amount}}
+                                        .compare(v-if="item.price__krauta") <img src="img/ico__krauta.jpg" alt="" /> <i>К-раута:</i> {{item.price__krauta}} {{item.amount}}
+                                        .compare(v-if="item.price__kastorama") <img src="img/ico__kastorama.jpg" alt="" /> <i>Касторама:</i> {{item.price__kastorama}} {{item.amount}}
+                                        .compare(v-if="item.price__middle") <i>Средняя цена:</i> {{item.price__middle}} {{item.amount}}
+                                    .product__button
+                                        .button.ui(:data-id='index', @click="goModal", onclick="yaCounter45187896.reachGoal('cart'); return true;") <i class="shop icon"></i> Добавить в корзину
+                        .row(v-else-if="item.main")
+                            .col-sm-12
+                                .product.catalog__product.catalog__product--main
+                                    .catalog__product--main-left
+                                        .product__img
+                                            img(:src='item.image | withImage', alt='')
+                                    .catalog__product--main-right
+                                        .product__name.product__name--main {{item.name}}
+                                        .product__description.product__description--main <strong>Описание</strong>: <br> {{item.description}}
+                                        .product__price--new.product__price--new-main <strong> {{item.price}}.00 {{item.amount}}</strong>
+                                        .product__price--old {{item.price | deleteLastSymb}}.00 руб.
+                                        .product__sale Скидка {{item.sales | setSale}}%
+                                        .product__compare.product-compare.product__compare--main
+                                            .product-compare__header <i class="search icon"></i><b>Цены в других магазинах</b>
+                                            .compare(v-if="item.price__lerua") <img src="img/ico__lerua.jpg" alt="" /> <i>Леруа:</i> {{item.price__lerua}} {{item.amount}}
+                                            .compare(v-if="item.price__obi") <img src="img/ico__obi.jpg" alt="" /> <i>Оби:</i> {{item.price__obi}} {{item.amount}}
+                                            .compare(v-if="item.price__krauta") <img src="img/ico__krauta.jpg" alt="" /> <i>К-раута:</i> {{item.price__krauta}} {{item.amount}}
+                                            .compare(v-if="item.price__kastorama") <img src="img/ico__kastorama.jpg" alt="" /> <i>Касторама:</i> {{item.price__kastorama}} {{item.amount}}
+                                            .compare(v-if="item.price__middle") <i>Средняя цена:</i> {{item.price__middle}} {{item.amount}}
+                                        .product__button.product__button--main
+                                            .button.button--green.ui(:data-id='index', @click="goModal", onclick="yaCounter45187896.reachGoal('cart'); return true;") <i class="shop icon"></i> Добавить в корзину
+                                        .product__benefits
+                                            img(src="img/benefit.jpg" alt="")
+
+                            .col-sm-12
+                                br
+                                h2.text-center С этим товаром покупают
+                        .row(v-else)
+                            .col-sm-12
+                                .product.catalog__product
+                                    .product__sale Скидка {{ item.sale | setSale }}%
+                                    .product__name {{item.name}}
+                                    .product__img
+                                        img(:src='item.image | withImage', alt='')
+                                    .product__number {{item.number}}
+                                    .product__text(:data-tooltip='item.text | checkoutText' data-inverted="" data-position="bottom center") Характеристики <i class="info circle icon"></i>
+                                    .product__price
+                                        .product__price--old {{item.price | deleteLastSymb}}.00 руб.
+                                        .product__price--new {{item.price | deleteLastSymb(item.sale)}} руб.
+                                        .product__price--costm {{item.costm | withCostm(item.sale) }}
+                                    .product__button.text-center
+                                        .button.ui(:data-id='index', @click="goModal", onclick="yaCounter45187896.reachGoal('cart'); return true;") <i class="shop icon"></i> Добавить в корзину
+
         .row.modal.is-active(v-show="showmodal")
             .col-sm-12
                     .container.modal-content.order__content
