@@ -29,12 +29,10 @@ var router = new VueRouter({
 
 var eventHub = new Vue();
 
-eventHub.$on('exit', function (msg) {
-    vm.menuTarget = msg;
-});
 
-eventHub.$on('fullCart', function (msg) {
-    console.log(msg )
+// для получения данных из события необходимо использовать стрелочные функции
+eventHub.$on('order', (msg) => {
+    vm.fullOrder = msg;
 });
 
 var vm = new Vue({
@@ -339,7 +337,7 @@ var vm = new Vue({
                             id: 3,
                             name: 'Выключатели',
                             jsonfile: 'json/73.json'
-                        }                
+                        }
                     ]
                 },
                 {
@@ -365,7 +363,8 @@ var vm = new Vue({
                 },
             ],
             menuTarget : '',
-            buttonmodal : false
+            buttonmodal : false,
+            fullOrder: []
 
         }
     },
@@ -380,18 +379,7 @@ var vm = new Vue({
             let payment = (this.paymentKind == 4) ? 1500 : 0;
             sum = (( (1 - k) * (this.order.price)) * this.orderitemamount) + payment;
             return sum.toFixed(2);
-        },
-        fullOrder: [
-            {
-                "name": "",
-                "price": "",
-                "number": "",
-                "image": "",
-                "text": [],
-                "sale": "",
-                "sales": ""
-            }
-        ],
+        }
     },
     watch : {
         deliveryKind : function() {
@@ -404,7 +392,10 @@ var vm = new Vue({
                 addressInput.removeAttribute('disabled');
                 this.address = 'Укажите адрес';
             }
-        }
+        },
+      upi: function () {
+				this.$root.eventHub.$emit('order', this.cart);
+			}
     },
     methods: {
         goModal : function(e) {
@@ -417,6 +408,11 @@ var vm = new Vue({
         endModal : function(e) {
             document.body.style.overflow = 'auto';
             this.showmodal = false;
+        },
+        getOrder: function() {
+					vm.$on('order', function (msg) {
+						console.log(msg)
+					})
         },
         sendOrder : function() {
             $(".order-form").validate({
