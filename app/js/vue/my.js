@@ -46,6 +46,21 @@ var vm = new Vue({
     data: function() {
         return {
             eventHub:eventHub,
+            showmodal : false,
+            orderitemamount: 1,
+            address: '',
+            deliveryKind: '',
+            paymentKind: '0',
+            ordernumber: '0',
+            order: {
+                "name": "",
+                "price": "",
+                "number": "",
+                "image": "",
+                "text": [],
+                "sale": "",
+                "sales": ""
+            },
             catalogArray : [
                 {
                     id: 0,
@@ -356,11 +371,116 @@ var vm = new Vue({
         VK.Widgets.Group("vk_groups", {mode: 4, width: "350", height: "450"}, 60332047);
     },
     computed: {
-
+        fullcost: function() {
+            let sum = 0;
+            let k = this.order.sale;
+            let payment = (this.paymentKind == 4) ? 1500 : 0;
+            sum = (( (1 - k) * (this.order.price)) * this.orderitemamount) + payment;
+            return sum.toFixed(2);
+        }
+    },
+    watch : {
+        deliveryKind : function() {
+            if (this.deliveryKind === '1') {
+                let addressInput = document.querySelector('#form__address');
+                addressInput.setAttribute('disabled', 'disabled');
+                this.address = 'Варшавское шоссе, д.28 A, оф.212';
+            } else if (this.deliveryKind === '2') {
+                let addressInput = document.querySelector('#form__address');
+                addressInput.removeAttribute('disabled');
+                this.address = 'Укажите адрес';
+            }
+        }
     },
     methods: {
         goModal : function(e) {
             this.menuTarget = e.target.dataset.modal;
+        },
+        goCart : function (e) {
+            document.body.style.overflow = 'hidden';
+            this.showmodal = true;
+        },
+        endModal : function(e) {
+            document.body.style.overflow = 'auto';
+            this.showmodal = false;
+        },
+        sendOrder : function() {
+            $(".order-form").validate({
+                rules: {
+                    form__email: 'required',
+                    form__phone: 'required',
+                    form__delivery: 'required',
+                    form__address: 'required',
+                    form__payment: 'required'
+                },
+                messages: {
+                    form__email: '',
+                    form__phone: '',
+                    form__delivery: '',
+                    form__address: '',
+                    form__payment: ''
+                }
+            });
+
+            var form__orderNumber = this.ordernumber;
+
+            $(".order-form").on('click', function () {
+
+                if ($(this).valid()) {
+                    var formID = $(this).attr('id');
+                    var formNm = $('#' + formID);
+                    var message = $(formNm).find(".form__msgs");
+
+                    $.ajax({
+                        type: "POST",
+                        url: 'mt.action.php',
+                        data: formNm.serialize(),
+                        success: function (data) {
+                            message.addClass('active')
+                            message.text('Благодарим за заказ! Номер заказа m-' + form__orderNumber + '. В скором времени с Вами свяжется наш менеджер. Пожалуйста, ожидайте!');
+                            setTimeout(function(){
+                                message.removeClass('active')
+                                message.html('');
+                                $('input').not(':input[type=submit], :input[type=hidden]').val('');
+                            }, 30000);
+                        },
+                        error: function (jqXHR, text, error) {
+                            message.html('Упс...Письмо не отправилось');
+                            message.css({'background':'red'});
+                            setTimeout(function(){
+                                message.css({'background':'none'});
+                                message.html('');
+                                $('input').not(':input[type=submit], :input[type=hidden]').val('');
+                            }, 3000);
+                        }
+                    });
+                    return false;
+
+                    function randomInteger(min,max) {
+                        var integer = (Math.random() * (max - min + 1) + min - 0.5);
+                        return integer = Math.round(integer);
+                    }
+
+                }
+            });
+        }
+    },
+    filters: {
+        deleteLastSymb(val,k) {
+            return (k !== undefined) ? ((val) * (1 - k)).toFixed(2) : (val) ;
+        },
+        checkoutText(val) {
+            return (val.length != 0) ? val.join('  ||  ') : 'Характеристик нет'
+        },
+        withCostm(val,k) {
+            return (val) ? 'Цена за м2 - ' + val * k + 'руб.' : '';
+        },
+        withImage(val) {
+            if (val.includes('no_photo')) { return 'img/no_image.png'; }
+            return val;
+        },
+        setSale(val) {
+            return (val * 100).toFixed(0);
         }
     }
 

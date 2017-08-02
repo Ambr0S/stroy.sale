@@ -115,8 +115,83 @@
           </div>
         </div>
       </div>
-      <div class="rub500"><a class="rub500__link" href="#"><img src="img/rub500.png" @click="goModal" data-modal="callback" alt=""/></a></div>
+      <!--.rub500
+      a(href="#").rub500__link
+      	img(src="img/rub500.png", @click="goModal", data-modal="callback", alt="")
+      -->
+      <div class="rub500"><a class="rub500__link" href="#"><img src="img/rub500.png" @click="goCart" data-modal="callback" alt=""/></a></div>
       <div class="sm"><a class="sm__vk" href="https://vk.com/stroy.sale" target="_blank" onclick="yaCounter45187896.reachGoal('sm'); return true;"><img src="img/vk__ico.png"/></a><a class="sm__fb" href="https://www.facebook.com/Строительный-дискаунтер-stroysale-798981756933631/" target="_blank" onclick="yaCounter45187896.reachGoal('sm'); return true;"><img src="img/fb__ico.png"/></a></div>
+      <div class="row modal is-active" v-show="showmodal">
+        <div class="col-sm-12">
+          <div class="container modal-content order__content">
+            <div class="row order">
+              <div class="col-sm-4 order__description order-description">
+                <div class="order-description__name">{{order.name}}</div>
+                <div class="order-description__img"><img :src="order.image | withImage" alt=""/></div>
+                <div class="order-description__number">{{order.number}}</div>
+                <div class="order-description__text">{{order.text | checkoutText}}</div>
+                <div class="order-description__price--old">{{order.price | deleteLastSymb}}.00 руб.</div>
+                <div class="order-description__price--new">{{order.price | deleteLastSymb(order.sale)}} руб.</div>
+                <div class="order-description__price--costm">{{order.costm | withCostm(order.sale)}}</div>
+              </div>
+              <div class="col-sm-8 order__data order-data">
+                <div class="order-data__header">Оформление заказа</div>
+                <form class="order-data__form order-form" id="form--category" onsubmit="yaCounter45187896.reachGoal('order'); return true;">
+                  <div class="form__msgs"></div>
+                  <fieldset>
+                    <h3>Контакты:</h3>
+                    <label>Введите email</label>
+                    <input type="text" placeholder="" name="form__email" id="form__email"/>
+                    <label>Введите номер телефона</label>
+                    <input type="text" placeholder="" name="form__phone" id="form__phone"/>
+                  </fieldset>
+                  <fieldset>
+                    <h3>Доставка:</h3>
+                    <select class="ui selection dropdown" name="form__delivery" id="form__delivery" v-model="deliveryKind">
+                      <option value="" disabled="disabled" selected="selected">- Выберите способ -</option>
+                      <option value="1">Самовывоз -- бесплатно</option>
+                      <option value="2">Доставка курьерской службой</option>
+                    </select><br/>
+                    <label>Адрес</label>
+                    <input type="text" name="form__address" id="form__address" disabled="disabled" v-bind:placeholder="address"/>
+                  </fieldset>
+                  <fieldset>
+                    <h3>Оплата:</h3>
+                    <select class="ui selection dropdown" name="form__payment" id="form__payment" v-model="paymentKind">
+                      <option value="" disabled="disabled" selected="selected">- Выберите способ -</option>
+                      <option value="1">Онлайн --- бесплатно</option>
+                      <option value="2">Банковский счёт --- бесплатно</option>
+                      <option value="3">Наличными в офисе --- бесплатно</option>
+                      <option value="4">При получении --- 1 500р за выезд курьера</option>
+                    </select>
+                  </fieldset>
+                  <fieldset class="order-form__b-items">
+                    <h3>Количество:</h3>
+                    <button class="order-form__items-button button ui" @click.prevent="orderitemamountRemove" type="button">-</button>
+                    <input class="order-form__items-amount" :value="orderitemamount" v-model="orderitemamount" type="text"/>
+                    <button class="order-form__items-button button ui" @click.prevent="orderitemamount++" type="button">+</button>
+                  </fieldset>
+                  <fieldset class="order-form__b-cost">
+                    <h2>Стоимость - <strong>{{fullcost}}</strong> руб.</h2>
+                    <button class="button ui button--orange order-form__button-submit" type="submit" @click="sendOrder">ЗАКАЗАТЬ</button>
+                  </fieldset>
+                  <fieldset class="input--hidden">
+                    <input type="text" name="form__cost" v-bind:value="fullcost"/>
+                    <input type="text" name="form__amount" v-bind:value="orderitemamount"/>
+                    <input type="text" name="form__price" v-bind:value="order.price"/>
+                    <input type="text" name="form__name" v-bind:value="order.name"/>
+                    <input type="text" name="form__sale" v-bind:value="order.sale"/>
+                    <input type="text" name="form__number" v-bind:value="order.number"/>
+                    <input type="text" name="form__order" v-bind:value="ordernumber"/>
+                    <input type="text" name="form__address" v-bind:value="address"/>
+                  </fieldset>
+                </form>
+              </div>
+              <div class="modal-close" @click="endModal"><i class="angle double left icon"></i></div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
     <script src="js/min/libs.min.js"></script>
     <script src="js/min/my.min.js"></script>

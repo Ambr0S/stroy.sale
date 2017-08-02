@@ -143,7 +143,8 @@
                 address: '',
                 deliveryKind: '',
                 paymentKind: '0',
-                ordernumber: '0'
+                ordernumber: '0',
+                cart: []
             }
         },
         props : ['catalogdescend'],
@@ -160,9 +161,7 @@
                 )     
             },
             goModal : function(e) {
-                document.body.style.overflow = 'hidden';
-                this.order = this.myjson[e.target.dataset.id];
-                this.showmodal = true;
+                this.cart.push(this.myjson[e.target.dataset.id]);
             },
             endModal : function(e) {
                 document.body.style.overflow = 'auto';
@@ -307,6 +306,9 @@
             withImage(val) {
                 if (val.includes('no_photo')) { return 'img/no_image.png'; }
                 return val;
+            },
+            setSale(val) {
+                return (val * 100).toFixed(0);
             }
         }
     }
