@@ -160,7 +160,6 @@ gulp.task('build', ['clean'], function(){
 gulp.task('watch', ['browsersync', 'pug', 'sass', 'csslibs', 'js', 'allScripts'], function() {
     gulp.watch('app/sass/**/*.sass', ['sass'], browsersync.reload);
     gulp.watch('app/sass/**/*.sass', ['csslibs'], browsersync.reload);
-    gulp.watch('app/css/**/*.css', ['csslibs'], browsersync.reload);
     gulp.watch('app/pug/**/*.pug', ['pug']);
     gulp.watch('app/js/vue/**/*.vue', ['js'],  browsersync.reload);
     gulp.watch('app/js/vue/my.js', ['js'],  browsersync.reload);

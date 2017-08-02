@@ -184,7 +184,7 @@ form
     justify-content: center
     margin-bottom: 10px
 
-.product__price,.order-description__price--new
+.product__price
     font-weight: bold
     text-align: center
     font-size: 1.5rem
@@ -193,6 +193,10 @@ form
     margin-bottom: 10px
     padding-top: 5px
     height: 75px
+
+.order-description__price--new
+    @extend .product__price
+    height: auto
 
 .product__sale
     padding: 0 10px 0px 11px
@@ -652,13 +656,11 @@ form input.modal__input.button--green
 .order__description
     display: flex
     flex-wrap: wrap
-    justify-content: center
+    justify-content: flex-start
     align-content: flex-start
     padding: 150px 0 0
     border-right: 1px solid $gray-l
 
-    img
-        align-self: flex-start
 
 .order-description__name,
 .order-description__number,
@@ -668,21 +670,23 @@ form input.modal__input.button--green
 .order-description__price--new,
 .order-description__price--costm
     width: 100%
-    text-align: center
+    text-align: left
 
 .order-description__price--new
     border: none
     padding: 0
     margin: 0
+    font-size: 18px
 
 .order-description__price--old
-    margin: 20px 0 0
+    margin: 10px 0 0
 
 
 .order-description__name
-    font-size: 20px
-    margin: 20px 0 50px
+    font-size: 16px
+    margin: 5px 0 10px
     max-width: 380px
+    line-height: 1.1
 
 .order-description__img
     min-height: 170px
@@ -716,19 +720,19 @@ form input.modal__input.button--green
     h2
         margin-bottom: 2rem !important
 
-.order-form__b-items
-    .order-form__items-amount
-        width: 65px !important
-        height: 35px !important
-        float: left
-        text-align: center
+.order-form__items-amount
+    width: 25px !important
+    height: 25px !important
+    float: left
+    text-align: center
+    border: none
 
-    .order-form__items-button
-        width: 25px !important  
-        height: 25px !important     
-        float: left
-        padding: 0 !important
-        margin: 5px 0 !important
+.order-form__items-button
+    width: 20px !important
+    height: 20px !important
+    float: left
+    padding: 0 !important
+    margin: 5px 0 !important
 
 .order-form__button-submit
     width: 350px
@@ -894,3 +898,17 @@ form input.modal__input.button--green
     float: left
     margin: 0 35px
 /* endSOCIAL */
+
+.cart
+    display: flex
+    height: 120px
+    margin: 10px 0
+    &__img
+        width: 120px
+        height: 120px
+        display: flex
+        justify-content: center
+        align-items: center
+        img
+            width: 100px
+            align-self: center

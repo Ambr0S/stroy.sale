@@ -72,7 +72,7 @@
             <div class="col-sm-12 text-center">
               <h1>Материалы для ремонта<br>со скидкой до 50<span class="percent">%</span>!</h1>
               <button class="ui button button--green" @click="buttonmodal=true">Откуда скидка?</button>
-              <div class="h1__description" v-if="buttonmodal"> 
+              <div class="h1__description" v-if="buttonmodal">
                 <p>Скидка формируется за счет распродажи складских остатков<br>и неликвидов строительных, торговых и производственных компаний</p>
               </div>
             </div>
@@ -107,7 +107,7 @@
                 <ul class="menu__list">
                   <li class="menu__item"><a class="menu__link" href="#">Задайте вопрос</a></li>
                   <li class="menu__item"><a class="menu__link" href="#">Пользовательское соглашение</a></li>
-                  <li class="menu__item">©STROY.SALE | 2013-2017 | Все права защищены  </li>
+                  <li class="menu__item">©STROY.SALE | 2013-2017 | Все права защищены</li>
                 </ul>
               </div>
             </div>
@@ -127,11 +127,16 @@
             <div class="row order">
               <div class="col-sm-4 order__description order-description">
                 <div class="cart" v-for="(item,index) in fullOrder">
-                  <div class="order-description__name">{{fullOrder[index].name}}</div>
-                  <div class="order-description__img"><img :src="fullOrder[index].image | withImage" alt=""/></div>
-                  <div class="order-description__number">{{fullOrder[index].number}}</div>
-                  <div class="order-description__price--old">{{fullOrder[index].price | deleteLastSymb}}.00 руб.</div>
-                  <div class="order-description__price--new">{{fullOrder[index].price | deleteLastSymb(fullOrder[index].sale)}} руб.</div>
+                  <div class="cart__img"><img :src="fullOrder[index].image | withImage" alt=""/></div>
+                  <div class="cart__description">
+                    <div class="order-description__name">{{fullOrder[index].name}}</div>
+                    <div class="order-description__price--new">{{fullOrder[index].price | deleteLastSymb(fullOrder[index].sale)}} руб.</div>
+                    <div class="order-form__b-items">
+                      <button class="order-form__items-button button ui" @click.prevent="orderitemamountRemove" type="button">-</button>
+                      <input class="order-form__items-amount" :value="orderitemamount" v-model="orderitemamount" type="text"/>
+                      <button class="order-form__items-button button ui" @click.prevent="orderitemamount++" type="button">+</button>
+                    </div>
+                  </div>
                 </div>
               </div>
               <div class="col-sm-8 order__data order-data">
@@ -164,12 +169,6 @@
                       <option value="3">Наличными в офисе --- бесплатно</option>
                       <option value="4">При получении --- 1 500р за выезд курьера</option>
                     </select>
-                  </fieldset>
-                  <fieldset class="order-form__b-items">
-                    <h3>Количество:</h3>
-                    <button class="order-form__items-button button ui" @click.prevent="orderitemamountRemove" type="button">-</button>
-                    <input class="order-form__items-amount" :value="orderitemamount" v-model="orderitemamount" type="text"/>
-                    <button class="order-form__items-button button ui" @click.prevent="orderitemamount++" type="button">+</button>
                   </fieldset>
                   <fieldset class="order-form__b-cost">
                     <!--h2 Стоимость - <strong>{{fullcost}}</strong> руб.-->

@@ -38,7 +38,7 @@ block content
 					.col-sm-12.text-center
 						h1 Материалы для ремонта<br>со скидкой до 50<span class="percent">%</span>!
 						button.ui.button.button--green(@click="buttonmodal=true") Откуда скидка?
-						.h1__description(v-if="buttonmodal") 
+						.h1__description(v-if="buttonmodal")
 							p Скидка формируется за счет распродажи складских остатков<br>и неликвидов строительных, торговых и производственных компаний
 
 
@@ -74,7 +74,7 @@ block content
 									a.menu__link(href="#") Задайте вопрос
 								li.menu__item
 									a.menu__link(href="#") Пользовательское соглашение
-								li.menu__item ©STROY.SALE | 2013-2017 | Все права защищены  
+								li.menu__item ©STROY.SALE | 2013-2017 | Все права защищены
 					modal(:target="menuTarget")
 		//.rub500
 			a(href="#").rub500__link
@@ -93,12 +93,16 @@ block content
 					.row.order
 						.col-sm-4.order__description.order-description
 							.cart(v-for="(item,index) in fullOrder")
-								.order-description__name {{fullOrder[index].name}}
-								.order-description__img
-									img(:src='fullOrder[index].image | withImage', alt='')
-								.order-description__number {{fullOrder[index].number}}
-								.order-description__price--old {{fullOrder[index].price | deleteLastSymb}}.00 руб.
-								.order-description__price--new {{fullOrder[index].price | deleteLastSymb(fullOrder[index].sale)}} руб.
+								.cart__img
+										img(:src='fullOrder[index].image | withImage', alt='')
+								.cart__description
+									.order-description__name {{fullOrder[index].name}}
+									.order-description__price--new {{fullOrder[index].price | deleteLastSymb(fullOrder[index].sale)}} руб.
+									.order-form__b-items
+										button.order-form__items-button.button.ui(@click.prevent="orderitemamountRemove" type="button") -
+										input.order-form__items-amount(:value="orderitemamount", v-model="orderitemamount", type="text" )
+										button.order-form__items-button.button.ui(@click.prevent="orderitemamount++" type="button") +
+
 						.col-sm-8.order__data.order-data
 							.order-data__header Оформление заказа
 							form.order-data__form.order-form#form--category(onsubmit="yaCounter45187896.reachGoal('order'); return true;")
@@ -126,11 +130,6 @@ block content
 										option(value="2") Банковский счёт --- бесплатно
 										option(value="3") Наличными в офисе --- бесплатно
 										option(value="4") При получении --- 1 500р за выезд курьера
-								fieldset.order-form__b-items
-									h3 Количество:
-									button.order-form__items-button.button.ui(@click.prevent="orderitemamountRemove" type="button") -
-									input.order-form__items-amount(:value="orderitemamount", v-model="orderitemamount", type="text" )
-									button.order-form__items-button.button.ui(@click.prevent="orderitemamount++" type="button") +
 								fieldset.order-form__b-cost
 									//h2 Стоимость - <strong>{{fullcost}}</strong> руб.
 									button.button.ui.button--orange.order-form__button-submit(type="submit", @click="sendOrder") ЗАКАЗАТЬ
