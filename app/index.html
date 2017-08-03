@@ -126,13 +126,13 @@
           <div class="container modal-content order__content">
             <div class="row order">
               <div class="col-sm-4 order__description order-description">
-                <div class="order-description__name">{{order.name}}</div>
-                <div class="order-description__img"><img :src="order.image | withImage" alt=""/></div>
-                <div class="order-description__number">{{order.number}}</div>
-                <div class="order-description__text">{{order.text | checkoutText}}</div>
-                <div class="order-description__price--old">{{order.price | deleteLastSymb}}.00 руб.</div>
-                <div class="order-description__price--new">{{order.price | deleteLastSymb(order.sale)}} руб.</div>
-                <div class="order-description__price--costm">{{order.costm | withCostm(order.sale)}}</div>
+                <div class="cart" v-for="(item,index) in fullOrder">
+                  <div class="order-description__name">{{fullOrder[index].name}}</div>
+                  <div class="order-description__img"><img :src="fullOrder[index].image | withImage" alt=""/></div>
+                  <div class="order-description__number">{{fullOrder[index].number}}</div>
+                  <div class="order-description__price--old">{{fullOrder[index].price | deleteLastSymb}}.00 руб.</div>
+                  <div class="order-description__price--new">{{fullOrder[index].price | deleteLastSymb(fullOrder[index].sale)}} руб.</div>
+                </div>
               </div>
               <div class="col-sm-8 order__data order-data">
                 <div class="order-data__header">Оформление заказа</div>
@@ -172,19 +172,19 @@
                     <button class="order-form__items-button button ui" @click.prevent="orderitemamount++" type="button">+</button>
                   </fieldset>
                   <fieldset class="order-form__b-cost">
-                    <h2>Стоимость - <strong>{{fullcost}}</strong> руб.</h2>
+                    <!--h2 Стоимость - <strong>{{fullcost}}</strong> руб.-->
                     <button class="button ui button--orange order-form__button-submit" type="submit" @click="sendOrder">ЗАКАЗАТЬ</button>
                   </fieldset>
-                  <fieldset class="input--hidden">
-                    <input type="text" name="form__cost" v-bind:value="fullcost"/>
-                    <input type="text" name="form__amount" v-bind:value="orderitemamount"/>
-                    <input type="text" name="form__price" v-bind:value="order.price"/>
-                    <input type="text" name="form__name" v-bind:value="order.name"/>
-                    <input type="text" name="form__sale" v-bind:value="order.sale"/>
-                    <input type="text" name="form__number" v-bind:value="order.number"/>
-                    <input type="text" name="form__order" v-bind:value="ordernumber"/>
-                    <input type="text" name="form__address" v-bind:value="address"/>
-                  </fieldset>
+                  <!--fieldset(class="input--hidden")
+                  input(type="text", name="form__cost", v-bind:value='fullcost')
+                  input(type="text", name="form__amount", v-bind:value='orderitemamount')
+                  input(type="text", name="form__price", v-bind:value='order.price')
+                  input(type="text", name="form__name", v-bind:value='order.name')
+                  input(type="text", name="form__sale", v-bind:value='order.sale')
+                  input(type="text", name="form__number", v-bind:value='order.number')
+                  input(type="text", name="form__order", v-bind:value='ordernumber')
+                  input(type="text", name="form__address", v-bind:value='address')
+                  -->
                 </form>
               </div>
               <div class="modal-close" @click="endModal"><i class="angle double left icon"></i></div>

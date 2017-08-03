@@ -68,14 +68,16 @@
                     .container.modal-content.order__content
                         .row.order
                             .col-sm-4.order__description.order-description
-                                .order-description__name {{order.name}}
-                                .order-description__img
-                                    img(:src='order.image | withImage', alt='')
-                                .order-description__number {{order.number}}
-                                .order-description__text {{order.text | checkoutText}}
-                                .order-description__price--old {{order.price | deleteLastSymb}}.00 руб.
-                                .order-description__price--new {{order.price | deleteLastSymb(order.sale)}} руб.
-                                .order-description__price--costm {{order.costm | withCostm(order.sale)}}
+                                .cart
+
+                                    .order-description__name {{order.name}}
+                                    .order-description__img
+                                        img(:src='order.image | withImage', alt='')
+                                    .order-description__number {{order.number}}
+                                    .order-description__text {{order.text | checkoutText}}
+                                    .order-description__price--old {{order.price | deleteLastSymb}}.00 руб.
+                                    .order-description__price--new {{order.price | deleteLastSymb(order.sale)}} руб.
+                                    .order-description__price--costm {{order.costm | withCostm(order.sale)}}
                             .col-sm-8.order__data.order-data
                                 .order-data__header Оформление заказа
                                 form.order-data__form.order-form#form--category(onsubmit="yaCounter45187896.reachGoal('order'); return true;")
@@ -107,7 +109,7 @@
                                         h3 Количество:
                                         button.order-form__items-button.button.ui(@click.prevent="orderitemamountRemove" type="button") -
                                         input.order-form__items-amount(:value="orderitemamount", v-model="orderitemamount", type="text" )
-                                        button.order-form__items-button.button.ui(@click.prevent="orderitemamount++" type="button") +  
+                                        button.order-form__items-button.button.ui(@click.prevent="orderitemamount++" type="button") +
                                     fieldset.order-form__b-cost
                                         h2 Стоимость - <strong>{{fullcost}}</strong> руб.
                                         button.button.ui.button--orange.order-form__button-submit(type="submit", @click="sendOrder") ЗАКАЗАТЬ
@@ -119,7 +121,7 @@
                                         input(type="text", name="form__sale", v-bind:value='order.sale')
                                         input(type="text", name="form__number", v-bind:value='order.number')
                                         input(type="text", name="form__order", v-bind:value='ordernumber')
-                                        input(type="text", name="form__address", v-bind:value='address')      
+                                        input(type="text", name="form__address", v-bind:value='address')
                             .modal-close(@click="endModal") <i class="angle double left icon"></i>
 </template>
 
@@ -152,13 +154,13 @@
             loadJSON : function() {
                 var self = this;
                 axios.get(this.catalogdescend[this.catalogId].jsonfile)
-                .then(function(response) {
-                        self.myjson = response.data;
-                    }, 
-                    function(err) {
-                        console.log(err)
-                    }
-                )     
+                    .then(function(response) {
+                            self.myjson = response.data;
+                        },
+                        function(err) {
+                            console.log(err)
+                        }
+                    )
             },
             goModal : function(e) {
                 this.cart.push(this.myjson[e.target.dataset.id]);
@@ -248,6 +250,9 @@
                     addressInput.removeAttribute('disabled');
                     this.address = 'Укажите адрес';
                 }
+            },
+            cart: function () {
+                this.$root.eventHub.$emit('fullOrder', this.cart)
             }
         },
         computed : {

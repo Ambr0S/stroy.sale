@@ -31,7 +31,11 @@ var eventHub = new Vue();
 
 eventHub.$on('exit', function (msg) {
     vm.menuTarget = msg;
-})
+});
+
+eventHub.$on('fullCart', function (msg) {
+    console.log(msg )
+});
 
 var vm = new Vue({
     el: '#test',
@@ -360,7 +364,6 @@ var vm = new Vue({
 
                 },
             ],
-            
             menuTarget : '',
             buttonmodal : false
 
@@ -377,7 +380,18 @@ var vm = new Vue({
             let payment = (this.paymentKind == 4) ? 1500 : 0;
             sum = (( (1 - k) * (this.order.price)) * this.orderitemamount) + payment;
             return sum.toFixed(2);
-        }
+        },
+        fullOrder: [
+            {
+                "name": "",
+                "price": "",
+                "number": "",
+                "image": "",
+                "text": [],
+                "sale": "",
+                "sales": ""
+            }
+        ],
     },
     watch : {
         deliveryKind : function() {
@@ -483,5 +497,4 @@ var vm = new Vue({
             return (val * 100).toFixed(0);
         }
     }
-
 })

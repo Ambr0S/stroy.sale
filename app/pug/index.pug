@@ -92,14 +92,13 @@ block content
 				.container.modal-content.order__content
 					.row.order
 						.col-sm-4.order__description.order-description
-							.order-description__name {{order.name}}
-							.order-description__img
-								img(:src='order.image | withImage', alt='')
-							.order-description__number {{order.number}}
-							.order-description__text {{order.text | checkoutText}}
-							.order-description__price--old {{order.price | deleteLastSymb}}.00 руб.
-							.order-description__price--new {{order.price | deleteLastSymb(order.sale)}} руб.
-							.order-description__price--costm {{order.costm | withCostm(order.sale)}}
+							.cart(v-for="(item,index) in fullOrder")
+								.order-description__name {{fullOrder[index].name}}
+								.order-description__img
+									img(:src='fullOrder[index].image | withImage', alt='')
+								.order-description__number {{fullOrder[index].number}}
+								.order-description__price--old {{fullOrder[index].price | deleteLastSymb}}.00 руб.
+								.order-description__price--new {{fullOrder[index].price | deleteLastSymb(fullOrder[index].sale)}} руб.
 						.col-sm-8.order__data.order-data
 							.order-data__header Оформление заказа
 							form.order-data__form.order-form#form--category(onsubmit="yaCounter45187896.reachGoal('order'); return true;")
@@ -133,9 +132,9 @@ block content
 									input.order-form__items-amount(:value="orderitemamount", v-model="orderitemamount", type="text" )
 									button.order-form__items-button.button.ui(@click.prevent="orderitemamount++" type="button") +
 								fieldset.order-form__b-cost
-									h2 Стоимость - <strong>{{fullcost}}</strong> руб.
+									//h2 Стоимость - <strong>{{fullcost}}</strong> руб.
 									button.button.ui.button--orange.order-form__button-submit(type="submit", @click="sendOrder") ЗАКАЗАТЬ
-								fieldset(class="input--hidden")
+								//fieldset(class="input--hidden")
 									input(type="text", name="form__cost", v-bind:value='fullcost')
 									input(type="text", name="form__amount", v-bind:value='orderitemamount')
 									input(type="text", name="form__price", v-bind:value='order.price')
