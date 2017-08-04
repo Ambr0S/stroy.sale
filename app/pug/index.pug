@@ -99,9 +99,9 @@ block content
 									.order-description__name {{fullOrder[index].name}}
 									.order-description__price--new {{fullOrder[index].price | deleteLastSymb(fullOrder[index].sale)}} руб.
 									.order-form__b-items
-										button.order-form__items-button.button.ui(@click.prevent="orderitemamountRemove" type="button") -
-										input.order-form__items-amount(:value="orderitemamount", v-model="orderitemamount", type="text" )
-										button.order-form__items-button.button.ui(@click.prevent="orderitemamount++" type="button") +
+										button.order-form__items-button.button.ui(@click.prevent="addFullOrderCount(fullOrder[index].count, index)" type="button") -
+										input.order-form__items-amount(:value="fullOrderCount", v-model="fullOrderCount", type="text" )
+										button.order-form__items-button.button.ui(@click.prevent="addFullOrderCount(fullOrder[index].count, index)" type="button") +
 
 						.col-sm-8.order__data.order-data
 							.order-data__header Оформление заказа

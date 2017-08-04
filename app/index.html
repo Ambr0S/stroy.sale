@@ -132,9 +132,9 @@
                     <div class="order-description__name">{{fullOrder[index].name}}</div>
                     <div class="order-description__price--new">{{fullOrder[index].price | deleteLastSymb(fullOrder[index].sale)}} руб.</div>
                     <div class="order-form__b-items">
-                      <button class="order-form__items-button button ui" @click.prevent="orderitemamountRemove" type="button">-</button>
-                      <input class="order-form__items-amount" :value="orderitemamount" v-model="orderitemamount" type="text"/>
-                      <button class="order-form__items-button button ui" @click.prevent="orderitemamount++" type="button">+</button>
+                      <button class="order-form__items-button button ui" @click.prevent="addFullOrderCount(fullOrder[index].count, index)" type="button">-</button>
+                      <input class="order-form__items-amount" :value="fullOrderCount" v-model="fullOrderCount" type="text"/>
+                      <button class="order-form__items-button button ui" @click.prevent="addFullOrderCount(fullOrder[index].count, index)" type="button">+</button>
                     </div>
                   </div>
                 </div>

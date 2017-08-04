@@ -364,38 +364,13 @@ var vm = new Vue({
             ],
             menuTarget : '',
             buttonmodal : false,
-            fullOrder: []
-
+            fullOrder: [],
+            addFullOrderCountKey: null
         }
     },
     mounted: function() {
         console.log('v.1.0.0.10');
         VK.Widgets.Group("vk_groups", {mode: 4, width: "350", height: "450"}, 60332047);
-    },
-    computed: {
-        fullcost: function() {
-            let sum = 0;
-            let k = this.order.sale;
-            let payment = (this.paymentKind == 4) ? 1500 : 0;
-            sum = (( (1 - k) * (this.order.price)) * this.orderitemamount) + payment;
-            return sum.toFixed(2);
-        }
-    },
-    watch : {
-        deliveryKind : function() {
-            if (this.deliveryKind === '1') {
-                let addressInput = document.querySelector('#form__address');
-                addressInput.setAttribute('disabled', 'disabled');
-                this.address = 'Варшавское шоссе, д.28 A, оф.212';
-            } else if (this.deliveryKind === '2') {
-                let addressInput = document.querySelector('#form__address');
-                addressInput.removeAttribute('disabled');
-                this.address = 'Укажите адрес';
-            }
-        },
-      upi: function () {
-				this.$root.eventHub.$emit('order', this.cart);
-			}
     },
     methods: {
         goModal : function(e) {
@@ -408,11 +383,6 @@ var vm = new Vue({
         endModal : function(e) {
             document.body.style.overflow = 'auto';
             this.showmodal = false;
-        },
-        getOrder: function() {
-					vm.$on('order', function (msg) {
-						console.log(msg)
-					})
         },
         sendOrder : function() {
             $(".order-form").validate({
@@ -473,6 +443,40 @@ var vm = new Vue({
 
                 }
             });
+        },
+        addFullOrderCount: function(a,key) {
+            console.log('тут');
+
+            this.fullOrder[key].count++
+        }
+    },
+    computed: {
+        fullcost: function() {
+            let sum = 0;
+            let k = this.order.sale;
+            let payment = (this.paymentKind == 4) ? 1500 : 0;
+            sum = (( (1 - k) * (this.order.price)) * this.orderitemamount) + payment;
+            return sum.toFixed(2);
+        },
+        fullOrderCount: function() {
+            console.log('тута');
+            console.log(this.fullOrder);
+            console.log(this.addFullOrderCountKey);
+            //return this.fullOrder[this.addFullOrderCountKey].count;
+            return 1
+        }
+    },
+    watch : {
+        deliveryKind : function() {
+            if (this.deliveryKind === '1') {
+                let addressInput = document.querySelector('#form__address');
+                addressInput.setAttribute('disabled', 'disabled');
+                this.address = 'Варшавское шоссе, д.28 A, оф.212';
+            } else if (this.deliveryKind === '2') {
+                let addressInput = document.querySelector('#form__address');
+                addressInput.removeAttribute('disabled');
+                this.address = 'Укажите адрес';
+            }
         }
     },
     filters: {
