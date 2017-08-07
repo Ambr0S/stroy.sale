@@ -130,12 +130,13 @@
                   <div class="cart__img"><img :src="fullOrder[index].image | withImage" alt=""/></div>
                   <div class="cart__description">
                     <div class="order-description__name">{{fullOrder[index].name}}</div>
-                    <div class="order-description__price--new">{{fullOrder[index].price | deleteLastSymb(fullOrder[index].sale)}} руб.</div>
+                    <div class="order-description__price--new">{{fullOrder[index].price}} руб.</div>
                     <div class="order-form__b-items">
-                      <button class="order-form__items-button button ui" @click.prevent="addFullOrderCount(fullOrder[index].count, index)" type="button">-</button>
-                      <input class="order-form__items-amount" :value="fullOrderCount" v-model="fullOrderCount" type="text"/>
-                      <button class="order-form__items-button button ui" @click.prevent="addFullOrderCount(fullOrder[index].count, index)" type="button">+</button>
+                      <button class="order-form__items-button button ui" @click.prevent="setFullOrderCount(index, 'minus')">-</button>
+                      <input class="order-form__items-amount" :value="fullOrder[index].count" v-model="fullOrder[index].count"/>
+                      <button class="order-form__items-button button ui" @click.prevent="setFullOrderCount(index, 'plus')">+</button>
                     </div>
+                    <div class="order-form__sum">Сумма: {{fullOrder[index].price * fullOrder[index].count}} рублей</div>
                   </div>
                 </div>
               </div>
@@ -171,7 +172,7 @@
                     </select>
                   </fieldset>
                   <fieldset class="order-form__b-cost">
-                    <!--h2 Стоимость - <strong>{{fullcost}}</strong> руб.-->
+                    <h2>Стоимость - <strong>{{fullcost}}</strong> руб.</h2>
                     <button class="button ui button--orange order-form__button-submit" type="submit" @click="sendOrder">ЗАКАЗАТЬ</button>
                   </fieldset>
                   <!--fieldset(class="input--hidden")

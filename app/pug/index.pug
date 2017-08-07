@@ -97,11 +97,13 @@ block content
 										img(:src='fullOrder[index].image | withImage', alt='')
 								.cart__description
 									.order-description__name {{fullOrder[index].name}}
-									.order-description__price--new {{fullOrder[index].price | deleteLastSymb(fullOrder[index].sale)}} руб.
+									.order-description__price--new {{fullOrder[index].price}} руб.
 									.order-form__b-items
-										button.order-form__items-button.button.ui(@click.prevent="addFullOrderCount(fullOrder[index].count, index)" type="button") -
-										input.order-form__items-amount(:value="fullOrderCount", v-model="fullOrderCount", type="text" )
-										button.order-form__items-button.button.ui(@click.prevent="addFullOrderCount(fullOrder[index].count, index)" type="button") +
+										button.order-form__items-button.button.ui(@click.prevent="setFullOrderCount(index, 'minus')") -
+										input.order-form__items-amount(:value="fullOrder[index].count", v-model="fullOrder[index].count")
+										button.order-form__items-button.button.ui(@click.prevent="setFullOrderCount(index, 'plus')") +
+									.order-form__sum Сумма: {{fullOrder[index].price * fullOrder[index].count}} рублей
+
 
 						.col-sm-8.order__data.order-data
 							.order-data__header Оформление заказа
@@ -131,7 +133,7 @@ block content
 										option(value="3") Наличными в офисе --- бесплатно
 										option(value="4") При получении --- 1 500р за выезд курьера
 								fieldset.order-form__b-cost
-									//h2 Стоимость - <strong>{{fullcost}}</strong> руб.
+									h2 Стоимость - <strong>{{fullcost}}</strong> руб.
 									button.button.ui.button--orange.order-form__button-submit(type="submit", @click="sendOrder") ЗАКАЗАТЬ
 								//fieldset(class="input--hidden")
 									input(type="text", name="form__cost", v-bind:value='fullcost')

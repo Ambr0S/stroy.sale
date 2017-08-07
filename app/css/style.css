@@ -693,6 +693,13 @@ form input.modal__input.button--green {
   padding: 10px 0;
   border-bottom: 1px solid #d4d8d9; }
 
+.order-form__b-items {
+  display: inline-block; }
+
+.order-form__sum {
+  padding-top: 3px;
+  border-top: 1px dotted #d4d8d9; }
+
 .order-form__b-cost {
   border-bottom: 0 !important; }
   .order-form__b-cost h2 {

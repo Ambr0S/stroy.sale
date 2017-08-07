@@ -105,7 +105,6 @@
                 this.cart.push(this.myjson[e.target.dataset.id]);
                 this.cart.forEach( (i) => i.count = 1);
                 this.$root.eventHub.$emit('order', this.cart);
-                this.$root.eventHub.$emit('order', this.cart);
             },
             endModal : function(e) {
                 document.body.style.overflow = 'auto';

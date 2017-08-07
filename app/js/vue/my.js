@@ -98,7 +98,7 @@ var vm = new Vue({
                             id: 4,
                             name: 'Пены, герметики, клеи',
                             jsonfile: 'json/04.json'
-                        },                   
+                        },
                     ]
                 },
                 {
@@ -115,7 +115,7 @@ var vm = new Vue({
                             id: 1,
                             name: 'Профиль / Маяки / Уголки',
                             jsonfile: 'json/11.json'
-                        }               
+                        }
                     ]
                 },
                 {
@@ -152,7 +152,7 @@ var vm = new Vue({
                             id: 5,
                             name: 'Цемент и основы смесей',
                             jsonfile: 'json/25.json'
-                        },                     
+                        },
                     ]
                 },
                 {
@@ -174,17 +174,17 @@ var vm = new Vue({
                             id: 2,
                             name: 'Стекловата',
                             jsonfile: 'json/32.json'
-                        },                   
+                        },
                         {
                             id: 3,
                             name: 'Пенополистирол экструдированный (xps)',
                             jsonfile: 'json/33.json'
-                        },                   
+                        },
                         {
                             id: 4,
                             name: 'Мембрана / Пленка изоляционная',
                             jsonfile: 'json/34.json'
-                        }                
+                        }
                     ]
                 },
                 {
@@ -206,12 +206,12 @@ var vm = new Vue({
                             id: 2,
                             name: 'Мастика / Битум',
                             jsonfile: 'json/42.json'
-                        },                   
+                        },
                         {
                             id: 3,
                             name: 'Сайдинг',
                             jsonfile: 'json/43.json'
-                        }          
+                        }
                     ]
                 },
                 {
@@ -233,12 +233,12 @@ var vm = new Vue({
                             id: 2,
                             name: 'Трубы для водоснабжения',
                             jsonfile: 'json/52.json'
-                        },                   
+                        },
                         {
                             id: 3,
                             name: 'Канализация',
                             jsonfile: 'json/53.json'
-                        }                
+                        }
                     ]
                 },
                 {
@@ -270,7 +270,7 @@ var vm = new Vue({
                             id: 5,
                             name: 'Эмали',
                             jsonfile: 'json/65.json'
-                        },                
+                        },
                         {
                             id: 7,
                             name: 'Стеновые панели',
@@ -332,7 +332,7 @@ var vm = new Vue({
                             id: 2,
                             name: 'Розетки',
                             jsonfile: 'json/72.json'
-                        },                   
+                        },
                         {
                             id: 3,
                             name: 'Выключатели',
@@ -365,7 +365,7 @@ var vm = new Vue({
             menuTarget : '',
             buttonmodal : false,
             fullOrder: [],
-            addFullOrderCountKey: null
+            addFullOrderCountKey: null,
         }
     },
     mounted: function() {
@@ -444,26 +444,24 @@ var vm = new Vue({
                 }
             });
         },
-        addFullOrderCount: function(a,key) {
-            console.log('тут');
-
-            this.fullOrder[key].count++
-        }
+			  setFullOrderCount: function (index, symb) {
+					let el = this.fullOrder[index];
+					if (symb === 'minus') {
+            el.count = (el.count === 0) ? 0 : el.count - 1
+          } else {
+						el.count += 1
+          }
+					this.fullOrder.splice(index, 1, el)
+				}
     },
     computed: {
         fullcost: function() {
-            let sum = 0;
-            let k = this.order.sale;
-            let payment = (this.paymentKind == 4) ? 1500 : 0;
-            sum = (( (1 - k) * (this.order.price)) * this.orderitemamount) + payment;
-            return sum.toFixed(2);
+            this.fullOrder.reduce((last,current) => {
+							return last + current.count * parseInt(current.price, 10)
+            },0)
         },
         fullOrderCount: function() {
-            console.log('тута');
-            console.log(this.fullOrder);
-            console.log(this.addFullOrderCountKey);
-            //return this.fullOrder[this.addFullOrderCountKey].count;
-            return 1
+            return this.fullOrder
         }
     },
     watch : {
