@@ -32,12 +32,10 @@ var eventHub = new Vue();
 
 // для получения данных из события необходимо использовать стрелочные функции
 eventHub.$on('orderCategory', (msg) => {
-    var currentOrder = vm.fullOrder;
-    vm.fullOrder = currentOrder.concat(msg);
+  vm.orderCategory = msg;
 });
 eventHub.$on('orderCatalog', (msg) => {
-    var currentOrder = vm.fullOrder;
-    vm.fullOrder = currentOrder.concat(msg);
+	vm.orderCatalog = msg;
 });
 
 var vm = new Vue({
@@ -50,36 +48,48 @@ var vm = new Vue({
         modal,
         social
     },
+
+
+
     data: function() {
         return {
-            eventHub:eventHub,
-            showmodal : false,
-            orderitemamount: 1,
-            address: '',
-            deliveryKind: '',
-            paymentKind: '0',
-            ordernumber: '0',
-            menuTarget : '',
-            buttonmodal : false,
-            fullOrderCategory: [],
-            fullOrderCatalog: [],
+            eventHub:             eventHub,
+            showmodal:            false,
+            orderitemamount:      1,
+            address:              '',
+            deliveryKind:         '',
+            paymentKind:          '0',
+            ordernumber:          '0',
+            menuTarget:           '',
+            buttonmodal:          false,
             addFullOrderCountKey: null,
-            order: {
-                "name": "",
-                "price": "",
-                "number": "",
-                "image": "",
-                "text": [],
-                "sale": "",
-                "sales": ""
-            },
-            fullOrder: [],
-            catalogArray : [
+            orderCategory:        [],
+            orderCatalog:         [],
+            fullOrder:            [],
+            catalogArray:         [
                 {
                     id: 0,
-                    name: 'Товары недели',
+                    name: 'Все товары',
                     jsonfile: 'json/all.json'
                 },
+                  {
+                    id: 10,
+                    name: 'Материалы на штукатурные работы',
+                    jsonfile: 'json/shtukaturka.json',
+                    category: [
+                      {
+                        id: 0,
+                        name: 'Штукатурка',
+                        jsonfile: 'json/shtukaturka.json'
+                      },
+                      {
+                        id: 1,
+                        name: 'Шпатлёвка',
+                        jsonfile: 'json/71.json'
+                      },
+                    ]
+
+                  },
                 {
                     id: 1,
                     name: 'Общестроительные материалы',
@@ -198,7 +208,7 @@ var vm = new Vue({
                         }
                     ]
                 },
-                {
+                /*{
                     id: 5,
                     name: 'Фасадные и кровельные материалы',
                     jsonfile: 'json/4.json',
@@ -224,8 +234,8 @@ var vm = new Vue({
                             jsonfile: 'json/43.json'
                         }
                     ]
-                },
-                {
+                },*/
+                /*{
                     id: 6,
                     name: 'Водоснабжение / Отопление / Канализация',
                     jsonfile: 'json/5.json',
@@ -251,8 +261,8 @@ var vm = new Vue({
                             jsonfile: 'json/53.json'
                         }
                     ]
-                },
-                {
+                },*/
+                /*{
                     id: 7,
                     name: 'Отделочные материалы',
                     jsonfile: 'json/6.json',
@@ -323,8 +333,8 @@ var vm = new Vue({
                             jsonfile: 'json/614.json'
                         },
                     ]
-                },
-                {
+                },*/
+                /*{
                     id: 8,
                     name: 'Электрика',
                     jsonfile: 'json/7.json',
@@ -350,36 +360,19 @@ var vm = new Vue({
                             jsonfile: 'json/73.json'
                         }
                     ]
-                },
+                },*/
                 {
                     id: 9,
                     name: 'Материалы б/у, некондиция, неликвид',
                     jsonfile: 'json/80.json'
-                },                {
-                    id: 10,
-                    name: 'Акция! Материалы на штукатурные работы',
-                    category: [
-											{
-												id: 0,
-												name: 'Первая категория',
-												jsonfile: 'json/shtukaturka.json'
-											},
-											{
-												id: 1,
-												name: 'Вторая категория',
-												jsonfile: 'json/71.json'
-											},
-                    ]
-
                 },
-            ]
+            ],
         }
     },
 
 
 
     mounted: function() {
-        console.log('v.1.0.0.10');
         VK.Widgets.Group("vk_groups", {mode: 4, width: "350", height: "450"}, 60332047);
     },
 
@@ -482,9 +475,10 @@ var vm = new Vue({
             });
             return sum;
         },
-        fullOrderCount: function() {
-            return this.fullOrder
-        }
+        setfullOrder: function () {
+          let arr = this.orderCatalog;
+          this.fullOrder = arr.concat(this.orderCategory)
+				}
     },
 
 

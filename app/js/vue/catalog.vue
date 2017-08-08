@@ -9,7 +9,7 @@
 
         .container.category-wp
             .row
-                .catalog__controllers.controllers.col-sm-12
+                .catalog__controllers.catalog__controllers---category.controllers.col-sm-12.text-center
                     .controllers__item(:key="item.id" v-for="(item,index) in catalogCategory")
                         router-link(:to="{name: 'catalogsub', params: {idEnd: index}}" class="controllers-button__item" )
                             a.controllers-button__link(@click="clickRouterLink", href="#" ) {{item.name}}
