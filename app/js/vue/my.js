@@ -31,8 +31,13 @@ var eventHub = new Vue();
 
 
 // для получения данных из события необходимо использовать стрелочные функции
-eventHub.$on('order', (msg) => {
-    vm.fullOrder = msg;
+eventHub.$on('orderCategory', (msg) => {
+    var currentOrder = vm.fullOrder;
+    vm.fullOrder = currentOrder.concat(msg);
+});
+eventHub.$on('orderCatalog', (msg) => {
+    var currentOrder = vm.fullOrder;
+    vm.fullOrder = currentOrder.concat(msg);
 });
 
 var vm = new Vue({
@@ -54,6 +59,11 @@ var vm = new Vue({
             deliveryKind: '',
             paymentKind: '0',
             ordernumber: '0',
+            menuTarget : '',
+            buttonmodal : false,
+            fullOrderCategory: [],
+            fullOrderCatalog: [],
+            addFullOrderCountKey: null,
             order: {
                 "name": "",
                 "price": "",
@@ -63,6 +73,7 @@ var vm = new Vue({
                 "sale": "",
                 "sales": ""
             },
+            fullOrder: [],
             catalogArray : [
                 {
                     id: 0,
@@ -361,29 +372,34 @@ var vm = new Vue({
                     ]
 
                 },
-            ],
-            menuTarget : '',
-            buttonmodal : false,
-            fullOrder: [],
-            addFullOrderCountKey: null,
+            ]
         }
     },
+
+
+
     mounted: function() {
         console.log('v.1.0.0.10');
         VK.Widgets.Group("vk_groups", {mode: 4, width: "350", height: "450"}, 60332047);
     },
+
+
+
     methods: {
         goModal : function(e) {
             this.menuTarget = e.target.dataset.modal;
         },
+
         goCart : function (e) {
             document.body.style.overflow = 'hidden';
             this.showmodal = true;
         },
+
         endModal : function(e) {
             document.body.style.overflow = 'auto';
             this.showmodal = false;
         },
+
         sendOrder : function() {
             $(".order-form").validate({
                 rules: {
@@ -444,26 +460,35 @@ var vm = new Vue({
                 }
             });
         },
-			  setFullOrderCount: function (index, symb) {
-					let el = this.fullOrder[index];
-					if (symb === 'minus') {
-            el.count = (el.count === 0) ? 0 : el.count - 1
-          } else {
-						el.count += 1
-          }
-					this.fullOrder.splice(index, 1, el)
-				}
+
+        setFullOrderCount: function (index, symb) {
+            let el = this.fullOrder[index];
+            if (symb === 'minus') {
+                el.count = (el.count === 0) ? 0 : el.count - 1
+            } else {
+                el.count += 1
+            }
+            this.fullOrder.splice(index, 1, el)
+        }
     },
+
+
+
     computed: {
         fullcost: function() {
-            this.fullOrder.reduce((last,current) => {
-							return last + current.count * parseInt(current.price, 10)
-            },0)
+            let sum = 0;
+            this.fullOrder.forEach(function (i) {
+                sum += (i.count * parseInt(i.price, 10))
+            });
+            return sum;
         },
         fullOrderCount: function() {
             return this.fullOrder
         }
     },
+
+
+
     watch : {
         deliveryKind : function() {
             if (this.deliveryKind === '1') {
@@ -477,20 +502,27 @@ var vm = new Vue({
             }
         }
     },
+
+
+
     filters: {
         deleteLastSymb(val,k) {
             return (k !== undefined) ? ((val) * (1 - k)).toFixed(2) : (val) ;
         },
+
         checkoutText(val) {
             return (val.length != 0) ? val.join('  ||  ') : 'Характеристик нет'
         },
+
         withCostm(val,k) {
             return (val) ? 'Цена за м2 - ' + val * k + 'руб.' : '';
         },
+
         withImage(val) {
             if (val.includes('no_photo')) { return 'img/no_image.png'; }
             return val;
         },
+
         setSale(val) {
             return (val * 100).toFixed(0);
         }

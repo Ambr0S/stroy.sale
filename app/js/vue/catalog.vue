@@ -87,65 +87,6 @@
             .row
                 .col-sm-12
                     router-view(:catalogdescend="catalogCategory")
-            .row.modal.is-active(v-show="showmodal")
-                .col-sm-12
-                        .container.modal-content.order__content
-                            .row.order
-                                .col-sm-4.order__description.order-description
-                                    .order-description__name {{order.name}}
-                                    .order-description__img
-                                        img(:src='order.image | withImage', alt='')
-                                    .order-description__number {{order.number}}
-                                    .order-description__text {{order.text | checkoutText}}
-                                    .order-description__price--new(v-if="order.sales") {{order.price}} руб.
-                                    .order-description__price--old(v-if="!order.sales") {{order.price | deleteLastSymb}} руб.
-                                    .order-description__price--new(v-if="!order.sales") {{order.price | deleteLastSymb(order.sale)}} руб.
-                                    .order-description__price--costm(v-if="!order.sales") {{order.costm | withCostm(order.sale)}}
-                                .col-sm-8.order__data.order-data
-                                    .order-data__header Оформление заказа
-                                    form.order-data__form.order-form#form--catalog(onsubmit="yaCounter45187896.reachGoal('order'); return true;")
-                                        .form__msgs
-                                        fieldset
-                                            h3 Контакты:
-                                            label Введите email
-                                            input(type="text" placeholder="", name="form__email", id="form__email")
-                                            label Введите номер телефона
-                                            input(type="text" placeholder="", name="form__phone", id="form__phone")
-                                        fieldset
-                                            h3 Доставка:
-                                            select(name="form__delivery" id="form__delivery" v-model="deliveryKind" class="ui selection dropdown")
-                                                option(value="" disabled selected) - Выберите способ -
-                                                option(value="1") Самовывоз -- бесплатно
-                                                option(value="2") Доставка курьерской службой
-                                            br
-                                            label Адрес
-                                            input(type="text", name="form__address", id="form__address", disabled, v-bind:placeholder='address')
-                                        fieldset
-                                            h3 Оплата:
-                                            select(name="form__payment" id="form__payment" v-model="paymentKind"  class="ui selection dropdown")
-                                                option(value="" disabled selected) - Выберите способ -
-                                                option(value="1") Онлайн --- бесплатно
-                                                option(value="2") Банковский счёт --- бесплатно
-                                                option(value="3") Наличными в офисе --- бесплатно
-                                                option(value="4") При получении --- 1 500р за выезд курьера
-                                        fieldset.order-form__b-items
-                                            h3 Количество:
-                                            button.order-form__items-button.button.ui(@click.prevent="orderitemamountRemove" type="button") -
-                                            input.order-form__items-amount(:value="orderitemamount", v-model="orderitemamount", type="text" )
-                                            button.order-form__items-button.button.ui(@click.prevent="orderitemamount++" type="button") +
-                                        fieldset.order-form__b-cost
-                                            h2 Стоимость - <strong>{{fullcost}}</strong> руб.
-                                            button.button.ui.button--orange.order-form__button-submit(@click="sendOrder" type="submit") ЗАКАЗАТЬ
-                                        fieldset(class="input--hidden")
-                                            input(type="text", name="form__cost", v-bind:value='fullcost')
-                                            input(type="text", name="form__amount", v-bind:value='orderitemamount')
-                                            input(type="text", name="form__price", v-bind:value='order.price')
-                                            input(type="text", name="form__name", v-bind:value='order.name')
-                                            input(type="text", name="form__sale", v-bind:value='order.sale')
-                                            input(type="text", name="form__number", v-bind:value='order.number')
-                                            input(type="text", name="form__order", v-bind:value='ordernumber')
-                                            input(type="text", name="form__address", v-bind:value='address')
-                                .modal-close(@click="endModal") <i class="angle double left icon"></i>
         formunfound
        
 </template>
@@ -178,7 +119,8 @@
                 deliveryKind: '',
                 paymentKind: '0',
                 ordernumber: '0',
-                sort: 18
+                sort: 18,
+                cart: []
             }
         },
         watch : {
@@ -298,10 +240,9 @@
                 e.target.classList.add('active');
             },
             goModal : function(e) {
-                document.body.style.overflow = 'hidden';
-                this.order.push(this.myjson[e.target.dataset.id]);
-                this.showmodal = true;
-                console.log(this.order)
+                this.cart.push(this.myjson[e.target.dataset.id]);
+                this.cart.forEach( (i) => i.count = 1);
+                this.$root.eventHub.$emit('orderCatalog', this.cart);
             },
             endModal : function() {
                 document.body.style.overflow = 'auto';
