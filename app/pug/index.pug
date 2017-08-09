@@ -34,7 +34,7 @@ block content
 					.col-sm-3.text-left
 						.logo.header__logo
 							img.logo__img(src="img/logo.png", alt="")
-				.row.h1
+				.row.h1#hehehe
 					.col-sm-12.text-center
 						h1 Материалы для ремонта<br>со скидкой до 50<span class="percent">%</span>!
 						button.ui.button.button--green(@click="buttonmodal=true") Откуда скидка?
@@ -81,7 +81,7 @@ block content
 				img(src="img/rub500.png", @click="goModal", data-modal="callback", alt="")
 		.rub500
 			a(href="#").rub500__link
-				img(src="img/rub500.png", @click="goCart", data-modal="callback", alt="")
+				img(src="img/rub500.png", @click.prevent="goCart", data-modal="callback", alt="")
 		.sm
 			a.sm__vk(href="https://vk.com/stroy.sale", target="_blank", onclick="yaCounter45187896.reachGoal('sm'); return true;")
 				img(src="img/vk__ico.png")
