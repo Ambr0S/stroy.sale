@@ -166,6 +166,9 @@ form input.catalog-unfound__input[type="submit"] {
   .product:hover .button, .product--week:hover .button {
     background: #1abc9c;
     color: #fff; }
+  .product:hover .button.noCanAdd, .product--week:hover .button.noCanAdd {
+    background: #1abc9c;
+    color: #fff; }
   .product:hover .button:hover, .product--week:hover .button:hover {
     background: #1abc9c;
     color: #0d5e4e; }
@@ -249,6 +252,9 @@ form input.catalog-unfound__input[type="submit"] {
   margin-left: -10px; }
   .product__benefits img {
     width: 85%; }
+
+.noCanAdd.button.ui {
+  background-color: #1abc9c; }
 
 @media screen and (max-width: 1205px) {
   .product {
