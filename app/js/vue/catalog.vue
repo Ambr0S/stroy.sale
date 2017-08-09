@@ -125,7 +125,7 @@
         },
         watch : {
             catalogId : function() {
-
+                /**/
                 if (this.$route.params.id == 0 && !this.$route.params.idEnd) {
                     this.sort = 28
                 } else {
@@ -143,11 +143,8 @@
                     addressInput.removeAttribute('disabled');
                     this.address = 'Укажите адрес';
                 }
-            },
-            sort : function() {
-
             }
-            
+
         },
         computed : {
             filteredName: function(){
@@ -194,7 +191,7 @@
                 button.classList.add('hidden');
                 let allReferences = document.querySelectorAll('.controllers-button__link--catalog');
                 allReferences[this.catalogdesc[this.catalogId].id].classList.add('active');
-                /*ref*/            
+                /*ref*/
                 return;
             }
 

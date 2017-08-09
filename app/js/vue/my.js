@@ -6,7 +6,7 @@ import catalogsub  from './catalog--sub.vue';
 import blog        from './blog.vue';
 import blogpost    from './blogpost.vue';
 import modal       from './modal.vue';
-import social       from './social.vue';
+import social      from './social.vue';
 
 Vue.use(VueRouter)
 
@@ -32,10 +32,10 @@ var eventHub = new Vue();
 
 // для получения данных из события необходимо использовать стрелочные функции
 eventHub.$on('orderCategory', (msg) => {
-  vm.orderCategory = msg;
+    vm.orderCategory = msg;
 });
 eventHub.$on('orderCatalog', (msg) => {
-	vm.orderCatalog = msg;
+    vm.orderCatalog = msg;
 });
 
 var vm = new Vue({
@@ -374,6 +374,23 @@ var vm = new Vue({
 
     mounted: function() {
         VK.Widgets.Group("vk_groups", {mode: 4, width: "350", height: "450"}, 60332047);
+
+        /* Скролл до карточки товара*/
+        function getCoords(elem) { // кроме IE8-
+            let box = elem.getBoundingClientRect();
+            return {
+                top: box.top + pageYOffset,
+                left: box.left + pageXOffset
+            };
+        }
+
+        if (this.$route.params.id == 1 && this.$route.params.idEnd == 0) {
+            let el = document.querySelector('.catalog__header');
+            let position = getCoords(el);
+            console.log(position);
+            window.scroll(0,position.top);
+        }
+        /* КОНЕЦ Скролл до карточки товара*/
     },
 
 
@@ -477,8 +494,9 @@ var vm = new Vue({
         },
         setfullOrder: function () {
           let arr = this.orderCatalog;
-          this.fullOrder = arr.concat(this.orderCategory)
-				}
+          this.fullOrder = arr.concat(this.orderCategory);
+          return this.fullOrder
+        }
     },
 
 

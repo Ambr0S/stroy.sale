@@ -46,8 +46,7 @@
                   <li class="menu__item">
                     <router-link class="menu__link" @click="goModal" to="/blog" title="" data-modal="blog">Блог</router-link>
                   </li>
-                  <!--li.menu__itema(@click.prevent="goModal" href="#", title="", data-modal="service").menu__link О сервисе
-                  -->
+                  <li class="menu__item"><a class="menu__link" @click.prevent="goModal" href="#" title="" data-modal="service">О сервисе</a></li>
                   <li class="menu__item"><a class="menu__link" @click.prevent="goModal" href="#" title="" data-modal="contacts">Контакты</a></li>
                 </ul>
               </div>
@@ -55,9 +54,7 @@
             <div class="col-sm-4 text-right">
               <div class="header__menu menu">
                 <ul class="menu__list">
-                  <li class="menu__item small"><a class="menu__link menu__link--cart" @click="goCart" href="#" title=""><i class="big in cart icon"></i> В корзине 0 товаров</a></li>
-                  <!--li.menu__itema(@click.prevent="goModal" href="#", title="", data-modal="provider").menu__link Хотите продавать на STROY.SALE?
-                  -->
+                  <li class="menu__item"><a class="menu__link" @click.prevent="goModal" href="#" title="" data-modal="provider">Хотите продавать на STROY.SALE?</a></li>
                 </ul>
               </div>
             </div>
@@ -71,15 +68,15 @@
               <div class="logo header__logo"><img class="logo__img" src="img/logo.png" alt=""/></div>
             </div>
           </div>
-          <!-- .row.h1
-          .col-sm-12.text-center
-          	h1 Материалы для ремонта<br>со скидкой до 50<span class="percent">%</span>!
-          	button.ui.button.button--green(@click="buttonmodal=true") Откуда скидка?
-          	.h1__description(v-if="buttonmodal")
-          		p Скидка формируется за счет распродажи складских остатков<br>и неликвидов строительных, торговых и производственных компаний
-          
-          
-          -->
+          <div class="row h1">
+            <div class="col-sm-12 text-center">
+              <h1>Материалы для ремонта<br>со скидкой до 50<span class="percent">%</span>!</h1>
+              <button class="ui button button--green" @click="buttonmodal=true">Откуда скидка?</button>
+              <div class="h1__description" v-if="buttonmodal">
+                <p>Скидка формируется за счет распродажи складских остатков<br>и неликвидов строительных, торговых и производственных компаний</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       <router-view :catalogdesc="catalogArray" :target="menuTarget"></router-view>
@@ -101,11 +98,9 @@
                   <li class="menu__item">
                     <router-link class="menu__link" @click="goModal" to="/blog" title="" data-modal="blog">Блог</router-link>
                   </li>
-                  <!--li.menu__itema(@click.prevent="goModal" href="#", title="", data-modal="service").menu__link О сервисе
-                  -->
+                  <li class="menu__item"><a class="menu__link" @click.prevent="goModal" href="#" title="" data-modal="service">О сервисе</a></li>
                   <li class="menu__item"><a class="menu__link" @click.prevent="goModal" href="#" title="" data-modal="contacts">Контакты</a></li>
-                  <!--li.menu__itema(@click.prevent="goModal" href="#", title="", data-modal="provider").menu__link Хотите продавать на STROY.SALE?
-                  -->
+                  <li class="menu__item"><a class="menu__link" @click.prevent="goModal" href="#" title="" data-modal="provider">Хотите продавать на STROY.SALE?</a></li>
                 </ul>
               </div>
               <div class="copyright__menu menu">
@@ -124,10 +119,7 @@
       a(href="#").rub500__link
       	img(src="img/rub500.png", @click="goModal", data-modal="callback", alt="")
       -->
-      <!--.rub500
-      a(href="#").rub500__link
-      	img(src="img/rub500.png", @click="goCart", data-modal="callback", alt="")
-      -->
+      <div class="rub500"><a class="rub500__link" href="#"><img src="img/rub500.png" @click="goCart" data-modal="callback" alt=""/></a></div>
       <div class="sm"><a class="sm__vk" href="https://vk.com/stroy.sale" target="_blank" onclick="yaCounter45187896.reachGoal('sm'); return true;"><img src="img/vk__ico.png"/></a><a class="sm__fb" href="https://www.facebook.com/Строительный-дискаунтер-stroysale-798981756933631/" target="_blank" onclick="yaCounter45187896.reachGoal('sm'); return true;"><img src="img/fb__ico.png"/></a></div>
       <div class="row modal is-active" v-show="showmodal">
         <div class="col-sm-12">
