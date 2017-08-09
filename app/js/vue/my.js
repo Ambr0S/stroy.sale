@@ -73,7 +73,7 @@ var vm = new Vue({
                     jsonfile: 'json/all.json'
                 },
                   {
-                    id: 10,
+                    id: 1,
                     name: 'Материалы на штукатурные работы',
                     jsonfile: 'json/shtukaturka.json',
                     category: [
@@ -91,7 +91,7 @@ var vm = new Vue({
 
                   },
                 {
-                    id: 1,
+                    id: 2,
                     name: 'Общестроительные материалы',
                     jsonfile: 'json/0.json',
                     category: [
@@ -123,7 +123,7 @@ var vm = new Vue({
                     ]
                 },
                 {
-                    id: 2,
+                    id: 3,
                     name: 'Гипсокартон и листовые материалы',
                     jsonfile: 'json/1.json',
                     category: [
@@ -140,7 +140,7 @@ var vm = new Vue({
                     ]
                 },
                 {
-                    id: 3,
+                    id: 4,
                     name: 'Строительные смеси и грунты',
                     jsonfile: 'json/2.json',
                     category: [
@@ -177,7 +177,7 @@ var vm = new Vue({
                     ]
                 },
                 {
-                    id: 4,
+                    id: 5,
                     name: 'Изоляционные и защитные материалы',
                     jsonfile: 'json/3.json',
                     category: [
@@ -362,11 +362,12 @@ var vm = new Vue({
                     ]
                 },*/
                 {
-                    id: 9,
+                    id: 6,
                     name: 'Материалы б/у, некондиция, неликвид',
                     jsonfile: 'json/80.json'
                 },
             ],
+            orderCount:           0
         }
     },
 
@@ -401,6 +402,10 @@ var vm = new Vue({
         },
 
         goCart : function (e) {
+            if (this.orderCount === 0) {
+                console.log('Упс')
+                return
+            }
             document.body.style.overflow = 'hidden';
             this.showmodal = true;
         },
@@ -495,6 +500,7 @@ var vm = new Vue({
         setfullOrder: function () {
           let arr = this.orderCatalog;
           this.fullOrder = arr.concat(this.orderCategory);
+          this.orderCount = this.fullOrder.length;
           return this.fullOrder
         }
     },

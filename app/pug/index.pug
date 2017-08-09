@@ -27,7 +27,7 @@ block content
 						.header__menu.menu
 							ul.menu__list
 								li.menu__item.small
-									a.menu__link.menu__link--cart(@click.prevent="goCart", href="#", title="",) <i class="big in cart icon"></i> В корзине 0 товаров
+									a.menu__link.menu__link--cart(@click.prevent="goCart", href="#", title="",) <i class="big in cart icon"></i> В корзине {{orderCount}} тов.
 								//li.menu__item
 									a(@click.prevent="goModal" href="#", title="", data-modal="provider").menu__link Хотите продавать на STROY.SALE?
 		.header
