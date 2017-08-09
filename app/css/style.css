@@ -25,6 +25,10 @@ body {
 body, li, ul, a, p {
   font-size: 1.4rem; }
 
+table td {
+  border: 1px solid #d4d8d9;
+  padding: 10px; }
+
 form input[type="text"] {
   display: block;
   height: 35px;
@@ -88,6 +92,9 @@ form input.catalog-unfound__input[type="submit"] {
   padding: 10px !important;
   width: 350px; }
 
+.controllers .ui.button {
+  padding: 0.5em !important; }
+
 .percent {
   font-family: 'Tahoma';
   font-weight: 900; }
@@ -124,6 +131,10 @@ form input.catalog-unfound__input[type="submit"] {
     border-bottom: 2px solid #d35400;
     text-decoration: none;
     color: #281300; }
+
+.menu__link--cart:hover {
+  border-bottom: none !important;
+  opacity: 0.5; }
 
 @media screen and (max-width: 1366px) {
   .menu__item {
@@ -451,7 +462,7 @@ form input.catalog-unfound__input[type="submit"] {
 /* end PRODUCT */
 /* HEADER*/
 .header {
-  min-height: 560px;
+  height: 100px;
   background-image: url("/img/background.jpg");
   background-repeat: no-repeat;
   background-position: center; }
@@ -545,6 +556,9 @@ h1 {
 
 .catalog__controllers {
   padding: 20px 0 10px 0; }
+
+.catalog__controllers.catalog__controllers---category {
+  padding: 10px; }
 
 .controllers-button__item {
   display: inline-block;
@@ -850,7 +864,7 @@ form input.modal__input.button--green {
 /* SM */
 .sm {
   position: fixed;
-  top: 100px;
+  top: 150px;
   right: 20px; }
   .sm .sm__vk, .sm .sm__fb {
     display: block;

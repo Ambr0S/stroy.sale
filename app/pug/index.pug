@@ -19,14 +19,16 @@ block content
 									a(@click.prevent="goModal" href="#", title="", data-modal="back").menu__link Возврат товара
 								li.menu__item
 									router-link(@click="goModal", to="/blog", title="", data-modal="blog").menu__link Блог
-								li.menu__item
+								//li.menu__item
 									a(@click.prevent="goModal" href="#", title="", data-modal="service").menu__link О сервисе
 								li.menu__item
 									a(@click.prevent="goModal" href="#", title="", data-modal="contacts").menu__link Контакты
 					.col-sm-4.text-right
 						.header__menu.menu
 							ul.menu__list
-								li.menu__item
+								li.menu__item.small
+									a.menu__link.menu__link--cart(@click="goCart", href="#", title="",) <i class="big in cart icon"></i> В корзине 0 товаров
+								//li.menu__item
 									a(@click.prevent="goModal" href="#", title="", data-modal="provider").menu__link Хотите продавать на STROY.SALE?
 		.header
 			.container
@@ -34,7 +36,7 @@ block content
 					.col-sm-3.text-left
 						.logo.header__logo
 							img.logo__img(src="img/logo.png", alt="")
-				.row.h1
+				// .row.h1
 					.col-sm-12.text-center
 						h1 Материалы для ремонта<br>со скидкой до 50<span class="percent">%</span>!
 						button.ui.button.button--green(@click="buttonmodal=true") Откуда скидка?
@@ -62,11 +64,11 @@ block content
 									a(@click.prevent="goModal" href="#", title="", data-modal="back").menu__link Возврат товара
 								li.menu__item
 									router-link(@click="goModal", to="/blog", title="", data-modal="blog").menu__link Блог
-								li.menu__item
+								//li.menu__item
 									a(@click.prevent="goModal" href="#", title="", data-modal="service").menu__link О сервисе
 								li.menu__item
 									a(@click.prevent="goModal" href="#", title="", data-modal="contacts").menu__link Контакты
-								li.menu__item
+								//li.menu__item
 									a(@click.prevent="goModal" href="#", title="", data-modal="provider").menu__link Хотите продавать на STROY.SALE?
 						.copyright__menu.menu
 							ul.menu__list
@@ -79,7 +81,7 @@ block content
 		//.rub500
 			a(href="#").rub500__link
 				img(src="img/rub500.png", @click="goModal", data-modal="callback", alt="")
-		.rub500
+		//.rub500
 			a(href="#").rub500__link
 				img(src="img/rub500.png", @click="goCart", data-modal="callback", alt="")
 		.sm

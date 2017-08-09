@@ -10,6 +10,11 @@ body
 body,li,ul,a,p
     font-size: 1.4rem
 
+table
+    td
+        border: 1px solid $gray-l
+        padding: 10px
+
 form
     input[type="text"]
         display: block
@@ -74,6 +79,9 @@ form
     padding: 10px !important
     width: 350px
 
+.controllers .ui.button
+    padding: 0.5em !important
+
 .percent
     font-family: 'Tahoma'
     font-weight: 900
@@ -111,6 +119,10 @@ form
             border-bottom: 2px solid $orange
             text-decoration: none
             color: $black
+
+.menu__link--cart:hover
+    border-bottom: none !important
+    opacity: 0.5
 
 
 @media screen and (max-width: 1366px)
@@ -464,7 +476,7 @@ form
 
 /* HEADER*/
 .header
-    min-height: 560px
+    height: 100px
     @include bgi("/img/background.jpg")
     &__logo
         margin: 20px 0 0
@@ -561,6 +573,9 @@ h1
 
 .catalog__controllers   
     padding: 20px 0 10px 0
+
+.catalog__controllers.catalog__controllers---category
+    padding: 10px
 
 .controllers-button__item
     display: inline-block
@@ -872,7 +887,6 @@ form input.modal__input.button--green
         &:hover
             border-bottom: none
 
-        
 
 /* endFOOTER */
 
@@ -888,7 +902,7 @@ form input.modal__input.button--green
 /* SM */
 .sm
     position: fixed
-    top: 100px
+    top: 150px
     right: 20px
 
     .sm__vk,.sm__fb

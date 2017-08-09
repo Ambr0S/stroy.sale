@@ -12,7 +12,7 @@
                 a(@click="goModal" href="#", title="", data-modal="provider").menu__link Для поставщиков
             //li.menu__item
                 router-link(@click="goModal", to="/blog", title="", data-modal="blog").menu__link Блог
-            li.menu__item
+            //li.menu__item
                 a(@click="goModal" href="#", title="", data-modal="service").menu__link О сервисе
             li.menu__item
                 a(@click="goModal" href="#", title="", data-modal="contacts").menu__link Контакты
