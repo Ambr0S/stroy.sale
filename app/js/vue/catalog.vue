@@ -9,7 +9,7 @@
 
         .container.category-wp
             .row
-                .catalog__controllers.catalog__controllers---category.controllers.col-sm-12.text-center
+                .catalog__controllers.catalog__controllers--category.controllers.col-sm-12.text-center
                     .controllers__item(:key="item.id" v-for="(item,index) in catalogCategory")
                         router-link(:to="{name: 'catalogsub', params: {idEnd: index}}" class="controllers-button__item" )
                             a.controllers-button__link(@click="clickRouterLink", href="#" ) {{item.name}}
@@ -190,6 +190,7 @@
                 let  button = document.querySelector('.product__add');
                 button.classList.add('hidden');
                 let allReferences = document.querySelectorAll('.controllers-button__link--catalog');
+                console.log(allReferences)
                 allReferences[this.catalogdesc[this.catalogId].id].classList.add('active');
                 /*ref*/
                 return;
@@ -231,12 +232,17 @@
                 )     
             },
             addActiveClass : function(e) {
-                
                 let allReferences = document.querySelectorAll('.category-wp .controllers-button__link');
                 allReferences.forEach((i)=>i.classList.remove('active'));
                 e.target.classList.add('active');
             },
             goModal : function(e) {
+            	let target = e.target;
+            	if (target.classList.contains('noCanAdd')) return;
+            	/* Деактивируем кнопку */
+            	target.classList.add('noCanAdd');
+            	target.textContent = 'Товар в корзине';
+            	/* end */
                 this.cart.push(this.myjson[e.target.dataset.id]);
                 this.cart.forEach( (i) => i.count = 1);
                 this.$root.eventHub.$emit('orderCatalog', this.cart);
