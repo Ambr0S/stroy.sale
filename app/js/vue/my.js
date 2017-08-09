@@ -32,10 +32,10 @@ var eventHub = new Vue();
 
 // для получения данных из события необходимо использовать стрелочные функции
 eventHub.$on('orderCategory', (msg) => {
-  vm.orderCategory = msg;
+    vm.orderCategory = msg;
 });
 eventHub.$on('orderCatalog', (msg) => {
-	vm.orderCatalog = msg;
+    vm.orderCatalog = msg;
 });
 
 var vm = new Vue({
@@ -478,7 +478,8 @@ var vm = new Vue({
         setfullOrder: function () {
           let arr = this.orderCatalog;
           this.fullOrder = arr.concat(this.orderCategory)
-				}
+          return this.fullOrder
+        }
     },
 
 

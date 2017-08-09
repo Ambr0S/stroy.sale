@@ -126,17 +126,17 @@
           <div class="container modal-content order__content">
             <div class="row order">
               <div class="col-sm-4 order__description order-description">
-                <div class="cart" v-for="(item,index) in fullOrder">
-                  <div class="cart__img"><img :src="fullOrder[index].image | withImage" alt=""/></div>
+                <div class="cart" v-for="(item,index) in setfullOrder">
+                  <div class="cart__img"><img :src="setfullOrder[index].image | withImage" alt=""/></div>
                   <div class="cart__description">
-                    <div class="order-description__name">{{fullOrder[index].name}}</div>
-                    <div class="order-description__price--new">{{fullOrder[index].price}} руб.</div>
+                    <div class="order-description__name">{{setfullOrder[index].name}}</div>
+                    <div class="order-description__price--new">{{setfullOrder[index].price}} руб.</div>
                     <div class="order-form__b-items">
                       <button class="order-form__items-button button ui" @click.prevent="setFullOrderCount(index, 'minus')">-</button>
-                      <input class="order-form__items-amount" :value="fullOrder[index].count" v-model="fullOrder[index].count"/>
+                      <input class="order-form__items-amount" :value="setfullOrder[index].count" v-model="setfullOrder[index].count"/>
                       <button class="order-form__items-button button ui" @click.prevent="setFullOrderCount(index, 'plus')">+</button>
                     </div>
-                    <div class="order-form__sum">Сумма: {{fullOrder[index].price * fullOrder[index].count}} рублей</div>
+                    <div class="order-form__sum">Сумма: {{setfullOrder[index].price * setfullOrder[index].count}} рублей</div>
                   </div>
                 </div>
               </div>

@@ -92,17 +92,17 @@ block content
 				.container.modal-content.order__content
 					.row.order
 						.col-sm-4.order__description.order-description
-							.cart(v-for="(item,index) in fullOrder")
+							.cart(v-for="(item,index) in setfullOrder")
 								.cart__img
-										img(:src='fullOrder[index].image | withImage', alt='')
+										img(:src='setfullOrder[index].image | withImage', alt='')
 								.cart__description
-									.order-description__name {{fullOrder[index].name}}
-									.order-description__price--new {{fullOrder[index].price}} руб.
+									.order-description__name {{setfullOrder[index].name}}
+									.order-description__price--new {{setfullOrder[index].price}} руб.
 									.order-form__b-items
 										button.order-form__items-button.button.ui(@click.prevent="setFullOrderCount(index, 'minus')") -
-										input.order-form__items-amount(:value="fullOrder[index].count", v-model="fullOrder[index].count")
+										input.order-form__items-amount(:value="setfullOrder[index].count", v-model="setfullOrder[index].count")
 										button.order-form__items-button.button.ui(@click.prevent="setFullOrderCount(index, 'plus')") +
-									.order-form__sum Сумма: {{fullOrder[index].price * fullOrder[index].count}} рублей
+									.order-form__sum Сумма: {{setfullOrder[index].price * setfullOrder[index].count}} рублей
 
 
 						.col-sm-8.order__data.order-data
