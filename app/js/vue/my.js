@@ -392,99 +392,110 @@ var vm = new Vue({
             window.scroll(0,position.top);
         }
         /* КОНЕЦ Скролл до карточки товара*/
+
+        /* Добавляем товары в корзину */
+				if(localStorage.orderCatalog) {
+					this.orderCatalog = JSON.parse(localStorage.orderCatalog);
+				}
+
+				if(localStorage.orderCategory) {
+					this.orderCategory = JSON.parse(localStorage.orderCategory);
+				}
+
+			/* end */
     },
 
 
 
     methods: {
-        goModal : function(e) {
-            this.menuTarget = e.target.dataset.modal;
-        },
+			goModal: function (e) {
+				this.menuTarget = e.target.dataset.modal;
+			},
 
-        goCart : function (e) {
-            if (this.orderCount === 0) {
-                console.log('Упс')
-                return
-            }
-            document.body.style.overflow = 'hidden';
-            this.showmodal = true;
-        },
+			goCart: function (e) {
+				if (this.orderCount === 0) {
+					console.log('Упс')
+					return
+				}
+				document.body.style.overflow = 'hidden';
+				this.showmodal = true;
+			},
 
-        endModal : function(e) {
-            document.body.style.overflow = 'auto';
-            this.showmodal = false;
-        },
+			endModal: function (e) {
+				document.body.style.overflow = 'auto';
+				this.showmodal = false;
+			},
 
-        sendOrder : function() {
-            $(".order-form").validate({
-                rules: {
-                    form__email: 'required',
-                    form__phone: 'required',
-                    form__delivery: 'required',
-                    form__address: 'required',
-                    form__payment: 'required'
-                },
-                messages: {
-                    form__email: '',
-                    form__phone: '',
-                    form__delivery: '',
-                    form__address: '',
-                    form__payment: ''
-                }
-            });
+			sendOrder: function () {
+				$(".order-form").validate({
+					rules: {
+						form__email: 'required',
+						form__phone: 'required',
+						form__delivery: 'required',
+						form__address: 'required',
+						form__payment: 'required'
+					},
+					messages: {
+						form__email: '',
+						form__phone: '',
+						form__delivery: '',
+						form__address: '',
+						form__payment: ''
+					}
+				});
 
-            var form__orderNumber = this.ordernumber;
+				var form__orderNumber = this.ordernumber;
 
-            $(".order-form").on('click', function () {
+				$(".order-form").on('click', function () {
 
-                if ($(this).valid()) {
-                    var formID = $(this).attr('id');
-                    var formNm = $('#' + formID);
-                    var message = $(formNm).find(".form__msgs");
+					if ($(this).valid()) {
+						var formID = $(this).attr('id');
+						var formNm = $('#' + formID);
+						var message = $(formNm).find(".form__msgs");
 
-                    $.ajax({
-                        type: "POST",
-                        url: 'mt.action.php',
-                        data: formNm.serialize(),
-                        success: function (data) {
-                            message.addClass('active')
-                            message.text('Благодарим за заказ! Номер заказа m-' + form__orderNumber + '. В скором времени с Вами свяжется наш менеджер. Пожалуйста, ожидайте!');
-                            setTimeout(function(){
-                                message.removeClass('active')
-                                message.html('');
-                                $('input').not(':input[type=submit], :input[type=hidden]').val('');
-                            }, 30000);
-                        },
-                        error: function (jqXHR, text, error) {
-                            message.html('Упс...Письмо не отправилось');
-                            message.css({'background':'red'});
-                            setTimeout(function(){
-                                message.css({'background':'none'});
-                                message.html('');
-                                $('input').not(':input[type=submit], :input[type=hidden]').val('');
-                            }, 3000);
-                        }
-                    });
-                    return false;
+						$.ajax({
+							type: "POST",
+							url: 'mt.action.php',
+							data: formNm.serialize(),
+							success: function (data) {
+								message.addClass('active')
+								message.text('Благодарим за заказ! Номер заказа m-' + form__orderNumber + '. В скором времени с Вами свяжется наш менеджер. Пожалуйста, ожидайте!');
+								setTimeout(function () {
+									message.removeClass('active')
+									message.html('');
+									$('input').not(':input[type=submit], :input[type=hidden]').val('');
+								}, 30000);
+							},
+							error: function (jqXHR, text, error) {
+								message.html('Упс...Письмо не отправилось');
+								message.css({'background': 'red'});
+								setTimeout(function () {
+									message.css({'background': 'none'});
+									message.html('');
+									$('input').not(':input[type=submit], :input[type=hidden]').val('');
+								}, 3000);
+							}
+						});
+						return false;
 
-                    function randomInteger(min,max) {
-                        var integer = (Math.random() * (max - min + 1) + min - 0.5);
-                        return integer = Math.round(integer);
-                    }
+						function randomInteger(min, max) {
+							var integer = (Math.random() * (max - min + 1) + min - 0.5);
+							return integer = Math.round(integer);
+						}
 
-                }
-            });
-        },
+					}
+				});
+			},
 
-        setFullOrderCount: function (index, symb) {
-            let el = this.fullOrder[index];
-            if (symb === 'minus') {
-                el.count = (el.count === 0) ? 0 : el.count - 1
-            } else {
-                el.count += 1
-            }
-            this.fullOrder.splice(index, 1, el)
-        }
+			setFullOrderCount: function (index, symb) {
+				let el = this.fullOrder[index];
+				if (symb === 'minus') {
+					el.count = (el.count === 0) ? 0 : el.count - 1
+				} else {
+					el.count += 1
+				}
+				this.fullOrder.splice(index, 1, el)
+			},
     },
 
 

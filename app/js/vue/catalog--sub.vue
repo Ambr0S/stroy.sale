@@ -104,13 +104,27 @@
             goModal : function(e) {
                 let target = e.target;
                 if (target.classList.contains('noCanAdd')) return;
+
                 /* Деактивируем кнопку */
                 target.classList.add('noCanAdd');
                 target.textContent = 'Товар в корзине';
                 /* end */
+
                 this.cart.push(this.myjson[e.target.dataset.id]);
                 this.cart.forEach( (i) => i.count = 1);
                 this.$root.eventHub.$emit('orderCategory', this.cart);
+
+                /* Добавляем товар в Local Storage */
+                /*if (localStorage.orderCategory) {
+                    let currentArr = localStorage.orderCategory;
+                    console.log(currentArr);
+                    //this.cart.push(currentArr);
+                    localStorage.setItem('orderCategory', JSON.stringify(this.cart));
+                } else {
+                    localStorage.setItem('orderCategory', JSON.stringify(this.cart));
+                }*/
+                /* end */
+
             },
             endModal : function(e) {
                 document.body.style.overflow = 'auto';
