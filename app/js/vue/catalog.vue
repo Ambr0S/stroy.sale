@@ -243,22 +243,36 @@
             	/* Деактивируем кнопку */
             	target.classList.add('noCanAdd');
             	target.textContent = 'Товар в корзине';
+            	console.log(target)
             	/* end */
 
             	this.cart.push(this.myjson[e.target.dataset.id]);
                 this.cart.forEach( (i) => i.count = 1);
-                this.$root.eventHub.$emit('orderCatalog', this.cart);
 
-                localStorage.setItem('orderCatalog', JSON.stringify(this.cart));
                 /* Добавляем товар в Local Storage */
+
                 if (localStorage.orderCatalog) {
-                	let arr = JSON.parse(localStorage.orderCatalog);
-                	arr.push(this.cart);
-                	localStorage.setItem('orderCatalog', JSON.stringify(arr));
+                    let currentLocalStorage = JSON.parse(localStorage.orderCatalog) || [];
+                    let cart = this.cart;
+                    let arr = currentLocalStorage.concat(cart);
+                    let newArr = arr
+                        .sort((a,b) => {
+                            return (a.number > b.number) ? true : false;
+                        })
+                        .filter( (i, index) => {
+                            if (index + 1 >= arr.length) return true;
+
+                            let a = i.number;
+                            let b = arr[index+1].number || '';
+                            return (a !== b);
+                        });
+                    this.cart = newArr;
+                    localStorage.setItem('orderCatalog', JSON.stringify(newArr));
                 } else {
                 	localStorage.setItem('orderCatalog', JSON.stringify(this.cart));
                 }
                 /* end */
+                this.$root.eventHub.$emit('orderCatalog', this.cart);
             },
             endModal : function() {
                 document.body.style.overflow = 'auto';
