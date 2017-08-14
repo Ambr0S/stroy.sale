@@ -38,7 +38,7 @@
                                             .compare(v-if="item.price__kastorama") <img src="img/ico__kastorama.jpg" alt="" /> <i>Касторама:</i> {{item.price__kastorama}} {{item.amount}}
                                             .compare(v-if="item.price__middle") <i>Средняя цена:</i> {{item.price__middle}} {{item.amount}}
                                         .product__button
-                                            .button.ui(:data-id='index', @click="goModal", onclick="yaCounter45187896.reachGoal('cart'); return true;") <i class="shop icon"></i> Добавить в корзину
+                                            .button.ui(:data-id='index', @click="goModal", :class="item.canAdd", onclick="yaCounter45187896.reachGoal('cart'); return true;") <i class="shop icon"></i> {{item.canAddWords}}
                             .row(v-else-if="item.main")
                                 .col-sm-12
                                     .product.catalog__product.catalog__product--main
@@ -59,7 +59,7 @@
                                                 .compare(v-if="item.price__kastorama") <img src="img/ico__kastorama.jpg" alt="" /> <i>Касторама:</i> {{item.price__kastorama}} {{item.amount}}
                                                 .compare(v-if="item.price__middle") <i>Средняя цена:</i> {{item.price__middle}} {{item.amount}}
                                             .product__button.product__button--main
-                                                .button.button--green.ui(:data-id='index', @click="goModal", onclick="yaCounter45187896.reachGoal('cart'); return true;") <i class="shop icon"></i> Добавить в корзину
+                                                .button.button--green.ui(:data-id='index', @click="goModal", :class="item.canAdd", onclick="yaCounter45187896.reachGoal('cart'); return true;") <i class="shop icon"></i> {{item.canAddWords}}
                                             .product__benefits
                                                     img(src="img/benefit.jpg" alt="")
 
@@ -80,7 +80,7 @@
                                             .product__price--new {{item.price | deleteLastSymb(item.sale)}} руб.
                                             .product__price--costm {{item.costm | withCostm(item.sale) }}
                                         .product__button.text-center
-                                            .button.ui(:data-id='index', @click="goModal", onclick="yaCounter45187896.reachGoal('cart'); return true;") <i class="shop icon"></i> Добавить в корзину
+                                            .button.ui(:data-id='index', @click="goModal", :class="item.canAdd", onclick="yaCounter45187896.reachGoal('cart'); return true;") <i class="shop icon"></i> {{item.canAddWords}}
                 .col-sm-12.text-center
                     .product__add
                         a.button.button--orange.ui(href="",  v-model="sort", @click.prevent="addSort") <i class="arrow down icon"></i> Показать ещё...
@@ -152,6 +152,10 @@
                     json    = [],
                     sort = this.sort;
 
+                let storage = localStorage.orderCatalog;
+                let storageArr = [];
+
+
                 myjson.sort(function(a,b) {
                     if (a.sale > b.sale) { return -1; }
                     if (a.sale < b.sale) { return 1; }
@@ -160,9 +164,23 @@
 
                 myjson.forEach((i,index) => {
                     if ( index < sort ) {
+                        i.canAdd = 'canAdd';
+                        i.canAddWords = 'Добавить в корзину';
+                        if (storage) {
+                        	storageArr = JSON.parse(storage);
+                            storageArr.forEach((y) => {
+                                if (i.number === y.number) {
+                                	i.canAdd = 'noCanAdd';
+                                	i.canAddWords = 'Товар в корзине'
+                                }
+                            })
+                        }
+
                         json.push(i);
                     }
                 });
+
+
 
                 return json.filter((i) => {
                     let item = i;
