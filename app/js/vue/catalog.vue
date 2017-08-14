@@ -83,7 +83,7 @@
                                             .button.ui(:data-id='index', @click="goModal", onclick="yaCounter45187896.reachGoal('cart'); return true;") <i class="shop icon"></i> Добавить в корзину
                 .col-sm-12.text-center
                     .product__add
-                        a.button.button--orange.ui(href="",  v-model="sort", @click.prevent="addSort") <i class="arrow down icon"></i> Показать ещё... 
+                        a.button.button--orange.ui(href="",  v-model="sort", @click.prevent="addSort") <i class="arrow down icon"></i> Показать ещё...
             .row
                 .col-sm-12
                     router-view(:catalogdescend="catalogCategory")
@@ -151,16 +151,19 @@
                 let myjson  = this.myjson,
                     json    = [],
                     sort = this.sort;
+
                 myjson.sort(function(a,b) {
                     if (a.sale > b.sale) { return -1; }
                     if (a.sale < b.sale) { return 1; }
                     return 0;
-                })
+                });
+
                 myjson.forEach((i,index) => {
-                    if ( index < sort ) { 
-                        json.push(i) 
+                    if ( index < sort ) {
+                        json.push(i);
                     }
                 });
+
                 return json.filter((i) => {
                     let item = i;
                     return item.name.toLowerCase().replace('ё','е').match(this.search.toLowerCase().replace('ё','е'))
@@ -229,7 +232,7 @@
                     function(err) {
                         console.log(err)
                     }
-                )     
+                )
             },
             addActiveClass : function(e) {
                 let allReferences = document.querySelectorAll('.category-wp .controllers-button__link');
@@ -243,7 +246,6 @@
             	/* Деактивируем кнопку */
             	target.classList.add('noCanAdd');
             	target.textContent = 'Товар в корзине';
-            	console.log(target)
             	/* end */
 
             	this.cart.push(this.myjson[e.target.dataset.id]);
@@ -257,7 +259,7 @@
                     let arr = currentLocalStorage.concat(cart);
                     let newArr = arr
                         .sort((a,b) => {
-                            return (a.number > b.number) ? true : false;
+                            return (a.number > b.number) ? 1 : -1;
                         })
                         .filter( (i, index) => {
                             if (index + 1 >= arr.length) return true;
@@ -266,6 +268,7 @@
                             let b = arr[index+1].number || '';
                             return (a !== b);
                         });
+                    console.log(newArr);
                     this.cart = newArr;
                     localStorage.setItem('orderCatalog', JSON.stringify(newArr));
                 } else {
