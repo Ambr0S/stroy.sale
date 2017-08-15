@@ -19,6 +19,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	      $udeliveryFieldset = "<b>Способ доставки:</b>";
 	    }
     }
+      if (isset($_POST['form__fullorder'])) {
+          if (!empty($_POST['form__fullorder'])){
+              $ufullorder = strip_tags($_POST['form__fullorder']) . "<br>";
+              $ufullorderFieldset = "<b>Заказ:</b>";
+          }
+      }
     if (isset($_POST['form__payment'])) {
     	if (!empty($_POST['form__payment'])){
 	      $upayment = strip_tags($_POST['form__payment']) . "<br>";
@@ -96,6 +102,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $upaymentFieldset $upayment
                 $uorderFieldset $uorder
                 $uaddressFieldset $uaddress
+                $ufullorderFieldset $ufullorder
                 ";
 
     $send = mail ($to, $subject, $message, $headers);

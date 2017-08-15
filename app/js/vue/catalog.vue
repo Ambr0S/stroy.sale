@@ -398,8 +398,9 @@
             deleteLastSymb(val,k) {
                 return (k !== undefined) ? (val * (1 - k)).toFixed(2) : (val) ;
             },
-            checkoutText(val) {          
-                return (val.length != 0) ? val.join('  ||  ') : 'Характеристик нет'
+            checkoutText(val) {
+            	let text = (typeof val == 'object') ? val.join('  ||  ') : val;
+                return (val.length != 0) ? text : 'Характеристик нет'
             },
             withCostm(val,k) {
                 return (val) ? 'Цена за м2 - ' + (val * k) + 'руб.' : '';

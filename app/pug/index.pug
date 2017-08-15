@@ -104,6 +104,7 @@ block content
 										button.order-form__items-button.button.ui(@click.prevent="setFullOrderCount(index, 'minus')") -
 										input.order-form__items-amount(:value="setfullOrder[index].count", v-model="setfullOrder[index].count")
 										button.order-form__items-button.button.ui(@click.prevent="setFullOrderCount(index, 'plus')") +
+										.order-form__items-button.order-form__items-button--delete(@click.prevent="setFullOrderCount(index, 'delete', setfullOrder[index].number)") <i class="remove circle icon"></i>
 									.order-form__sum Сумма: {{setfullOrder[index].price * setfullOrder[index].count}} рублей
 
 
@@ -137,13 +138,14 @@ block content
 								fieldset.order-form__b-cost
 									h2 Стоимость - <strong>{{fullcost}}</strong> руб.
 									button.button.ui.button--orange.order-form__button-submit(type="submit", @click="sendOrder") ЗАКАЗАТЬ
-								//fieldset(class="input--hidden")
+								fieldset(class="input--hidden")
 									input(type="text", name="form__cost", v-bind:value='fullcost')
-									input(type="text", name="form__amount", v-bind:value='orderitemamount')
-									input(type="text", name="form__price", v-bind:value='order.price')
-									input(type="text", name="form__name", v-bind:value='order.name')
-									input(type="text", name="form__sale", v-bind:value='order.sale')
-									input(type="text", name="form__number", v-bind:value='order.number')
+									//input(type="text", name="form__amount", v-bind:value='orderitemamount')
+									//input(type="text", name="form__price", v-bind:value='order.price')
+									//input(type="text", name="form__name", v-bind:value='order.name')
+									//input(type="text", name="form__sale", v-bind:value='order.sale')
+									//input(type="text", name="form__number", v-bind:value='order.number')
+									input(type="text", name="form__fullorder", v-bind:value='setfullorder')
 									input(type="text", name="form__order", v-bind:value='ordernumber')
 									input(type="text", name="form__address", v-bind:value='address')
-						.modal-close(@click="endModal") <i class="angle double left icon"></i>
+						.modal-close(@click="endModal")

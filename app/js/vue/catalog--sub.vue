@@ -114,16 +114,6 @@
                 this.cart.forEach( (i) => i.count = 1);
                 this.$root.eventHub.$emit('orderCategory', this.cart);
 
-                /* Добавляем товар в Local Storage */
-                /*if (localStorage.orderCategory) {
-                    let currentArr = localStorage.orderCategory;
-                    console.log(currentArr);
-                    //this.cart.push(currentArr);
-                    localStorage.setItem('orderCategory', JSON.stringify(this.cart));
-                } else {
-                    localStorage.setItem('orderCategory', JSON.stringify(this.cart));
-                }*/
-                /* end */
 
             },
             endModal : function(e) {
