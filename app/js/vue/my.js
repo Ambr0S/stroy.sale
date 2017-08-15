@@ -122,7 +122,7 @@ var vm = new Vue({
                         },
                     ]
                 },
-                {
+                /*{
                     id: 3,
                     name: 'Гипсокартон и листовые материалы',
                     jsonfile: 'json/1.json',
@@ -138,8 +138,8 @@ var vm = new Vue({
                             jsonfile: 'json/11.json'
                         }
                     ]
-                },
-                {
+                },*/
+                /*{
                     id: 4,
                     name: 'Строительные смеси и грунты',
                     jsonfile: 'json/2.json',
@@ -175,8 +175,8 @@ var vm = new Vue({
                             jsonfile: 'json/25.json'
                         },
                     ]
-                },
-                {
+                },*/
+                /*{
                     id: 5,
                     name: 'Изоляционные и защитные материалы',
                     jsonfile: 'json/3.json',
@@ -207,9 +207,9 @@ var vm = new Vue({
                             jsonfile: 'json/34.json'
                         }
                     ]
-                },
-                /*{
-                    id: 5,
+                },*/
+                {
+                    id: 3,
                     name: 'Фасадные и кровельные материалы',
                     jsonfile: 'json/4.json',
                     category: [
@@ -234,7 +234,7 @@ var vm = new Vue({
                             jsonfile: 'json/43.json'
                         }
                     ]
-                },*/
+                },
                 /*{
                     id: 6,
                     name: 'Водоснабжение / Отопление / Канализация',
@@ -334,8 +334,8 @@ var vm = new Vue({
                         },
                     ]
                 },*/
-                /*{
-                    id: 8,
+                {
+                    id: 4,
                     name: 'Электрика',
                     jsonfile: 'json/7.json',
                     category: [
@@ -360,14 +360,14 @@ var vm = new Vue({
                             jsonfile: 'json/73.json'
                         }
                     ]
-                },*/
+                },
                 {
-                    id: 6,
+                    id: 5,
                     name: 'Материалы б/у, некондиция, неликвид',
                     jsonfile: 'json/80.json'
                 },
             ],
-            orderCount:           0
+            orderCount: 0
         }
     },
 
