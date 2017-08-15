@@ -224,6 +224,9 @@ form input.catalog-unfound__input[type="submit"] {
   padding-top: 5px;
   height: 75px; }
 
+.order-description {
+  overflow-y: scroll; }
+
 .order-description__price--new {
   height: auto; }
 
@@ -668,7 +671,7 @@ form input.modal__input.button--green {
           justify-content: flex-start;
   -ms-flex-line-pack: start;
       align-content: flex-start;
-  padding: 150px 0 0;
+  padding: 50px 0 0;
   border-right: 1px solid #d4d8d9; }
 
 .order-description__name,
@@ -691,7 +694,7 @@ form input.modal__input.button--green {
   margin: 10px 0 0; }
 
 .order-description__name {
-  font-size: 16px;
+  font-size: 14px;
   margin: 5px 0 10px;
   max-width: 380px;
   line-height: 1.1; }
@@ -742,6 +745,10 @@ form input.modal__input.button--green {
   float: left;
   padding: 0 !important;
   margin: 5px 0 !important; }
+
+.order-form__items-button.order-form__items-button--delete {
+  margin-left: 30px !important;
+  cursor: pointer; }
 
 .order-form__button-submit {
   width: 250px;
@@ -901,7 +908,7 @@ form input.modal__input.button--green {
   display: -ms-flexbox;
   display: flex;
   height: 120px;
-  margin: 10px 0; }
+  margin: 20px 0; }
   .cart__img {
     width: 120px;
     height: 120px;
@@ -913,9 +920,10 @@ form input.modal__input.button--green {
             justify-content: center;
     -webkit-box-align: center;
         -ms-flex-align: center;
-            align-items: center; }
+            align-items: center;
+    margin-right: 20px; }
     .cart__img img {
-      width: 100px;
+      height: 100px;
       -ms-flex-item-align: center;
           align-self: center; }
 

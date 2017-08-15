@@ -414,7 +414,6 @@ var vm = new Vue({
 
 			goCart: function (e) {
 				if (this.orderCount === 0) {
-					console.log('Упс')
 					return
 				}
 				document.body.style.overflow = 'hidden';
@@ -458,10 +457,10 @@ var vm = new Vue({
 							url: 'mt.action.php',
 							data: formNm.serialize(),
 							success: function (data) {
-								message.addClass('active')
+								message.addClass('active');
 								message.text('Благодарим за заказ! Номер заказа m-' + form__orderNumber + '. В скором времени с Вами свяжется наш менеджер. Пожалуйста, ожидайте!');
 								setTimeout(function () {
-									message.removeClass('active')
+									message.removeClass('active');
 									message.html('');
 									$('input').not(':input[type=submit], :input[type=hidden]').val('');
 								}, 30000);
@@ -487,12 +486,33 @@ var vm = new Vue({
 				});
 			},
 
-			setFullOrderCount: function (index, symb) {
+			setFullOrderCount: function (index, symb, number) {
 				let el = this.fullOrder[index];
 				if (symb === 'minus') {
 					el.count = (el.count === 0) ? 0 : el.count - 1
-				} else {
+				} else if (symb === 'plus') {
 					el.count += 1
+				} else if (symb === 'delete') {
+					if (localStorage.orderCatalog) {
+						let storage = JSON.parse(localStorage.orderCatalog);
+						clearCartAfterDelete(storage);
+						localStorage.orderCatalog = JSON.stringify(storage);
+					}
+					if (localStorage.orderCategory) {
+						let storage = JSON.parse(localStorage.orderCategory);
+						clearCartAfterDelete(storage);
+						localStorage.orderCategory = JSON.stringify(storage);
+					}
+					clearCartAfterDelete(this.fullOrder);
+					clearCartAfterDelete(this.orderCategory);
+					clearCartAfterDelete(this.orderCatalog);
+					function clearCartAfterDelete(obj) {
+						obj.forEach( (i,yndex) => {
+							if (i.number === number) {
+								obj.splice(yndex,1)
+							}
+						});
+					}
 				}
 				this.fullOrder.splice(index, 1, el)
 			},

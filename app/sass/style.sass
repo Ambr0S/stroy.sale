@@ -214,6 +214,9 @@ form
     padding-top: 5px
     height: 75px
 
+.order-description
+    overflow-y: scroll
+
 .order-description__price--new
     @extend .product__price
     height: auto
@@ -684,7 +687,7 @@ form input.modal__input.button--green
     flex-wrap: wrap
     justify-content: flex-start
     align-content: flex-start
-    padding: 150px 0 0
+    padding: 50px 0 0
     border-right: 1px solid $gray-l
 
 
@@ -709,7 +712,7 @@ form input.modal__input.button--green
 
 
 .order-description__name
-    font-size: 16px
+    font-size: 14px
     margin: 5px 0 10px
     max-width: 380px
     line-height: 1.1
@@ -766,6 +769,10 @@ form input.modal__input.button--green
     float: left
     padding: 0 !important
     margin: 5px 0 !important
+
+.order-form__items-button.order-form__items-button--delete
+    margin-left: 30px !important
+    cursor: pointer
 
 .order-form__button-submit
     width: 250px
@@ -934,13 +941,14 @@ form input.modal__input.button--green
 .cart
     display: flex
     height: 120px
-    margin: 10px 0
+    margin: 20px 0
     &__img
         width: 120px
         height: 120px
         display: flex
         justify-content: center
         align-items: center
+        margin-right: 20px
         img
-            width: 100px
+            height: 100px
             align-self: center
