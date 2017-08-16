@@ -27,7 +27,7 @@ block content
 						.header__menu.menu
 							ul.menu__list
 								li.menu__item.small
-									a.menu__link.menu__link--cart(@click.prevent="goCart", href="#", title="",) <i class="big in cart icon"></i> В корзине {{orderCount}} тов.
+									a.menu__link.menu__link--cart(@click.prevent="goCart", href="#", title="") <i class="big in cart icon"></i> В корзине {{orderCount}} тов.
 								//li.menu__item
 									a(@click.prevent="goModal" href="#", title="", data-modal="provider").menu__link Хотите продавать на STROY.SALE?
 		.header
@@ -99,7 +99,7 @@ block content
 										img(:src='setfullOrder[index].image | withImage', alt='')
 								.cart__description
 									.order-description__name {{setfullOrder[index].name}}
-									.order-description__price--new {{setfullOrder[index].price}} руб.
+									.order-description__price--new {{setfullOrder[index].price | deleteLastSymb(setfullOrder[index].sale)}} руб.
 									.order-form__b-items
 										button.order-form__items-button.button.ui(@click.prevent="setFullOrderCount(index, 'minus')") -
 										input.order-form__items-amount(:value="setfullOrder[index].count", v-model="setfullOrder[index].count")
@@ -138,6 +138,8 @@ block content
 								fieldset.order-form__b-cost
 									h2 Стоимость - <strong>{{fullcost}}</strong> руб.
 									button.button.ui.button--orange.order-form__button-submit(type="submit", @click="sendOrder") ЗАКАЗАТЬ
+									div
+										strong Условия акции действительны только<br>при покупке на сумму от 5 000 рублей
 								fieldset(class="input--hidden")
 									input(type="text", name="form__cost", v-bind:value='fullcost')
 									//input(type="text", name="form__amount", v-bind:value='orderitemamount')
@@ -145,7 +147,7 @@ block content
 									//input(type="text", name="form__name", v-bind:value='order.name')
 									//input(type="text", name="form__sale", v-bind:value='order.sale')
 									//input(type="text", name="form__number", v-bind:value='order.number')
-									input(type="text", name="form__fullorder", v-bind:value='setfullorder')
+									//input(type="text", name="form__fullorder", v-bind:value='setfullorder')
 									input(type="text", name="form__order", v-bind:value='ordernumber')
 									input(type="text", name="form__address", v-bind:value='address')
 						.modal-close(@click="endModal")

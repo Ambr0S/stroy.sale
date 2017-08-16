@@ -75,7 +75,7 @@ var vm = new Vue({
                   {
                     id: 1,
                     name: 'Материалы на штукатурные работы',
-                    jsonfile: 'json/shtukaturka.json',
+                    jsonfile: 'json/vetonitRotband.json',
                     category: [
                       {
                         id: 0,
@@ -84,8 +84,8 @@ var vm = new Vue({
                       },
                       {
                         id: 1,
-                        name: 'Шпатлёвка',
-                        jsonfile: 'json/71.json'
+                        name: 'Шпаклёвка',
+                        jsonfile: 'json/vetonit.json'
                       },
                     ]
 

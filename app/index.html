@@ -138,7 +138,7 @@
                   <div class="cart__img"><img :src="setfullOrder[index].image | withImage" alt=""/></div>
                   <div class="cart__description">
                     <div class="order-description__name">{{setfullOrder[index].name}}</div>
-                    <div class="order-description__price--new">{{setfullOrder[index].price}} руб.</div>
+                    <div class="order-description__price--new">{{setfullOrder[index].price | deleteLastSymb(setfullOrder[index].sale)}} руб.</div>
                     <div class="order-form__b-items">
                       <button class="order-form__items-button button ui" @click.prevent="setFullOrderCount(index, 'minus')">-</button>
                       <input class="order-form__items-amount" :value="setfullOrder[index].count" v-model="setfullOrder[index].count"/>
@@ -183,6 +183,7 @@
                   <fieldset class="order-form__b-cost">
                     <h2>Стоимость - <strong>{{fullcost}}</strong> руб.</h2>
                     <button class="button ui button--orange order-form__button-submit" type="submit" @click="sendOrder">ЗАКАЗАТЬ</button>
+                    <div><strong>Условия акции действительны только<br>при покупке на сумму от 5 000 рублей</strong></div>
                   </fieldset>
                   <fieldset class="input--hidden">
                     <input type="text" name="form__cost" v-bind:value="fullcost"/>
@@ -191,7 +192,7 @@
                     <!--input(type="text", name="form__name", v-bind:value='order.name')-->
                     <!--input(type="text", name="form__sale", v-bind:value='order.sale')-->
                     <!--input(type="text", name="form__number", v-bind:value='order.number')-->
-                    <input type="text" name="form__fullorder" v-bind:value="setfullorder"/>
+                    <!--input(type="text", name="form__fullorder", v-bind:value='setfullorder')-->
                     <input type="text" name="form__order" v-bind:value="ordernumber"/>
                     <input type="text" name="form__address" v-bind:value="address"/>
                   </fieldset>

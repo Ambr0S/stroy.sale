@@ -29,7 +29,7 @@
                                         .product__name {{item.name}}
                                         .product__description {{item.description}}
                                         .product__price--new {{item.price}} {{item.amount}} <br>
-                                        .product__sale Скидка {{item.sales | setSale}}%
+                                        .product__sale Скидка {{item.sale | setSale}}%
                                         .product__compare.product-compare
                                             .product-compare__header <i class="search icon"></i><b>Цены в других магазинах</b>
                                             .compare(v-if="item.price__lerua") <img src="img/ico__lerua.jpg" alt="" /> <i>Леруа:</i> {{item.price__lerua}} {{item.amount}}
@@ -50,7 +50,7 @@
                                             .product__description.product__description--main <strong>Описание</strong>: <br> {{item.description}}
                                             .product__price--new.product__price--new-main <strong> {{item.price}}.00 {{item.amount}}</strong>
                                             .product__price--old {{item.price | deleteLastSymb}}.00 руб.
-                                            .product__sale Скидка {{item.sales | setSale}}%
+                                            .product__sale Скидка {{item.sale | setSale}}%
                                             .product__compare.product-compare.product__compare--main
                                                 .product-compare__header <i class="search icon"></i><b>Цены в других магазинах</b>
                                                 .compare(v-if="item.price__lerua") <img src="img/ico__lerua.jpg" alt="" /> <i>Леруа:</i> {{item.price__lerua}} {{item.amount}}
@@ -69,7 +69,7 @@
                             .row(v-else)
                                 .col-sm-12
                                     .product.catalog__product
-                                        .product__sale Скидка {{ item.sale | setSale }}%
+                                        .product__sale(v-if="item.sale > 0") Скидка {{ item.sale | setSale }}%
                                         .product__name {{item.name}}
                                         .product__img
                                             img(:src='item.image | withImage', alt='')
@@ -112,7 +112,6 @@
                     "image": "",
                     "text": [],
                     "sale": "",
-                    "sales": ""
                 },
                 orderitemamount: 1,
                 address: '',
@@ -198,7 +197,7 @@
             },
             fullcost: function() {
                 let sum = 0;
-                let k = (this.order.sales) ? 0 : this.order.sale;
+                let k = (this.order.sale) ? 0 : this.order.sale;
                 let payment = (this.paymentKind == 4) ? 1500 : 0;
                 sum = (( (1 - k) * (this.order.price)) * this.orderitemamount) + payment;
                 return sum.toFixed(2);
