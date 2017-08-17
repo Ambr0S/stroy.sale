@@ -131,15 +131,16 @@ block content
 									h3 Оплата:
 									select(name="form__payment", id="form__payment",  v-model="paymentKind",  class="ui selection dropdown")
 										option(value="" disabled selected) - Выберите способ -
-										option(value="1") Онлайн --- бесплатно
-										option(value="2") Банковский счёт --- бесплатно
-										option(value="3") Наличными в офисе --- бесплатно
-										option(value="4") При получении --- 1 500р за выезд курьера
+										option(value="1") Онлайн
+										option(value="2") Банковский перевод
+										option(value="3") Наличными при получении
+										option(value="4") Безналичная оплата по счёту
 								fieldset.order-form__b-cost
 									h2 Стоимость - <strong>{{fullcost}}</strong> руб.
 									button.button.ui.button--orange.order-form__button-submit(type="submit", @click="sendOrder") ЗАКАЗАТЬ
 									div
-										strong Условия акции действительны только<br>при покупке на сумму от 5 000 рублей
+										<br>
+										strong Условия акции действительны только<br>при покупке на сумму от 5 000 рублей<br>не менее трех различных товаров
 								fieldset(class="input--hidden")
 									input(type="text", name="form__cost", v-bind:value='fullcost')
 									//input(type="text", name="form__amount", v-bind:value='orderitemamount')
@@ -147,7 +148,7 @@ block content
 									//input(type="text", name="form__name", v-bind:value='order.name')
 									//input(type="text", name="form__sale", v-bind:value='order.sale')
 									//input(type="text", name="form__number", v-bind:value='order.number')
-									//input(type="text", name="form__fullorder", v-bind:value='setfullorder')
+									input(type="text", name="form__fullorder", v-bind:value='postfullOrder')
 									input(type="text", name="form__order", v-bind:value='ordernumber')
 									input(type="text", name="form__address", v-bind:value='address')
 						.modal-close(@click="endModal")

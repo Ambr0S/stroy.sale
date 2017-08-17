@@ -221,7 +221,7 @@
                 if (this.deliveryKind === '1') {
                     let addressInput = document.querySelector('#form__address');
                     addressInput.setAttribute('disabled', 'disabled');
-                    this.address = 'Варшавское шоссе, д.28 A, оф.212';
+                    this.address = 'Очаковское шоссе, д.5, стр.28';
                 } else if (this.deliveryKind === '2') {
                     let addressInput = document.querySelector('#form__address');
                     addressInput.removeAttribute('disabled');
@@ -242,11 +242,11 @@
                 let storageArr = [];
 
 
-                myjson.sort(function(a,b) {
+                /*myjson.sort(function(a,b) {
                     if (a.sale > b.sale) { return -1; }
                     if (a.sale < b.sale) { return 1; }
                     return 0;
-                });
+                });*/
 
                 myjson.forEach((i,index) => {
                     if ( index < sort ) {

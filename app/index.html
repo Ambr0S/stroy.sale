@@ -174,16 +174,16 @@
                     <h3>Оплата:</h3>
                     <select class="ui selection dropdown" name="form__payment" id="form__payment" v-model="paymentKind">
                       <option value="" disabled="disabled" selected="selected">- Выберите способ -</option>
-                      <option value="1">Онлайн --- бесплатно</option>
-                      <option value="2">Банковский счёт --- бесплатно</option>
-                      <option value="3">Наличными в офисе --- бесплатно</option>
-                      <option value="4">При получении --- 1 500р за выезд курьера</option>
+                      <option value="1">Онлайн</option>
+                      <option value="2">Банковский перевод</option>
+                      <option value="3">Наличными при получении</option>
+                      <option value="4">Безналичная оплата по счёту</option>
                     </select>
                   </fieldset>
                   <fieldset class="order-form__b-cost">
                     <h2>Стоимость - <strong>{{fullcost}}</strong> руб.</h2>
                     <button class="button ui button--orange order-form__button-submit" type="submit" @click="sendOrder">ЗАКАЗАТЬ</button>
-                    <div><strong>Условия акции действительны только<br>при покупке на сумму от 5 000 рублей</strong></div>
+                    <div><br><strong>Условия акции действительны только<br>при покупке на сумму от 5 000 рублей<br>не менее трех различных товаров</strong></div>
                   </fieldset>
                   <fieldset class="input--hidden">
                     <input type="text" name="form__cost" v-bind:value="fullcost"/>
@@ -192,7 +192,7 @@
                     <!--input(type="text", name="form__name", v-bind:value='order.name')-->
                     <!--input(type="text", name="form__sale", v-bind:value='order.sale')-->
                     <!--input(type="text", name="form__number", v-bind:value='order.number')-->
-                    <!--input(type="text", name="form__fullorder", v-bind:value='setfullorder')-->
+                    <input type="text" name="form__fullorder" v-bind:value="postfullOrder"/>
                     <input type="text" name="form__order" v-bind:value="ordernumber"/>
                     <input type="text" name="form__address" v-bind:value="address"/>
                   </fieldset>

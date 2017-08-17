@@ -367,7 +367,8 @@ var vm = new Vue({
                     jsonfile: 'json/80.json'
                 },
             ],
-            orderCount: 0
+            orderCount: 0,
+            postfullOrder: []
         }
     },
 
@@ -376,33 +377,15 @@ var vm = new Vue({
     mounted: function() {
         VK.Widgets.Group("vk_groups", {mode: 4, width: "350", height: "450"}, 60332047);
 
-        /* Скролл до карточки товара*/
-        function getCoords(elem) { // кроме IE8-
-            let box = elem.getBoundingClientRect();
-            return {
-                top: box.top + pageYOffset,
-                left: box.left + pageXOffset
-            };
-        }
-
-        if (this.$route.params.id == 1 && this.$route.params.idEnd == 0) {
-            let el = document.querySelector('.catalog__header');
-            let position = getCoords(el);
-            console.log(position);
-            window.scroll(0,position.top);
-        }
-        /* КОНЕЦ Скролл до карточки товара*/
-
         /* Добавляем товары в корзину */
-				if(localStorage.orderCatalog) {
-					this.orderCatalog = JSON.parse(localStorage.orderCatalog);
-				}
+            if(localStorage.orderCatalog) {
+                this.orderCatalog = JSON.parse(localStorage.orderCatalog);
+            }
 
-				if(localStorage.orderCategory) {
-					this.orderCategory = JSON.parse(localStorage.orderCategory);
-				}
-
-			/* end */
+            if(localStorage.orderCategory) {
+                this.orderCategory = JSON.parse(localStorage.orderCategory);
+            }
+        /* end */
     },
 
 
@@ -532,6 +515,20 @@ var vm = new Vue({
           let arr = this.orderCatalog;
           this.fullOrder = arr.concat(this.orderCategory);
           this.orderCount = this.fullOrder.length;
+
+          /* ГОТОВИМ ОБЪЕКТ К ОТПРАВКЕ ЗАКАЗА */
+          this.postfullOrder = JSON.parse(JSON.stringify(this.fullOrder));
+          this.postfullOrder.forEach( (i,index)=> {
+            if (i.hasOwnProperty('text'))  delete i.text;
+            if (i.hasOwnProperty('text2')) delete i.text2;
+            if (i.hasOwnProperty('canAdd')) delete i.canAdd;
+            if (i.hasOwnProperty('canAddWords')) delete i.canAddWords;
+            if (i.hasOwnProperty('image')) delete i.image;
+            if (i.hasOwnProperty('description')) delete i.description;
+          });
+          this.postfullOrder = JSON.stringify(this.postfullOrder);
+          /* КОНЕЦ */
+
           return this.fullOrder
         }
     },
