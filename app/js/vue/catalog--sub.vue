@@ -19,7 +19,7 @@
                                         .compare(v-if="item.price__kastorama") <img src="img/ico__kastorama.jpg" alt="" /> <i>Касторама:</i> {{item.price__kastorama}} {{item.amount}}
                                         .compare(v-if="item.price__middle") <i>Средняя цена:</i> {{item.price__middle}} {{item.amount}}
                                     .product__button
-                                        .button.ui(:data-id='index', @click="goModal", onclick="yaCounter45187896.reachGoal('cart'); return true;") <i class="shop icon"></i> Добавить в корзину
+                                        .button.ui(:data-id='index', @click="goModal") <i class="shop icon"></i> Добавить в корзину
                         .row(v-else-if="item.main")
                             .col-sm-12
                                 .product.catalog__product.catalog__product--main
@@ -42,7 +42,7 @@
                                             .compare(v-if="item.price__kastorama") <img src="img/ico__kastorama.jpg" alt="" /> <i>Касторама:</i> {{item.price__kastorama}} {{item.amount}}
                                             .compare(v-if="item.price__middle") <i>Средняя цена:</i> {{item.price__middle}} {{item.amount}}
                                         .product__button.product__button--main
-                                            .button.button--green.ui(:data-id='index', @click="goModal", onclick="yaCounter45187896.reachGoal('cart'); return true;") <i class="shop icon"></i> Добавить в корзину
+                                            .button.button--green.ui(:data-id='index', @click="goModal") <i class="shop icon"></i> Добавить в корзину
                                         .product__benefits
                                             img(src="img/benefit.jpg" alt="")
                             .col-sm-12
@@ -63,7 +63,7 @@
                                         .product__price--new {{item.price | deleteLastSymb(item.sale)}} руб.
                                         .product__price--costm {{item.costm | withCostm(item.sale) }}
                                     .product__button.text-center
-                                        .button.ui(:data-id='index', @click="goModal", onclick="yaCounter45187896.reachGoal('cart'); return true;") <i class="shop icon"></i> Добавить в корзину
+                                        .button.ui(:data-id='index', @click="goModal") <i class="shop icon"></i> Добавить в корзину
 </template>
 
 <script>
@@ -105,6 +105,16 @@
                     )
             },
             goModal : function(e) {
+                /* Отправляем событие в Метрику */
+                if (this.$route.params.id == 1 && !this.$route.params.idEnd == 0) {
+                    yaCounter45187896.reachGoal('cart--rotband');
+                } else if (this.$route.params.id == 1 && !this.$route.params.idEnd == 1) {
+                    yaCounter45187896.reachGoal('cart--vetonit');
+                } else {
+                    yaCounter45187896.reachGoal('cart--other');
+                }
+                /* end */
+
                 let target = e.target;
                 if (target.classList.contains('noCanAdd')) return;
 
