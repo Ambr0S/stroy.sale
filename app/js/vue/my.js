@@ -540,7 +540,7 @@ var vm = new Vue({
             if (this.deliveryKind === '1') {
                 let addressInput = document.querySelector('#form__address');
                 addressInput.setAttribute('disabled', 'disabled');
-                this.address = 'Варшавское шоссе, д.28 A, оф.212';
+                this.address = 'Очаковское шоссе, д.5, стр.28';
             } else if (this.deliveryKind === '2') {
                 let addressInput = document.querySelector('#form__address');
                 addressInput.removeAttribute('disabled');
