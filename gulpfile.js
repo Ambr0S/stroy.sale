@@ -1,3 +1,5 @@
+'use strict';
+
 var gulp        = require('gulp'),
     browsersync = require('browser-sync'),
     browserify  = require('gulp-browserify'),
@@ -11,7 +13,7 @@ var gulp        = require('gulp'),
     del         = require('del'),
     imagemin    = require('gulp-imagemin'),
     minify      = require('gulp-babel-minify'),
-    newer       = require('gulp-newer') 
+    newer       = require('gulp-newer'),
     rename      = require('gulp-rename-plus'),
     remember    = require('gulp-remember'),
     pngquant    = require('imagemin-pngquant'),
@@ -104,13 +106,12 @@ gulp.task('img', function() {
             svgoPlugins: [{removeViewBox: false}],
             use: [pngquant()]
         })))
-        .pipe(gulp.dest('dist/img'))
-})
+        .pipe(gulp.dest('dist/img'));
+});
 
 
 gulp.task('js', function() {
-    gulp.src(['./app/js/vue/my.js'])
-        //.pipe(newer('app/js/min/my.min.js'))
+    gulp.src(['./app/js/main.js'])
         .pipe(sourcemaps.init())
         .pipe(debug())
         .pipe(browserify({
@@ -161,7 +162,7 @@ gulp.task('watch', ['browsersync', 'pug', 'sass', 'csslibs', 'js', 'allScripts']
     gulp.watch('app/sass/**/*.sass', ['sass'], browsersync.reload);
     gulp.watch('app/sass/**/*.sass', ['csslibs'], browsersync.reload);
     gulp.watch('app/pug/**/*.pug', ['pug']);
-    gulp.watch('app/js/vue/**/*.vue', ['js'],  browsersync.reload);
-    gulp.watch('app/js/vue/my.js', ['js'],  browsersync.reload);
+    gulp.watch('app/js/**/*.vue', ['js'],  browsersync.reload);
+    gulp.watch('app/js/main.js', ['js'],  browsersync.reload);
     gulp.watch('app/*.html',     browsersync.reload);
 });
