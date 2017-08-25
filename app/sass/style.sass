@@ -1,0 +1,62 @@
+@import "variables"
+@import "fonts"
+@import "../components/Menu/Menu"
+@import "../components/Header/Header"
+@import "../components/Subscribe/Subscribe"
+@import "../libs/bootstrap-sass-grid/sass/bootstrap-sass-grid"
+
+form
+  input[type="text"]
+    display: block
+    height: 30px
+    font-size: 16px
+    padding: 10px
+    border: none
+    width: 250px
+    background: $gray-l
+    color: $black
+    border-bottom: 1px solid
+    border-bottom-color: mix(black, $gray, 30% )
+    margin: 0px 10px 10px 10px
+
+    &:focus
+      background: #fff
+      outline-style: none
+
+  input[type="text"].error
+    border-bottom: 1px solid red !important
+
+  select
+    margin: 10px
+
+  label.error
+    display: none !important
+
+  input.catalog-unfound__input[type="text"]
+    margin: 15px auto !important
+    background: rgba(255,255,255,0.3)
+    height: 50px
+    width: 500px
+    font-family: $font-family-intro
+    color: $black
+    border-bottom: 1px solid #fff
+    font-size: 18px
+
+  input::-webkit-input-placeholder
+    color: $black !important
+  input::-moz-placeholder
+    color: #fff !important
+  input::-moz-placeholder
+    color: #fff !important
+  input:-ms-input-placeholder
+    color: #fff !important
+
+  input.catalog-unfound__input[type="submit"]
+    background: rgba(255,255,255,0.3)
+    height: 50px
+    font-size: 16px !important
+    width: 486px !important
+    font-family: $font-family-intro
+    color: #fff
+    border: none
+    margin: 15px !important

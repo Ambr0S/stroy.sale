@@ -44,8 +44,7 @@ html(lang="ru")
 			//- ОТКЛЮЧИТЬ ПРИ НЕОБХОДИМОСТИ сообщение браузеру, по каким адресам могут находиться ресурсы текущей страницы.
 
 		block css
-			link(rel='stylesheet'  href='css/min/style.min.css')
-			link(rel='stylesheet'  href='css/min/libs.min.css')
+			link(rel='stylesheet'  href='css/style.css')
 
 		block script
 			script(src="https://vk.com/js/api/openapi.js?146" type="text/javascript")
@@ -58,6 +57,6 @@ html(lang="ru")
 
 	body
 		block content
-		script(src="../js/min/main.min.js")
+		script(src="../js/main.js")
 		script(src="https://unpkg.com/vue-router/dist/vue-router.js")
 		<!-- Yandex.Metrika counter --> <script type="text/javascript"> (function (d, w, c) { (w[c] = w[c] || []).push(function() { try { w.yaCounter45187896 = new Ya.Metrika({ id:45187896, clickmap:true, trackLinks:true, accurateTrackBounce:true, webvisor:true, trackHash:true }); } catch(e) { } }); var n = d.getElementsByTagName("script")[0], s = d.createElement("script"), f = function () { n.parentNode.insertBefore(s, n); }; s.type = "text/javascript"; s.async = true; s.src = "https://mc.yandex.ru/metrika/watch.js"; if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); } })(document, window, "yandex_metrika_callbacks"); </script> <noscript><div><img src="https://mc.yandex.ru/watch/45187896" style="position:absolute; left:-9999px;" alt="" /></div></noscript> <!-- /Yandex.Metrika counter -->

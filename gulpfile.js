@@ -32,41 +32,12 @@ gulp.task('pug', function() {
         .pipe(gulp.dest('app'));
 });
 
-
-gulp.task('sass', function() {
-    return gulp.src('app/sass/**/*.sass')
-            //.pipe(newer('app/css/libs.css'))
-            .pipe(sourcemaps.init())
-            .pipe(debug())
-            .pipe(sass())
-            .pipe(prefixer({
-                cascade: true
-            }))
-            .pipe(sourcemaps.write("."))
-            .pipe(gulp.dest('app/css/'))
-            .pipe(browsersync.reload({stream: true}));
-});
-
-
-gulp.task('csslibs', function() {
-    return gulp.src(['app/css/style.css','app/css/libs.css'])
-            .pipe(sourcemaps.init())
-            .pipe(debug())
-            .pipe(cssnano())
-            .pipe(rename({suffix : 'min.css'}))
-            .pipe(sourcemaps.write("."))
-            .pipe(gulp.dest('app/css/min'))
-            .pipe(browsersync.reload({stream: true}));
-});
-
-
 gulp.task('allScripts', function() {
     return gulp.src([
                 'app/libs/jquery/dist/jquery.js',
                 'app/libs/axios/dist/axios.js',
                 'app/libs/jquery-validation/dist/jquery.validate.min.js',
-                'app/libs/semantic/dist/semantic.js',
-                'app/libs/bootstrap/dist/js/bootstrap.js'])
+                'app/libs/semantic/dist/semantic.js'])
             .pipe(newer('app/js/min/libs.min.js'))
             .pipe(sourcemaps.init())
             .pipe(debug())
@@ -111,19 +82,44 @@ gulp.task('img', function() {
 
 
 gulp.task('js', function() {
-    gulp.src(['./app/js/main.js'])
+    return gulp.src(['./app/components/main.js'])
         .pipe(sourcemaps.init())
         .pipe(debug())
         .pipe(browserify({
             transform: ['babelify', [{_flags: {debug: true}}, 'vueify']]
         }))
         .pipe(debug())
-        .pipe(rename({suffix : 'min.js'}))
-        .pipe(uglify())
-        .pipe(sourcemaps.write("."))
-        .pipe(gulp.dest('./app/js/min'))
+        //.pipe(rename({suffix : 'min.js'}))
+        //.pipe(uglify())
+        .pipe(sourcemaps.write(""))
+        .pipe(gulp.dest('./app/js'))
         .pipe(browsersync.reload({stream: true}));
 });
+
+gulp.task('sass', function() {
+    return gulp.src('app/sass/style.sass')
+        .pipe(sourcemaps.init())
+        .pipe(debug())
+        .pipe(sass())
+        .pipe(prefixer({
+            cascade: true
+        }))
+        .pipe(sourcemaps.write(""))
+        .pipe(gulp.dest('app/css/'))
+        .pipe(browsersync.reload({stream: true}));
+});
+
+gulp.task('csslibs', ['sass'], function() {
+    return gulp.src('app/css/style.css')
+        .pipe(sourcemaps.init())
+        .pipe(debug())
+        .pipe(cssnano())
+        .pipe(rename({suffix : 'min.css'}))
+        .pipe(sourcemaps.write(""))
+        .pipe(gulp.dest('app/css/min'))
+        .pipe(browsersync.reload({stream: true}));
+});
+
 
 
 
@@ -141,7 +137,7 @@ gulp.task('build', ['clean'], function(){
         .pipe(gulp.dest('dist/libs'));
 
     var buildJs = gulp.src('app/js/**/*.js')
-        .pipe(gulp.dest('dist/js'))
+        .pipe(gulp.dest('dist/js'));
 
     var buildHtml = gulp.src('app/*.html')
         .pipe(gulp.dest('dist'));
@@ -159,10 +155,9 @@ gulp.task('build', ['clean'], function(){
 
 
 gulp.task('watch', ['browsersync', 'pug', 'sass', 'csslibs', 'js', 'allScripts'], function() {
-    gulp.watch('app/sass/**/*.sass', ['sass'], browsersync.reload);
-    gulp.watch('app/sass/**/*.sass', ['csslibs'], browsersync.reload);
+    gulp.watch('app/sass/**/*.sass', ['sass', 'csslibs'], browsersync.reload);
     gulp.watch('app/pug/**/*.pug', ['pug']);
-    gulp.watch('app/js/**/*.vue', ['js'],  browsersync.reload);
-    gulp.watch('app/js/main.js', ['js'],  browsersync.reload);
+    gulp.watch('app/components/**/*.vue', ['js'],  browsersync.reload);
+    gulp.watch('app/components/main.js', ['js'],  browsersync.reload);
     gulp.watch('app/*.html',     browsersync.reload);
 });
