@@ -1,15 +1,30 @@
 @import "variables"
 @import "fonts"
 @import "../components/Menu/Menu"
+@import "../components/FormOrder/FormOrder"
 @import "../components/Header/Header"
 @import "../components/Subscribe/Subscribe"
+@import "../components/SocialApi/SocialApi"
+@import "../components/Footer/Footer"
 @import "../libs/bootstrap-sass-grid/sass/bootstrap-sass-grid"
+
+html
+  font-size: 10px
+
+a
+  text-decoration: none
+
+.text-center
+  text-align: center
+
+.hidden
+  display: none
 
 form
   input[type="text"]
     display: block
     height: 30px
-    font-size: 16px
+    font-size: 1.6rem
     padding: 10px
     border: none
     width: 250px
@@ -24,39 +39,33 @@ form
       outline-style: none
 
   input[type="text"].error
-    border-bottom: 1px solid red !important
+    border-bottom: 1px solid red
 
   select
     margin: 10px
 
   label.error
-    display: none !important
-
-  input.catalog-unfound__input[type="text"]
-    margin: 15px auto !important
-    background: rgba(255,255,255,0.3)
-    height: 50px
-    width: 500px
-    font-family: $font-family-intro
-    color: $black
-    border-bottom: 1px solid #fff
-    font-size: 18px
+    display: none
 
   input::-webkit-input-placeholder
-    color: $black !important
+    color: $black
   input::-moz-placeholder
-    color: #fff !important
-  input::-moz-placeholder
-    color: #fff !important
-  input:-ms-input-placeholder
-    color: #fff !important
-
-  input.catalog-unfound__input[type="submit"]
-    background: rgba(255,255,255,0.3)
-    height: 50px
-    font-size: 16px !important
-    width: 486px !important
-    font-family: $font-family-intro
     color: #fff
-    border: none
-    margin: 15px !important
+  input::-moz-placeholder
+    color: #fff
+  input:-ms-input-placeholder
+    color: #fff
+
+.button--orange,
+input.button--orange[type="submit"]
+  background-color: $orange
+  color: #fff
+
+.button--green,
+input.button--green[type="submit"]
+  background-color: $green
+  color: #fff
+  box-shadow: 0px 0px 0px 7px rgba(255, 255, 255, 0.3)
+  &:hover
+    color: $green-d
+    box-shadow: 0px 0px 0px 0px rgba(255, 255, 255, 0.3)

@@ -23,6 +23,7 @@
     "bootstrap": "*",
     "bulma": "*",
     "jquery-validation": "*",
-    "bootstrap-sass-grid": "^4.0.1"
+    "bootstrap-sass-grid": "^4.0.1",
+    "normalize-scss": "normalize.scss#^7.0.0"
   }
 }

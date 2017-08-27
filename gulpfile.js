@@ -36,8 +36,7 @@ gulp.task('allScripts', function() {
     return gulp.src([
                 'app/libs/jquery/dist/jquery.js',
                 'app/libs/axios/dist/axios.js',
-                'app/libs/jquery-validation/dist/jquery.validate.min.js',
-                'app/libs/semantic/dist/semantic.js'])
+                'app/libs/jquery-validation/dist/jquery.validate.min.js'])
             .pipe(newer('app/js/min/libs.min.js'))
             .pipe(sourcemaps.init())
             .pipe(debug())
@@ -97,7 +96,7 @@ gulp.task('js', function() {
 });
 
 gulp.task('sass', function() {
-    return gulp.src('app/sass/style.sass')
+    return gulp.src(['app/sass/style.sass'])
         .pipe(sourcemaps.init())
         .pipe(debug())
         .pipe(sass())
@@ -155,7 +154,7 @@ gulp.task('build', ['clean'], function(){
 
 
 gulp.task('watch', ['browsersync', 'pug', 'sass', 'csslibs', 'js', 'allScripts'], function() {
-    gulp.watch('app/sass/**/*.sass', ['sass', 'csslibs'], browsersync.reload);
+    gulp.watch(['app/sass/**/*.sass', 'app/components/**/*.sass'], ['sass', 'csslibs'], browsersync.reload);
     gulp.watch('app/pug/**/*.pug', ['pug']);
     gulp.watch('app/components/**/*.vue', ['js'],  browsersync.reload);
     gulp.watch('app/components/main.js', ['js'],  browsersync.reload);
