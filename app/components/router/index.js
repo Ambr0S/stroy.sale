@@ -5,7 +5,6 @@ import Catalog from '../Catalog/Catalog.vue'
 Vue.use(Router);
 
 export default new Router({
-	// TODO FIXME: надо проверить на сервере, как работает мод хистори
 
 	//mode: 'history',
     routes: [

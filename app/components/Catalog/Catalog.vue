@@ -21,9 +21,9 @@
         Controllers(:propCatalogList="catalogList")
         // - END CONTROLLERS
 
-        // - CATALOG
-        //Catalog(:propCatalogList="catalogList")
-        // - END CATALOG
+        // - CATALOGLIST
+        catalog-list(:propCatalogList="catalogList")
+        // - END CATALOGLIST
 
         // SUBSCRIBE
         Subscribe
@@ -37,6 +37,7 @@
     import Controllers from '../Controllers/Controllers.vue'
     import Subscribe   from '../Subscribe/Subscribe.vue'
     import Footer      from '../Footer/Footer.vue'
+    import CatalogList from './CatalogList/CatalogList.vue'
 
     export default {
         name: 'Catalog',
@@ -48,13 +49,11 @@
 			Header,
 			Controllers,
 			Subscribe,
-			Footer
+			Footer,
+            CatalogList
 		},
         data: function () {
             return {
-
-                // список отрендеренных товаров
-                catalogRender: [],
 
 				// список всех категорий
 				catalogList: [
@@ -358,24 +357,6 @@
                         ]
                     },*/
 				],
-            }
-        },
-        methods: {
-
-            // загрузка JSON файла
-            loadJSON: function () {
-                let _this = this;
-                axios.get(jsonfile)
-                    .then(function (response) {
-                            _this.catalogRender = response.data;
-
-                            // ограничение количества товаров в ленте
-                            //_this.canSort(response.data, _this)
-                        },
-                        function (err) {
-                            console.log(err)
-                        }
-                    )
             }
         }
     }
