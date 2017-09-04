@@ -1,35 +1,32 @@
 <template lang="jade">
-    .controllers
-        .controllers__category.controllers-category
-            .controllers-category__item(v-for="(item,index) in propCatalogList", :key="item.id")
-                a.controllers-category__button(href="#") {{item.name}}
-        .controllers__subcategory.controllers-category(v-if='isSubCategory')
-            .controllers-category__item(v-for="(item,index) in propCatalogList[idSubCategory].category", :key="item.id")
-                a.controllers-category__button(href="#") {{item.name}}
+	.controllers
+		.controllers-category.controllers__category
+			router-link.controllers-category__item(:to="{name: 'Category', params: {idCategory: index}}", v-for="(item,index) in propCatalogList", :key="item.id") {{ item.name }}
+		.controllers-category.controllers__subcategory(v-if='propCatalogList[propIdCategory].category')
+			router-link.controllers-category__item(:to="{name: 'subCategory', params: {idSubCategory: index}}", v-for="(item,index) in  propCatalogList[propIdCategory].category", :key="item.id") {{ item.name }}
 </template>
 
 <script>
 
 
-    export default {
-        name: 'Controllers',
-        props: [
+	export default {
+		name: 'Controllers',
+		props: [
+			'propCatalogList',
+			'propIdCategory',
+			'propIdSubCategory'
+		],
+		data: function () {
+			return {
 
-        	// список всех категорий
-            'propCatalogList'
-        ],
-        data: function () {
-            return {
-                idSubCategory: this.$route.params.idSubCategory,
-                isSubCategory: null
-            }
-        },
-        mounted: function () {
+			}
+		},
+		mounted: function () {
 
-        	// проверка наличия подкатегории. если true, то показать контроллеры для подкатегорий
-        	if (this.idSubCategory) {
-        		this.isSubCategory = this.propCatalogList[this.idSubCategory].hasOwnProperty('category')
-            }
+			// проверка наличия подкатегории. если true, то показать контроллеры для подкатегорий
+			if (this.idSubCategory) {
+				this.isSubCategory = this.propCatalogList[this.idSubCategory].hasOwnProperty('category')
+			}
 		}
-    }
+	}
 </script>

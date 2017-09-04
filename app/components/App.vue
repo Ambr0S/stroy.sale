@@ -1,8 +1,8 @@
 <template lang="jade">
 #app
-    // - ROUTER
-    router-view
-    // - END ROUTER
+	// - ROUTER
+	router-view
+	// - END ROUTER
 
 </template>
 

@@ -8,9 +8,9 @@ export default new Router({
 
 	//mode: 'history',
     routes: [
-        { path: '/catalog/:idCategory/', name:'Catalog',  component: Catalog, children: [
+        { path: '/catalog/:idCategory/', name:'Category',  component: Catalog, children: [
 			{
-				path: '/catalog/:idCategory/:idSubCategory', name:'subCatalog', component: Catalog
+				path: '/catalog/:idCategory/:idSubCategory', name:'subCategory', component: Catalog
 			}
         ]}
     ]
