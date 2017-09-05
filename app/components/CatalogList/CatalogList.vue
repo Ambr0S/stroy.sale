@@ -95,7 +95,7 @@
 					  count    = this.countProductRender;
 
 				// получение списка уже добавленных товаров
-				let storage    = localStorage.orderCatalog,
+				let storage    = localStorage.cartList,
 						storageArr = [];
 
 				// сортировка по проценту скидки

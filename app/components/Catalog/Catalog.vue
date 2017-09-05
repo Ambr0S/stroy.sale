@@ -10,7 +10,7 @@
 						.wrap-menu__content.menu
 							ul.menu__list
 								li.menu__item
-									a.menu__link.menu__link--cart(@click.prevent="goCart", href="#", title="") <i class="big in cart icon"></i> В корзине {{ propCartList.length }} тов.
+									router-link.menu__link.menu__link--cart(to="/cart") <i class="big in cart icon"></i> В корзине {{ propCartList.length }} тов.
 		// - END MENU
 		
 		// - HEADER
