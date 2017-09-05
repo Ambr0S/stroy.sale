@@ -1,6 +1,6 @@
 <template lang="jade">
 	.row
-		div(v-for="(item, index) in sortCatalog", :class="item.sizeWrapProduct", v-if="item.main")
+		div(v-for="(item, index) in sortCatalog", :class="item.sizeWrapProduct", v-if="item.main", :key="item.id")
 			.product.product--main
 				.product__item.product__item--left
 					.product__img.product__img--main
@@ -17,10 +17,10 @@
 						.product-compare__item(v-if="item.price__krauta") <img src="img/ico__krauta.jpg" alt="" /> <i>К-раута:</i> {{item.price__krauta}} {{item.amount}}
 						.product-compare__item(v-if="item.price__kastorama") <img src="img/ico__kastorama.jpg" alt="" /> <i>Касторама:</i> {{item.price__kastorama}} {{item.amount}}
 						.product-compare__item(v-if="item.price__middle") <i>Средняя цена:</i> {{item.price__middle}} {{item.amount}}
-					button.product__button {{item.canAddText}}
+					button.product__button(:data-id='index', @click="addToCart", :class="item.canAdd") {{item.canAddText}}
 					.product__benefits
 						img(src="img/benefit.jpg" alt="")
-		div(v-else, :class="item.sizeWrapProduct")
+		div(v-else, :class="item.sizeWrapProduct", :key="item.id")
 			.product
 				.product__item
 					.product__sale(v-if="item.sale > 0") Скидка {{ item.sale | setSale }}%
@@ -28,12 +28,15 @@
 					.product__img
 						img(:src='item.image | withImage', alt='')
 					.product__number {{item.number}}
-					.product__text(:data-tooltip='item.text | checkoutText' data-inverted="" data-position="bottom center") Характеристики <i class="info circle icon"></i>
+					//.product__text(:data-tooltip='item.text | checkoutText' data-inverted="" data-position="bottom center") Характеристики <i class="info circle icon"></i>
 					.product__price
-						.product__price--old {{item.price | deleteLastSymb}}.00 руб.
-						.product__price--new {{item.price | deleteLastSymb(item.sale)}}.00 руб.
-						.product__price--costm {{item.costm | withCostm(item.sale) }}
-					button.product__button.text-center <i class="shop icon"></i> {{item.canAddText}}
+						.product__price--old {{ item.price }}.00 руб.
+						.product__price--new {{ item.price }}.00 руб.
+						.product__price--costm {{ item.costm }}
+					button.product__button.text-center(:data-id='index', @click="addToCart", :class="item.canAdd") <i class="shop icon"></i> {{item.canAddText}}
+		.col-sm-12
+			.product__add
+				button.button--orange.ui(@click="addCountProductRender") <i class="arrow down icon"></i> Показать ещё...
 	
 </template>
 
@@ -56,17 +59,36 @@
 				// отрендеренный на странице список товаров
 				catalogRender: [],
 				
-				// допустимое количество отрендеренных товаров
-				countProductRender: 18
+				// количество отрендеренных товаров
+				countProductRender: 18,
+				
+				// список товаров в корзине
+				cartList: []
 				
 			}
 		},
 		mounted() {
+			
+			// загружаем каталог при открытии страницы
 			this.loadCatalog();
+			
+		},
+		watch: {
+
+			// обновляем данные при изменении урла
+			propIdCategory : function () {
+				this.countProductRender = 18;
+				this.loadCatalog();
+			},
+			propIdSubCategory : function() {
+				this.countProductRender = 18;
+				this.loadCatalog();
+			}
+			
 		},
 		computed: {
 
-			// сортировка каталога
+			// отсортированный каталог
 			sortCatalog() {
 				let result   = [],
 					  catalog  = this.catalogUploaded,
@@ -109,51 +131,12 @@
 				return result;
 			},
 			
-			idCategory() {
-				let id = this.propIdCategory;
-				this.loadCatalog();
-				return id
-			}
-			
 		},
 		methods: {
-			/*goModal : function(e) {
-					let target = e.target;
-					if (target.classList.contains('noCanAdd')) return;
-					/!* Деактивируем кнопку *!/
-					target.classList.add('noCanAdd');
-					target.textContent = 'Товар в корзине';
-					/!* end *!/
-					this.cart.push(this.myjson[e.target.dataset.id]);
-					this.cart.forEach( (i) => i.count = 1);
-					/!* Добавляем товар в Local Storage *!/
-					if (localStorage.orderCatalog) {
-							let currentLocalStorage = JSON.parse(localStorage.orderCatalog) || [];
-							let cart = this.cart;
-							let arr = currentLocalStorage.concat(cart);
-							let newArr = arr
-									.sort((a,b) => {
-											return (a.number > b.number) ? 1 : -1;
-									})
-									.filter( (i, index) => {
-											if (index + 1 >= arr.length) return true;
-											let a = i.number;
-											let b = arr[index+1].number || '';
-											return (a !== b);
-									});
-							console.log(newArr);
-							this.cart = newArr;
-							localStorage.setItem('orderCatalog', JSON.stringify(newArr));
-					} else {
-							localStorage.setItem('orderCatalog', JSON.stringify(this.cart));
-					}
-					/!* end *!/
-					this.$root.eventHub.$emit('orderCatalog', this.cart);
-			},*/
 			
 			// ВНУТРЕННИЕ МЕТОДЫ
 			
-			// метод загрузки товаров из JSON
+			// Метод загрузки товаров из JSON
 			loadCatalog : function() {
 				let countProductRender = this.countProductRender;
 				
@@ -174,7 +157,7 @@
 					)
 			},
 			
-			// метод добавления свойств к продуктовой карточке каталога
+			// Метод добавления свойств к продуктовой карточке каталога
 			addPropToCardProduct: function (isStorage, i) {
 				if (isStorage) {
 					i.canAdd = 'noCanAdd';
@@ -182,14 +165,18 @@
 				} else {
 					i.canAdd = 'canAdd';
 					i.canAddText = 'Добавить в корзину';
-					i['sizeWrapProduct'] = (i.hasOwnProperty('main')) ? 'col-sm-12' : 'col-sm-4';
+					i['sizeWrapProduct'] = (i.hasOwnProperty('main')) ? 'col-xs-12' : 'col-md-4 col-sm-6';
 				}
 			},
 			
+			// Увеличение лимита товаров на странице
+			addCountProductRender: function () {
+				this.countProductRender += 18;
+			},
 			
 			// UI МЕТОДЫ
 			
-			// проверяем, есть ли еще товар для рендеринга
+			// Проверяем, есть ли еще товар для рендеринга
 			canAddRendersProducts : function (jsonFile, validCount) {
 				if (jsonFile.length < validCount) {
 					let button = document.querySelector('.product__add');
@@ -197,6 +184,62 @@
 				} else {
 					let button = document.querySelector('.product__add');
 					button.classList.remove('hidden');
+				}
+			},
+			
+			// - Метод добавления товара в корзину
+			addToCart: function (e) {
+				
+				// -/- текущая кнопка
+				let target = e.target;
+				
+				// -/- если товар уже добавлен в корзину, то возврат
+				if (target.classList.contains('noCanAdd')) return;
+
+				// -/- деактивация кнопки на выбранном продукте
+				target.classList.add('noCanAdd');
+				target.textContent = 'Товар в корзине';
+				
+				// -/- добавление в корзину выбранный продукт
+				this.cartList.push(this.sortCatalog[e.target.dataset.id]);
+				
+				// -/- устанавливаем количество единиц у выбранного продукта
+				this.cartList.forEach( (i) => i.count = 1);
+				
+				// -/- отправка события корневому родителю
+				this.$root.eventHub.$emit('carter', this.cartList);
+
+				// -/- добавляем товар в Local Storage
+				if (localStorage.hasOwnProperty('cartList')) {
+					
+					// --/-- получаем текущий Local Storage
+					let _localStorage = JSON.parse(localStorage.cartList) || [];
+					
+					// --/-- получаем текущую корзину
+					let cartList = this.cartList;
+					
+					// --/-- объединяем локал сторедж и текущую корзину
+					let fullCartList = _localStorage.concat(cartList);
+					
+					// --/-- сортируем и фильтруем полную корзину
+					let wrapFullCartList = fullCartList
+						.sort((a,b) => {
+							return (a.number > b.number) ? 1 : -1;
+						})
+						.filter( (i, index) => {
+							if (index + 1 >= fullCartList.length) return true;
+							let a = i.number;
+							let b = fullCartList[index+1].number || '';
+							return (a !== b);
+						});
+					
+					this.cartList = wrapFullCartList;
+					
+					// --/-- обновляем корзину в Local Storage
+					localStorage.setItem('cartList', JSON.stringify(wrapFullCartList));
+					
+				} else {
+					localStorage.setItem('cartList', JSON.stringify(this.cartList));
 				}
 			}
 			
@@ -217,7 +260,8 @@
 			// устанавливаем старую цену
 			setOldPrice(val,k) {
 				return (k !== undefined) ? (val * (1 - k)).toFixed(2) : (val) ;
-			},
+			}
+			
 		}
 	}
 </script>

@@ -35,15 +35,15 @@ gulp.task('pug', function() {
 gulp.task('allScripts', function() {
     return gulp.src([
                 'app/libs/jquery/dist/jquery.js',
-                'app/libs/axios/dist/axios.js',
+                'app/libs/axios/dist/axios.min.js',
                 'app/libs/jquery-validation/dist/jquery.validate.min.js'])
-            .pipe(newer('app/js/min/libs.min.js'))
+            .pipe(newer('app/js/libs.js'))
             .pipe(sourcemaps.init())
             .pipe(debug())
-            .pipe(concat('libs.min.js'))
-            .pipe(minify())
+            .pipe(concat('libs.js'))
+            //.pipe(minify())
             .pipe(sourcemaps.write("."))
-            .pipe(gulp.dest('app/js/min'))
+            .pipe(gulp.dest('app/js'))
             .pipe(browsersync.reload({stream: true}));
 });
 

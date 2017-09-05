@@ -3,9 +3,7 @@
   "version": "1.0.0",
   "description": "My First Gulp Project",
   "main": "index.js",
-  "scripts": {
-
-  },
+  "scripts": {},
   "author": "mtsymlov",
   "license": "ISC",
   "devDependencies": {
@@ -49,6 +47,7 @@
     "vueify-insert-css": "^1.0.0"
   },
   "dependencies": {
-    "axios": "^0.16.2"
+    "axios": "^0.16.2",
+    "vue-material": "^0.7.4"
   }
 }

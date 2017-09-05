@@ -5,17 +5,17 @@
 			.container-fluid
 				.row
 					.col-sm-8.text-left
-						Menu.menu--inline
+						menu-component.menu--inline
 					.col-sm-4.text-right
 						.wrap-menu__content.menu
 							ul.menu__list
 								li.menu__item
-									a.menu__link.menu__link--cart(@click.prevent="goCart", href="#", title="") <i class="big in cart icon"></i> В корзине 0 тов.
+									a.menu__link.menu__link--cart(@click.prevent="goCart", href="#", title="") <i class="big in cart icon"></i> В корзине {{ propCartList.length }} тов.
 		// - END MENU
 		
 		// - HEADER
 		.wrap-header
-			Header
+			header-component
 		// - END HEADER
 		main
 			// - CONTROLLERS
@@ -34,31 +34,33 @@
 			Subscribe
 		// FOOTER
 		.wrap-foooter
-			Footer
+			footer-component
 </template>
 
 <script>
-	import Menu from '../Menu/Menu.vue'
-	import Header from '../Header/Header.vue'
+	import MenuComponent from '../Menu/Menu.vue'
+	import HeaderComponent from '../Header/Header.vue'
 	import Controllers from '../Controllers/Controllers.vue'
 	import Subscribe from '../Subscribe/Subscribe.vue'
-	import Footer from '../Footer/Footer.vue'
+	import FooterComponent from '../Footer/Footer.vue'
 	import CatalogList from '../CatalogList/CatalogList.vue'
-
+	
 	export default {
 		name: 'Catalog',
-		props: [],
+		props: [
+			'propCartList'
+		],
 		components: {
-			Menu,
-			Header,
+			MenuComponent,
+			HeaderComponent,
 			Controllers,
 			Subscribe,
-			Footer,
+			FooterComponent,
 			CatalogList
 		},
 		data: function () {
 			return {
-
+				cartList: [],
 				// список всех категорий
 				catalogList: [
 					{

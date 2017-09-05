@@ -9,7 +9,7 @@
 
 <script>
     export default {
-        name: 'Header',
+        name: 'HeaderComponent',
         data : function () {
             return {
 
