@@ -1,27 +1,51 @@
 @import "variables"
 @import "fonts"
-@import "../components/Menu/Menu"
-@import "../components/FormOrder/FormOrder"
-@import "../components/Header/Header"
-@import "../components/Subscribe/Subscribe"
-@import "../components/SocialApi/SocialApi"
-@import "../components/Footer/Footer"
-@import "../components/Catalog/Catalog"
-@import "../components/CatalogList/CatalogList"
-@import "../components/Controllers/Controllers"
-@import "../components/Cart/Cart"
-@import "../components/CartList/CartList"
+@import "../components/modules/MenuModules/style"
+@import "../components/modules/FormOrderModules/style"
+@import "../components/modules/HeaderModules/style"
+@import "../components/modules/SubscribeModules/style"
+@import "../components/modules/SocialApiModules/style"
+@import "../components/modules/FooterModules/style"
+@import "../components/pages/CatalogPage/Catalog"
+@import "../components/modules/CatalogListModules/style"
+@import "../components/modules/ControllersModules/style"
+@import "../components/pages/CartPage/Cart"
+@import "../components/modules/CartListModules/style"
 @import "../libs/bootstrap-sass-grid/sass/bootstrap-sass-grid"
 
 html
   font-size: 10px
   font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif
+  font-weight: 300
+  line-height: 1.3
+
+h1,h2,h3,h4,h5,h6
+  font-family: $font-family-intro
 
 h1
   color: $black
-  margin: 0
-  padding: 1em 0
+  margin: 2.4rem 0
+  line-height: 4.8rem
   text-align: left
+  font-size: 3.6rem
+
+h2
+  font-size: 2.4rem
+  margin: 4rem 0 2rem
+  line-height: 4rem
+
+h3
+  font-size: 2rem
+  margin: 3.33rem 0 1.67rem
+  line-height: 3.33rem
+
+p
+  margin: 1.2rem 0
+
+a,p,span,div,code,input
+  font-size: 1.8rem
+  line-height: 2.4rem
+
 a
   text-decoration: none
 
@@ -33,7 +57,13 @@ a
 
 main
   background-color: $gray
+  padding-bottom: 15rem
 
+article
+  table
+    td
+      border: 1px solid $gray-l
+      padding: 10px
 
 form
   input[type="text"]

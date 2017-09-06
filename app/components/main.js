@@ -1,8 +1,10 @@
-import Vue from "../libs/vue"
-import router from './router/index.js'
-import App from "./App.vue"
+import Vue         from "../libs/vue"
+import router      from "./config/router/index.js"
+import VueMaterial from "vue-material"
+import App         from "./config/App.vue"
 
 let eventHub = new Vue();
+Vue.use(VueMaterial);
 
 eventHub.$on('carter', (msg) => {
 	vm.cartList = msg;
