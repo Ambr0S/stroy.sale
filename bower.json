@@ -19,7 +19,7 @@
     "jQuery": "*",
     "vue": "^2.3.4",
     "axios": "^0.16.2",
-    "semantic": "semantic-ui#^2.2.10",
+    "semantic": "semantic-ui#^2.2.13",
     "bootstrap": "*",
     "bulma": "*",
     "jquery-validation": "*",

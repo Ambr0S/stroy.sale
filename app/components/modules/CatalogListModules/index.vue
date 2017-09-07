@@ -17,11 +17,14 @@
 						.product-compare__item(v-if="item.price__krauta") <img src="img/ico__krauta.jpg" alt="" /> <i>К-раута:</i> {{item.price__krauta}} {{item.amount}}
 						.product-compare__item(v-if="item.price__kastorama") <img src="img/ico__kastorama.jpg" alt="" /> <i>Касторама:</i> {{item.price__kastorama}} {{item.amount}}
 						.product-compare__item(v-if="item.price__middle") <i>Средняя цена:</i> {{item.price__middle}} {{item.amount}}
-					button.product__button(:data-id='index', @click="addToCart", :class="item.canAdd") {{item.canAddText}}
+					button.ui.primary.button.product__button.button--green.text-center(:data-id='index', @click="addToCart", :class="item.canAdd")
+						i.big.shop.icon(v-if='item.canAdd == "canAdd"')
+						i.big.check.circle.outline.icon(v-if='item.canAdd != "canAdd"')
+						span {{item.canAddText}}
 					.product__benefits
 						img(src="img/benefit.jpg" alt="")
 		div(v-else, :class="item.sizeWrapProduct", :key="item.id")
-			.product
+			.product(@mousemove="tester", @mouseleave="testerEnd")
 				.product__item
 					.product__sale(v-if="item.sale > 0") Скидка {{ item.sale | setSale }}%
 					.product__name {{item.name}}
@@ -33,7 +36,10 @@
 						.product__price--old {{ item.price }}.00 руб.
 						.product__price--new {{ item.price }}.00 руб.
 						.product__price--costm {{ item.costm }}
-					button.product__button.text-center(:data-id='index', @click="addToCart", :class="item.canAdd") <i class="shop icon"></i> {{item.canAddText}}
+					button.ui.button.product__button.button--green.text-center(:data-id='index', @click="addToCart", :class="item.canAdd")
+						i.big.shop.icon(v-if='item.canAdd == "canAdd"')
+						i.big.check.circle.outline.icon(v-if='item.canAdd != "canAdd"')
+						span {{item.canAddText}}
 		.col-sm-12
 			.product__add
 				button.button--orange.ui(@click="addCountProductRender") <i class="arrow down icon"></i> Показать ещё...
@@ -132,6 +138,23 @@
 		},
 		methods : {
 			
+			tester: function (e) {
+				let target = e.currentTarget;
+				let button = target.querySelector('.button');
+				button.classList.add('primary');
+				button.style.cssText = `
+					transform: scale(1.1);
+				`
+			},
+			testerEnd: function (e) {
+				let target = e.currentTarget;
+				let button = target.querySelector('.button');
+				button.classList.remove('primary');
+				button.style.cssText = `
+					transform: scale(1);
+				`
+			},
+			
 			
 			/* ВНУТРЕННИЕ МЕТОДЫ */
 			
@@ -159,7 +182,7 @@
 			// - Метод добавления свойств к продуктовой карточке каталога
 			addPropToCardProduct: function (isStorage, i) {
 				if (isStorage) {
-					i.canAdd = 'noCanAdd';
+					i.canAdd = 'noCanAdd secondary';
 					i.canAddText = 'Товар в корзине';
 				} else {
 					i.canAdd = 'canAdd';
@@ -199,7 +222,7 @@
 				if (target.classList.contains('noCanAdd')) return;
 
 				// -/- деактивация кнопки на выбранном продукте
-				target.classList.add('noCanAdd');
+				target.classList.add('noCanAdd secondary');
 				target.textContent = 'Товар в корзине';
 				
 				// -/- добавление в корзину выбранный продукт

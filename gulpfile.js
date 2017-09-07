@@ -36,7 +36,6 @@ gulp.task('pug', function () {
 gulp.task('allScripts', function () {
 	return gulp.src([
 		'app/libs/jquery/dist/jquery.js',
-		'app/libs/axios/dist/axios.min.js',
 		'app/libs/jquery-validation/dist/jquery.validate.min.js'])
 		.pipe(newer('app/js/libs.js'))
 		.pipe(sourcemaps.init())

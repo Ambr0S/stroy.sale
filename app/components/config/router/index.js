@@ -1,4 +1,4 @@
-import Vue                   from '../../../libs/vue'
+import Vue                   from 'vue/dist/vue'
 import Router                from 'vue-router'
 import Catalog               from '../../pages/CatalogPage/Catalog.vue'
 import Cart                  from '../../pages/CartPage/Cart.vue'

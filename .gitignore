@@ -6,5 +6,5 @@
 
 /node_modules
 /dist
-/app/libs
+/app
 /.idea

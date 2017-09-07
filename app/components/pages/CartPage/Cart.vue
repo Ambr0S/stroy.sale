@@ -40,11 +40,11 @@
 </template>
 
 <script>
-	import MenuComponent from '../../modules/MenuModules/index.vue'
+	import MenuComponent   from '../../modules/MenuModules/index.vue'
 	import HeaderComponent from '../../modules/HeaderModules/index.vue'
-	import Subscribe from '../../modules/SubscribeModules/index.vue'
+	import Subscribe 			 from '../../modules/SubscribeModules/index.vue'
 	import FooterComponent from '../../modules/FooterModules/index.vue'
-	import CartList from '../../modules/CartListModules/index.vue'
+	import CartList 			 from '../../modules/CartListModules/index.vue'
 
 	export default {
 		name: 'CartComponent',
@@ -57,7 +57,6 @@
 			Subscribe,
 			FooterComponent,
 			CartList,
-      VueMaterial
 		},
 		data : function () {
 			return {

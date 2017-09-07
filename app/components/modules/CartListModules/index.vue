@@ -13,8 +13,7 @@
 					button.counter--plus(@click="cartListCounterChange(index,'plus')") +
 				.cart-list__price--sum Стоимость: <span>{{ item.price * item.count }}</span>. 00 руб.
 			button.cart-list__button--delete(@click="deleteProduct(index)")
-
-
+			
 </template>
 
 <script>

@@ -1,9 +1,6 @@
-import Vue         from "../libs/vue"
+import Vue         from "vue/dist/vue"
 import router      from "./config/router/index.js"
 import App         from "./config/App.vue"
-import VueMaterial from'vue-material'
-
-Vue.use(VueMaterial);
 
 let eventHub = new Vue();
 
