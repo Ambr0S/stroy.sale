@@ -1,28 +1,20 @@
 <template lang="jade">
-	#app
-		// - ROUTER
-		router-view(:propCartList="rootPropCartList")
-		// - END ROUTER
+  #app
+
+    md-button.md-raised.md-primary Button
+
+    // - ROUTER
+    router-view(:propCartList="rootPropCartList")
+    // - END ROUTER
 
 </template>
 
 <script>
 
-
-	export default {
-		name: 'app',
-		props: [
-			'rootPropCartList'
-		],
-		data: function () {
-			return {
-
-			}
-		},
-		mounted: function () {
-
-
-
-		}
-	}
+  export default {
+    name: 'app',
+    props: [
+      'rootPropCartList'
+    ]
+  }
 </script>

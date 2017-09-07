@@ -45,7 +45,7 @@
 	import Subscribe from '../../modules/SubscribeModules/index.vue'
 	import FooterComponent from '../../modules/FooterModules/index.vue'
 	import CartList from '../../modules/CartListModules/index.vue'
-	
+
 	export default {
 		name: 'CartComponent',
 		props: [
@@ -56,7 +56,8 @@
 			HeaderComponent,
 			Subscribe,
 			FooterComponent,
-			CartList
+			CartList,
+      VueMaterial
 		},
 		data : function () {
 			return {
