@@ -40,9 +40,9 @@
 						i.big.shop.icon(v-if='item.canAdd == "canAdd"')
 						i.big.check.circle.outline.icon(v-if='item.canAdd != "canAdd"')
 						span {{item.canAddText}}
-		.col-sm-12
+		.col-sm-12.text-center
 			.product__add
-				button.button--orange.ui(@click="addCountProductRender") <i class="arrow down icon"></i> Показать ещё...
+				button.button--orange.ui.button.secondary(@click="addCountProductRender") <i class="arrow down icon"></i> Показать ещё...
 </template>
 
 <script>
@@ -216,16 +216,20 @@
 			addToCart: function (e) {
 				
 				// -/- текущая кнопка
-				let target = e.target;
+				let target = e.currentTarget;
 				
 				// -/- если товар уже добавлен в корзину, то возврат
 				if (target.classList.contains('noCanAdd')) return;
 
 				// -/- деактивация кнопки на выбранном продукте
-				target.classList.add('noCanAdd secondary');
+				target.classList.add('noCanAdd');
 				target.textContent = 'Товар в корзине';
-				
-				// -/- добавление в корзину выбранный продукт
+
+        console.log(this.sortCatalog);
+        console.log(e.target.dataset.id);
+        //console.log(this.sortCatalog[e.target.dataset.id]);
+
+        // -/- добавление в корзину выбранный продукт
 				this.cartList.push(this.sortCatalog[e.target.dataset.id]);
 				
 				// -/- устанавливаем количество единиц у выбранного продукта

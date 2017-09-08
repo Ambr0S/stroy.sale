@@ -8,9 +8,9 @@
 				.cart-list__price Цена за шт. {{ item.price }}.00 руб.
 				.cart-list__counter
 					span Количество:
-					button.counter--minus(@click="cartListCounterChange(index,'minus')") -
+					button.counter--minus.button.ui.icon.compact(@click="cartListCounterChange(index,'minus')") <i class="icon minus mini"></i>
 					input(:value="item.count")
-					button.counter--plus(@click="cartListCounterChange(index,'plus')") +
+					button.counter--plus.button.ui.icon.compact(@click="cartListCounterChange(index,'plus')") <i class="icon plus mini"></i>
 				.cart-list__price--sum Стоимость: <span>{{ item.price * item.count }}</span>. 00 руб.
 			button.cart-list__button--delete(@click="deleteProduct(index)")
 			

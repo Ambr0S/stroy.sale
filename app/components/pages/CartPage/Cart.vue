@@ -26,7 +26,7 @@
 							.cart-status
 								.cart-status__header В корзине {{ propCartList.length }} тов.
 								.cart-status__description Стоимость заказа:<br><span class="cart-status__price">40000</span> руб.<br>
-								router-link(to="/order") Оформить заказ
+								router-link.button.ui.primary(to="/order") Оформить заказ
 		
 		
 		
