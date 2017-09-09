@@ -11,7 +11,7 @@
     display: flex
     background: #fff
     margin: 0 0 2rem
-    padding: 1rem
+    padding: 1rem 2.8rem 1rem 0.5rem
     min-height: 170px
     box-sizing: border-box
     border: 1px solid $gray-l
@@ -45,11 +45,20 @@
       max-width: 170px
       align-self: center
 
-  &__button--delete
+  &__button-delete.button.ui.icon
     position: absolute
-    top: 5px
-    right: 5px
+    top: 2px
+    right: 0
+    padding: 0 8px
+
+.product-counter
+  &__input
+    border-top: none
+    border-right: none
+    border-left: none
+    width: 50px
+    text-align: center
 
 
-
-
+  button.product-counter__button.button.icon
+    padding: 5px 11px

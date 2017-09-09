@@ -14,19 +14,24 @@
 		// - END HEADER
 		
 		main
-			.container
-				.row
-					.col-sm-12
-						h1 Корзина
+			.wrap-cart-header
+				.container
+					.row
+						.col-sm-12
+							h1 Корзина
 			.wrap-cart-list.cart
 				.container
 					.row
-						cart-list.col-sm-8(:propCartList="propCartList")
-						.col-sm-4
+						.col-md-7.col-sm-12
 							.cart-status
-								.cart-status__header В корзине {{ propCartList.length }} тов.
-								.cart-status__description Стоимость заказа:<br><span class="cart-status__price">40000</span> руб.<br>
-								router-link.button.ui.primary(to="/order") Оформить заказ
+								.cart-status__wrap-left
+									.cart-status__description Стоимость заказа:<br><span class="cart-status__price">{{ cartListFullCost }}</span> руб.
+								.cart-status__wrap-right
+									router-link.button.ui.primary.right.labeled.icon(to="/order") <i class="right arrow icon large"></i> Оформить заказ
+							cart-list(:propCartList="propCartList")
+						.col-md-5.col-sm-12
+							h3 Также вам может понадобиться
+							AdditionalProductsList(:propCartList="propCartList")
 		
 		
 		
@@ -45,6 +50,7 @@
 	import Subscribe 			 from '../../modules/SubscribeModules/index.vue'
 	import FooterComponent from '../../modules/FooterModules/index.vue'
 	import CartList 			 from '../../modules/CartListModules/index.vue'
+	import AdditionalProductsList from '../../modules/AdditionalProductsList/index.vue'
 
 	export default {
 		name: 'CartComponent',
@@ -57,10 +63,27 @@
 			Subscribe,
 			FooterComponent,
 			CartList,
+			AdditionalProductsList
 		},
 		data : function () {
 			return {
 
+			}
+		},
+		computed: {
+			
+			// -высчитываем полную стоимость заказа
+			cartListFullCost() {
+				let fullCost = (this.propCartList.length > 0) ?
+					this.propCartList.reduce((sum, item) => {
+						return sum + (item.price * (item.count))
+					},0) :
+					0;
+
+				// -/- отправка события корневому родителю
+				this.$root.eventHub.$emit('cartListFullCost', fullCost);
+
+				return fullCost;
 			}
 		}
 	}

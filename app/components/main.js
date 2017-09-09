@@ -8,9 +8,13 @@ eventHub.$on('carter', (msg) => {
 	vm.cartList = msg;
 });
 
+eventHub.$on('cartListFullCost', (msg) => {
+	vm.cartListFullCost = msg;
+});
+
 let vm = new Vue({
 	el: "#app",
-	template: "<App :rootPropCartList='cartList'></App>",
+	template: "<App :rootPropCartList='cartList' :rootPropCartListFullCost='cartListFullCost'></App>",
 	router,
 	components: {
 		App
@@ -18,7 +22,8 @@ let vm = new Vue({
 	data: function () {
 		return {
 			eventHub: eventHub,
-			cartList: []
+			cartList: [],
+			cartListFullCost: 0
 		}
 	},
 	mounted() {

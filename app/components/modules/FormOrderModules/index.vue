@@ -1,5 +1,5 @@
 <template lang="jade">
-	form.form-order
+	form.form-order.form.ui(:class="classList")
 		// статус формы
 		.form-order__msgs
 		
@@ -10,33 +10,32 @@
 		
 		// форма заказа
 		fieldset(v-if="propTemplate=='order'")
-			h3 Контакты:
+			legend <i class="ui icon big address book outline"></i> <span>Контакты</span>
 			label Введите email
-			input(name="form__email", id="form__email")
+			input(name="form__email", id="form__email", placeholder="Например, info@stroy.sale")
 			label Введите номер телефона
-			input(name="form__phone", id="form__phone")
+			input(name="form__phone", id="form__phone", placeholder="Например, +7 904 600-80-20")
 		fieldset(v-if="propTemplate=='order'")
-			h3 Доставка:
-			select(name="form__delivery", id="form__delivery", v-model="deliveryKind", class="ui selection dropdown")
-				option(value="" disabled selected) - Выберите способ -
-				option(value="1") Самовывоз -- бесплатно
+			legend <i class="ui icon big shipping"></i> <span>Доставка</span>
+			select(name="form__delivery", id="form__delivery", class="ui dropdown", v-model='valueFormDelivery')
+				option(value="") - Выберите способ -
+				option(value="1") Самовывоз -- г. Москва, Очаковское шоссе, д.5, стр.28
 				option(value="2") Доставка курьерской службой
-			br
-			label Адрес
-			input(name="form__address", id="form__address", disabled, v-bind:placeholder='address')
+			label(v-if='valueFormDelivery==2') Адрес
+			input(v-if='valueFormDelivery==2', name="form__address", id="form__address", placeholder='Например, г. Москва, Очаковское шоссе, д.5, стр.28, кв.145, подъезд 2')
 		fieldset(v-if="propTemplate=='order'")
-			h3 Оплата:
-			select(name="form__payment", id="form__payment",  v-model="paymentKind",  class="ui selection dropdown")
-				option(value="" disabled selected) - Выберите способ -
-				option(value="1") Онлайн --- бесплатно
-				option(value="2") Банковский счёт --- бесплатно
-				option(value="3") Наличными в офисе --- бесплатно
-				option(value="4") При получении --- 1 500р за выезд курьера
-		fieldset.order-form__b-cost(v-if="propTemplate=='order'")
-			h2 Стоимость - <strong>{{fullcost}}</strong> руб.
-			button.button.ui.button--orange.order-form__button-submit(type="submit", @click="sendOrder") ЗАКАЗАТЬ
-			div
-				strong Условия акции действительны только<br>при покупке на сумму от 5 000 рублей
+			legend <i class="ui icon big handshake"></i> <span>Оплата</span>
+			select(name="form__payment", id="form__payment", class="ui dropdown", v-model='valueFormPayment')
+				option(value="") - Выберите способ -
+				option(value="1") Онлайн
+				option(value="2") Банковским переводом
+				option(value="3") Наличными при получении
+				option(value="4") Безналичная оплата по счёту
+		fieldset.form-order__full-cost(v-if="propTemplate=='order'")
+			legend <i class="ui icon big ruble"></i><span>Стоимость заказа:</span> 	<strong>{{ propCartListFullCost }}</strong> руб.
+			button.button.ui.primary.button.form-order__button-submit(type="submit", @click="sendOrder") <i class="big check circle outline icon"></i>  Заказать
+			div Условия акции действительны только<br>при покупке на сумму от 5 000 рублей
+			
 		fieldset(class="hidden", v-if="propTemplate=='order'")
 			input(name="form__cost", v-bind:value='fullcost')
 			input(name="form__order", v-bind:value='ordernumber')
@@ -48,11 +47,23 @@
 		name: 'FormOrderComponent',
 		props: [
 			'propTemplate',
-			'propButtonStyle'
+			'propButtonStyle',
+			'propCartListFullCost'
 		],
 		data: function () {
 			return {
-				orderNumber: null
+				orderNumber: null,
+				valueFormDelivery: '',
+				valueFormPayment: '',
+			}
+		},
+		computed: {
+			
+			// в зависимости от формы присваиваем нужный класс элементу form
+			classList: function () {
+				return (this.propTemplate === 'order') ?
+					'form-order--order' :
+					'form-order--subscribe'
 			}
 		},
 		methods: {

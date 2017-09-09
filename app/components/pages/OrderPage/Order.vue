@@ -6,15 +6,16 @@
 		// - END HEADER
 		
 		main
-			.container
-				.row
-					.col-sm-12
-						h1 Оформление заказа
-						router-link.menu__link.menu__link--cart(to="/cart") Назад в корзину
-				
-				.row
-					.col-sm-12
-						form-order(:propTemplate="'order'")
+			.wrap-order
+				.container
+					.row
+						.col-sm-12
+							h1 Оформление заказа
+							router-link.button.ui.labeled.icon(to="/cart") <i class="left arrow icon large"></i> Назад в корзину
+					
+					.row
+						.col-sm-12
+							form-order(:propTemplate="'order'", :propCartListFullCost="propCartListFullCost")
 	
 					
 
@@ -29,6 +30,7 @@
 		name: 'CartComponent',
 		props: [
 			'propCartList',
+			'propCartListFullCost'
 		],
 		components: {
 			HeaderComponent,

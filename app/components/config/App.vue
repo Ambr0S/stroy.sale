@@ -1,7 +1,7 @@
 <template lang="jade">
   #app
     // - ROUTER
-    router-view(:propCartList="rootPropCartList")
+    router-view(:propCartList="rootPropCartList", :propCartListFullCost="rootPropCartListFullCost")
     // - END ROUTER
 </template>
 
@@ -10,7 +10,8 @@
   export default {
     name: 'app',
     props: [
-      'rootPropCartList'
+      'rootPropCartList',
+	    'rootPropCartListFullCost'
     ]
   }
 </script>

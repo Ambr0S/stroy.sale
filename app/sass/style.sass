@@ -7,13 +7,17 @@
 @import "../components/modules/SocialApiModules/style"
 @import "../components/modules/FooterModules/style"
 @import "../components/pages/CatalogPage/Catalog"
+@import "../components/pages/CartPage/Cart"
 @import "../components/modules/CatalogListModules/style"
 @import "../components/modules/ControllersModules/style"
-@import "../components/pages/CartPage/Cart"
 @import "../components/modules/CartListModules/style"
+@import "../components/modules/AdditionalProductsList/style"
 @import "../libs/bootstrap-sass-grid/sass/bootstrap-sass-grid"
 @import "../libs/semantic/dist/components/button.min.css"
 @import "../libs/semantic/dist/components/icon.min.css"
+@import "../libs/semantic/dist/components/input.min.css"
+@import "../libs/semantic/dist/components/form.min.css"
+@import "../libs/semantic/dist/components/dropdown.min.css"
 
 html
   font-size: 10px
@@ -41,6 +45,12 @@ h3
   margin: 3.33rem 0 1.67rem
   line-height: 3.33rem
 
+fieldset
+  legend
+    font:
+      size: 2rem
+      weight: 500
+
 p
   margin: 1.2rem 0
 
@@ -48,7 +58,8 @@ a,
 p,
 div,
 code,
-input
+input,
+fieldset
   font-size: 1.8rem
   line-height: 2.4rem
 
