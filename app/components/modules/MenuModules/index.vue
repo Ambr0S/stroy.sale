@@ -7,7 +7,7 @@
 				router-link(to="/delivery").menu__link Доставка и оплата
 			li.menu__item
 				router-link(to="/purchase-returns").menu__link Возврат товара
-			li.menu__item
+			//li.menu__item
 				router-link(to="/blog").menu__link Блог
 			li.menu__item
 				router-link(to="/contacts").menu__link Контакты

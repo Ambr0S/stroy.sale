@@ -4,7 +4,7 @@
 			.product.product--main
 				.product__item.product__item--left
 					.product__img.product__img--main
-						img(:src='item.image | withImage', alt='')
+						img(:src='item.img | withImage', alt='')
 				.product__item.product__item--right
 					.product__name.product__name--main {{ item.name }}
 					.product__description--main <strong>Описание</strong>: <br> {{ item.description }}
@@ -25,28 +25,30 @@
 						img(src="img/benefit.jpg" alt="")
 		div(v-else, :class="item.sizeWrapProduct", :key="item.id")
 			.product(@mousemove="tester", @mouseleave="testerEnd")
-				.product__item
+				.product__item.ui.card(data-html="<div class='header'>User Rating</div><div class='content'><div class='ui star rating'><i class='active icon'></i><i class='active icon'></i><i class='active icon'></i><i class='icon'></i><i class='icon'></i></div></div>")
 					.product__sale(v-if="item.sale > 0") Скидка {{ item.sale | setSale }}%
 					.product__name {{item.name}}
 					.product__img
-						img(:src='item.image | withImage', alt='')
-					.product__number {{item.number}}
+						img(:src='item.img | withImage', alt='')
 					//.product__text(:data-tooltip='item.text | checkoutText' data-inverted="" data-position="bottom center") Характеристики <i class="info circle icon"></i>
+					.product__number Арт. {{ item.number }}
 					.product__price
 						.product__price--old {{ item.price }}.00 руб.
 						.product__price--new {{ item.price }}.00 руб.
-						.product__price--costm {{ item.costm }}
 					button.ui.button.product__button.button--green.text-center(:data-id='index', @click="addToCart", :class="item.canAdd")
 						i.big.shop.icon(v-if='item.canAdd == "canAdd"')
 						i.big.check.circle.outline.icon(v-if='item.canAdd != "canAdd"')
 						span {{item.canAddText}}
-		.col-sm-12.text-center
+				.ui.popup
+					div Описание
+		.col-sm-12.text-center(v-if="countProductRender <= catalogUploaded.length")
 			.product__add
 				button.button--orange.ui.button.secondary(@click="addCountProductRender") <i class="arrow down icon"></i> Показать ещё...
 </template>
 
 <script>
 	import axios from 'axios'
+	import jq from '../../../libs/jQuery/dist/jquery.min'
 
 	export default {
 		name    : 'CatalogListComponent',
@@ -61,9 +63,6 @@
 				// выгруженный с помощью loadCatalog список товаров
 				catalogUploaded: [],
 				
-				// отрендеренный на странице список товаров
-				catalogRender: [],
-				
 				// количество отрендеренных товаров
 				countProductRender: 18,
 				
@@ -72,11 +71,15 @@
 				
 			}
 		},
-		mounted() {
+		created() {
 			
 			// загружаем каталог при открытии страницы
 			this.loadCatalog();
 			
+		},
+		mounted() {
+			let a  = $('.product__description');
+			console.log(a)
 		},
 		watch   : {
 
@@ -98,7 +101,7 @@
 				let result   = [],
 					  catalog  = this.catalogUploaded,
 					  count    = this.countProductRender;
-
+				
 				// -/- получение списка уже добавленных товаров
 				let storage    = localStorage.cartList,
 						storageArr = [];
@@ -191,6 +194,7 @@
 					// -/- в зависимости от важности продукта подгружаем нужный размер обёртки
 					i['sizeWrapProduct'] = (i.hasOwnProperty('main')) ? 'col-xs-12' : 'col-md-4 col-sm-6';
 				}
+
 			},
 			
 			// Увеличение лимита товаров на странице
@@ -217,27 +221,27 @@
 				
 				// -/- текущая кнопка
 				let target = e.currentTarget;
+				let targetId = target.dataset.id;
 				
 				// -/- если товар уже добавлен в корзину, то возврат
-				if (target.classList.contains('noCanAdd')) return;
+				if (target.classList.contains('noCanAdd')) {
+					console.log(this.$root._router);
+					this.$root._router.push({ path: '/cart' });
+					return
+				}
 
 				// -/- деактивация кнопки на выбранном продукте
 				target.classList.add('noCanAdd');
-				target.textContent = 'Товар в корзине';
-
-        console.log(this.sortCatalog);
-        console.log(e.target.dataset.id);
-        //console.log(this.sortCatalog[e.target.dataset.id]);
+				target.classList.remove('canAdd');
+				target.classList.add('secondary');
+				target.innerHTML = '<i class="big check circle outline icon"></i> Товар в корзине';
 
         // -/- добавление в корзину выбранный продукт
-				this.cartList.push(this.sortCatalog[e.target.dataset.id]);
+				this.cartList.push(this.sortCatalog[targetId]);
 				
 				// -/- устанавливаем количество единиц у выбранного продукта
 				this.cartList.forEach( (i) => i.count = 1);
 				
-				// -/- отправка события корневому родителю
-				this.$root.eventHub.$emit('carter', this.cartList);
-
 				// -/- добавляем товар в Local Storage
 				if (localStorage.hasOwnProperty('cartList')) {
 					
@@ -270,6 +274,9 @@
 				} else {
 					localStorage.setItem('cartList', JSON.stringify(this.cartList));
 				}
+
+				// -/- отправка события корневому родителю
+				this.$root.eventHub.$emit('carter', this.cartList);
 			}
 			
 		},

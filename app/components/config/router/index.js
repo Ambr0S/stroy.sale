@@ -29,12 +29,14 @@ export default new Router({
 		{
 			path: '/cart',
 			name: 'Cart',
-			component: Cart
+			component: Cart,
+		  meta: { scrollToTop: true }
 		},
 		{
 			path: '/order',
 			name: 'Order',
-			component: Order
+			component: Order,
+			meta: { scrollToTop: true }
 		},
 		{
 			path: '/delivery',
@@ -56,5 +58,12 @@ export default new Router({
 			name: 'ContactsPage',
 			component: ContactsPage
 		}
-	]
+	],
+	scrollBehavior (to, from, savedPosition) {
+		if (savedPosition) {
+			return savedPosition
+		} else {
+			return { x: 0, y: 0 }
+		}
+	}
 });

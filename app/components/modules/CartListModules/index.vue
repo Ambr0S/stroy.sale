@@ -2,7 +2,7 @@
 	.cart-list
 		.cart-list__item(v-for="(item,index) in propCartList")
 			.cart-list__img
-				img(:src='item.image', alt='')
+				img(:src='item.img', alt='')
 			.cart-list__description
 				.cart-list__name {{ item.name }}
 				.cart-list__price Цена за шт. {{ item.price }}.00 руб.

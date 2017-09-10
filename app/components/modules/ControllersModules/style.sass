@@ -1,17 +1,22 @@
 @import '../../../sass/variables'
 
 .controllers
+  padding: 2rem 0
   &__category, &__subCategory
     display: flex
     justify-content: center
     align-items: center
     padding: 1rem 0 0
+    flex-wrap: wrap
+    .controllers__item.ui.button
+      border-radius: 0
 
   &__subCategory
     .controllers__item.ui.button
-      padding: 0.5em 1em
+      padding: 0.5em 1em !important
 
   &__item
-    padding: 1.5em 1em
+    padding: 0.8em 1.2em !important
+
   &__item.ui.button
-    margin: 0 1rem 0 0
+    margin: 0 1rem 1rem 0
