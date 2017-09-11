@@ -25,22 +25,24 @@
 						img(src="img/benefit.jpg" alt="")
 		div(v-else, :class="item.sizeWrapProduct", :key="item.id")
 			.product(@mousemove="tester", @mouseleave="testerEnd")
-				.product__item.ui.card(data-html="<div class='header'>User Rating</div><div class='content'><div class='ui star rating'><i class='active icon'></i><i class='active icon'></i><i class='active icon'></i><i class='icon'></i><i class='icon'></i></div></div>")
+				.product__item
 					.product__sale(v-if="item.sale > 0") Скидка {{ item.sale | setSale }}%
 					.product__name {{item.name}}
-					.product__img
-						img(:src='item.img | withImage', alt='')
-					//.product__text(:data-tooltip='item.text | checkoutText' data-inverted="" data-position="bottom center") Характеристики <i class="info circle icon"></i>
-					.product__number Арт. {{ item.number }}
-					.product__price
-						.product__price--old {{ item.price }}.00 руб.
-						.product__price--new {{ item.price }}.00 руб.
+					.product__item-visible
+						.product__img
+							img(:src='item.img | withImage', alt='')
+						//.product__text(:data-tooltip='item.text | checkoutText' data-inverted="" data-position="bottom center") Характеристики <i class="info circle icon"></i>
+						.product__number Арт. {{ item.number }}
+						.product__btn(@click="goDesc") Характеристики
+						.product__price
+							.product__price--old(v-if="item.sale > 0") {{ item.price }}.00 руб.
+							.product__price--new {{ (item.price * ( 1 - item.sale )).toFixed(2) }} руб.
+					.product__item-hidden
+						.product__description Описание
 					button.ui.button.product__button.button--green.text-center(:data-id='index', @click="addToCart", :class="item.canAdd")
 						i.big.shop.icon(v-if='item.canAdd == "canAdd"')
 						i.big.check.circle.outline.icon(v-if='item.canAdd != "canAdd"')
 						span {{item.canAddText}}
-				.ui.popup
-					div Описание
 		.col-sm-12.text-center(v-if="countProductRender <= catalogUploaded.length")
 			.product__add
 				button.button--orange.ui.button.secondary(@click="addCountProductRender") <i class="arrow down icon"></i> Показать ещё...
@@ -48,8 +50,7 @@
 
 <script>
 	import axios from 'axios'
-	import jq from '../../../libs/jQuery/dist/jquery.min'
-
+	
 	export default {
 		name    : 'CatalogListComponent',
 		props   : [
@@ -78,8 +79,7 @@
 			
 		},
 		mounted() {
-			let a  = $('.product__description');
-			console.log(a)
+
 		},
 		watch   : {
 
@@ -140,6 +140,14 @@
 			
 		},
 		methods : {
+			
+			goDesc: function (e) {
+				let target = e.currentTarget;
+				let parent = target.closest('.product__item-visible');
+				let next = parent.nextElementSibling;
+				parent.style.cssText = `transform: translate(100%,0)`;
+				next.style.cssText = `transform: translate(0,0)`;
+			},
 			
 			tester: function (e) {
 				let target = e.currentTarget;

@@ -1,0 +1,42 @@
+[
+    {
+        "name": "Мастика битумно-полимерная МБП-Х-100 10 л",
+        "price": "762",
+        "number": "Арт: 11071113",
+        "image": "img/parser/f89c3bc0cb94967890f67a1676ad80fd.jpeg",
+        "text": [],
+        "sale": "0.5"
+    },
+    {
+        "name": "Праймер Битумный 10 л",
+        "price": "616",
+        "number": "Арт: 11071112",
+        "image": "img/parser/d4827f10548e00ad9eeae189249fab3b.jpeg",
+        "text": [],
+        "sale": "0.35"
+    },
+    {
+        "name": "Мастика битумная универсальная (17л./16кг.)",
+        "price": "603",
+        "number": "Арт: 11071335",
+        "image": "img/parser/1c1f1d4520fb8ae2aa0fdb5581de5b97.jpeg",
+        "text": [],
+        "sale": "0.35"
+    },
+    {
+        "name": "Мастика битумная универсальная (5,4л./5кг.)",
+        "price": "371",
+        "number": "Арт: 11071582",
+        "image": "img/parser/0b793e9d8c5a4502ddbaf9e572ccc961.jpeg",
+        "text": [],
+        "sale": "0.35"
+    },
+    {
+        "name": "Мастика битумная 1,8 кг.",
+        "price": "172",
+        "number": "Арт: 11072162",
+        "image": "img/parser/3a57a77d631df4bd86ae07e13eada7e6.jpeg",
+        "text": [],
+        "sale": "0.35"
+    }
+]

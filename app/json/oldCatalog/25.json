@@ -1,0 +1,74 @@
+[
+    {
+        "name": "Цемент М 500 Д20 ЦЕМ II/A -Ш 42,5 Н /50 кг. Себряковцемент",
+        "price": "295",
+        "number": "Арт: 11010682",
+        "image": "img/parser/bc52840247b5ca5f548e4faacb18cb0f.jpeg",
+        "text": [],
+        "sale": "0.3"
+    },
+    {
+        "name": "Цемент ЦЕМ I 42.5 Н ТУ тара 50 кг. Евроцемент Воронежская обл.",
+        "price": "294",
+        "number": "Арт: 11071875",
+        "image": "img/parser/cddfe20e55df16915077ab3193b30e5b.jpeg",
+        "text": [],
+        "sale": "0.3"
+    },
+    {
+        "name": "Портландцемент РОСЦЕМЕНТ ЦЕМ ВНП 500 (50 кг.)",
+        "price": "238",
+        "number": "Арт: 11071737",
+        "image": "img/parser/3dbd193d775c72fbebe253e313dd80c6.jpeg",
+        "text": [],
+        "sale": "0.3"
+    },
+    {
+        "name": "Пескобетон М-300 (50кг).",
+        "price": "198",
+        "number": "Арт: 11005847",
+        "image": "img/parser/0891fc9cb04645f8b8763d68281a1c11.png",
+        "text": [],
+        "sale": "0.3"
+    },
+    {
+        "name": "Смесь монтажно-кладочная СМ 15 (50 кг.)",
+        "price": "168",
+        "number": "Арт: 11072234",
+        "image": "img/parser/ff607338ed2e80a084904e6fa41ac36f.jpeg",
+        "text": [],
+        "sale": "0.3"
+    },
+    {
+        "name": "Смесь универсальная М-150 (25 кг.) ",
+        "price": "118",
+        "number": "Арт: 11009946",
+        "image": "img/parser/29e4e4936aa0b0954df239373792cf2a.png",
+        "text": [],
+        "sale": "0.3"
+    },
+    {
+        "name": "Щебень фр5-20 СМ-999 25кг",
+        "price": "115",
+        "number": "Арт: 11070995",
+        "image": "img/parser/fcc15e48f31c79e1dfcdabd93fc99d26.jpeg",
+        "text": [],
+        "sale": "0.5"
+    },
+    {
+        "name": "Песок кварц. фракцион. 0,16-0,63 СМ-999 / 25кг",
+        "price": "88",
+        "number": "Арт: 11070994",
+        "image": "img/parser/ec54fabb1f334b6cdb6fe414c19ebb39.jpeg",
+        "text": [],
+        "sale": "0.5"
+    },
+    {
+        "name": "Цемент белый М-500 3кг.СтройТоргСервис",
+        "price": "72",
+        "number": "Арт: 11071215",
+        "image": "img/parser/0a3e64b546648cc18906e3db16f3b5a3.jpeg",
+        "text": [],
+        "sale": "0.25"
+    }
+]

@@ -12,6 +12,7 @@
   justify-content: center
   text-align: center
   font-size: 1.6rem
+  position: relative
 
   &__item
     &--left
@@ -22,6 +23,13 @@
       display: flex
       flex-direction: column
       //flex: 3
+  &__item-hidden
+    position: absolute
+    color: $black
+    top: 100px
+    left: 10px
+    width: 100px
+    transform: translate(-100%,0%)
 
   &__sale
     padding: 0 10px 0px 11px

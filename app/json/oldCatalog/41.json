@@ -1,0 +1,71 @@
+[
+    {
+        "name": "Черепица гибкая ROOFSHIELD ECO 3 кв.м 22 шт зеленый",
+        "price": "640",
+        "number": "Арт: 11071138",
+        "image": "img/parser/231a0aadc320e49fb08e98f8b3333f14.jpeg",
+        "text": [
+            "Длина: 1000",
+            "Ширина: 317",
+            "В упаковке: 3м2"
+        ],
+        "sale": "0.35"
+    },
+    {
+        "name": "Гибкая черепица RoofShield Eco Лайт Зеленый 3м2 (22 шт.)",
+        "price": "560",
+        "number": "Арт: 11072260",
+        "image": "img/parser/4c3dbdf27a8aa361d0bf9de2ceb2397a.jpeg",
+        "text": [],
+        "sale": "0.35"
+    },
+    {
+        "name": "Гибкая черепица RoofShield Eco Лайт Коричневый 3м2 (22 шт.)",
+        "price": "560",
+        "number": "Арт: 11072262",
+        "image": "img/parser/408d9fca28df7bf9f024889148e03336.jpeg",
+        "text": [],
+        "sale": "0.35"
+    },
+    {
+        "name": "Гибкая черепица RoofShield Eco Лайт Красный  3м2 (22 шт.)",
+        "price": "560",
+        "number": "Арт: 11072261",
+        "image": "img/parser/16d0dd782aedc7c422b030fc111d8109.jpeg",
+        "text": [],
+        "sale": "0.35"
+    },
+    {
+        "name": "Рубероид РПП - С 300 15м2 ТУ",
+        "price": "320",
+        "number": "Арт: 11005802",
+        "image": "img/parser/0373249ca73de7cb86380236a6a78519.jpeg",
+        "text": [
+            "В упаковке: 15м2"
+        ],
+        "sale": "0.4",
+        "costm": "22"
+    },
+    {
+        "name": "Рубероид РКП-О 350 15 кв.м",
+        "price": "267",
+        "number": "Арт: 11005811",
+        "image": "img/parser/5aa9745bd505ffb8937a936af295d667.jpeg",
+        "text": [
+            "В упаковке: 15м2"
+        ],
+        "sale": "0.35",
+        "costm": "18"
+    },
+    {
+        "name": "Рубероид РПП-300 СМ 15м2",
+        "price": "248",
+        "number": "Арт: 11003584",
+        "image": "img/parser/e265fa988429861404134a9a8869c403.jpeg",
+        "text": [
+            "В упаковке: 15м2"
+        ],
+        "sale": "0.35",
+        "costm": "17"
+    }
+]
