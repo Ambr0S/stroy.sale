@@ -1,55 +1,52 @@
-<template lang="jade">
-	.row
-		div(v-for="(item, index) in sortCatalog", :class="item.sizeWrapProduct", v-if="item.main", :key="item.id")
-			.product.product--main
-				.product__item.product__item--left
-					.product__img.product__img--main
-						img(:src='item.img | withImage', alt='')
-				.product__item.product__item--right
-					.product__name.product__name--main {{ item.name }}
-					.product__description--main <strong>Описание</strong>: <br> {{ item.description }}
-					.product__price--main <strong> {{ item.price }}.00 {{ item.amount }}</strong>
-					.product__sale.product__sale--main {{ item.sale | setSale }}%
-					.product__compare
-						.product-compare__header <i class="search icon"></i><b>Цены в других магазинах</b>
-						.product-compare__item(v-if="item.price__lerua") <img src="img/ico__lerua.jpg" alt="" /> <i>Леруа:</i> {{item.price__lerua}} {{item.amount}}
-						.product-compare__item(v-if="item.price__obi") <img src="img/ico__obi.jpg" alt="" /> <i>Оби:</i> {{item.price__obi}} {{item.amount}}
-						.product-compare__item(v-if="item.price__krauta") <img src="img/ico__krauta.jpg" alt="" /> <i>К-раута:</i> {{item.price__krauta}} {{item.amount}}
-						.product-compare__item(v-if="item.price__kastorama") <img src="img/ico__kastorama.jpg" alt="" /> <i>Касторама:</i> {{item.price__kastorama}} {{item.amount}}
-						.product-compare__item(v-if="item.price__middle") <i>Средняя цена:</i> {{item.price__middle}} {{item.amount}}
-					button.ui.primary.button.product__button.button--green.text-center(:data-id='index', @click="addToCart", :class="item.canAdd")
-						i.big.shop.icon(v-if='item.canAdd == "canAdd"')
-						i.big.check.circle.outline.icon(v-if='item.canAdd != "canAdd"')
-						span {{item.canAddText}}
-					.product__benefits
-						img(src="img/benefit.jpg" alt="")
-		div(v-else, :class="item.sizeWrapProduct", :key="item.id")
-			.product(@mousemove="tester", @mouseleave="testerEnd")
-				.product__item
-					.product__sale(v-if="item.sale > 0") Скидка {{ item.sale | setSale }}%
-					.product__name {{item.name}}
-					.product__item-visible
-						.product__img
-							img(:src='item.img | withImage', alt='')
-						//.product__text(:data-tooltip='item.text | checkoutText' data-inverted="" data-position="bottom center") Характеристики <i class="info circle icon"></i>
-						.product__number Арт. {{ item.number }}
-						.product__btn(@click="goDesc") Характеристики
-						.product__price
-							.product__price--old(v-if="item.sale > 0") {{ item.price }}.00 руб.
-							.product__price--new {{ (item.price * ( 1 - item.sale )).toFixed(2) }} руб.
-					.product__item-hidden
-						.product__description Описание
-					button.ui.button.product__button.button--green.text-center(:data-id='index', @click="addToCart", :class="item.canAdd")
-						i.big.shop.icon(v-if='item.canAdd == "canAdd"')
-						i.big.check.circle.outline.icon(v-if='item.canAdd != "canAdd"')
-						span {{item.canAddText}}
-		.col-sm-12.text-center(v-if="countProductRender <= catalogUploaded.length")
-			.product__add
-				button.button--orange.ui.button.secondary(@click="addCountProductRender") <i class="arrow down icon"></i> Показать ещё...
+<template>
+  <div class="row">
+    <div v-for="(item, index) in sortCatalog" :class="item.sizeWrapProduct" :key="item.id">
+			<div class="product" @mousemove="tester" @mouseleave="testerEnd">
+				<div class="product__item">
+					<div class="product__sale" v-if="item.sale > 0"> Скидка {{ item.sale | setSale }}%</div>
+					<div class="product__name">{{item.name}}</div>
+					<div class="product__primary product__transition">
+						<div class="product__img">
+							<img :src='item.img | withImage' alt=''>
+						</div>
+						<div class="product__number">Арт. {{ item.number }}</div>
+						<button class="button ui basic grey" v-if="(item.description1 !== '0' || item.description2 !== '0')" @click="openDescription">
+							<i class="ui icon circle info"></i>
+							<span v-if="(item.description1 !== '0')">Характеристики</span>
+							<span v-if="(item.description1 !== '0' && item.description2 !== '0')">и описание</span>
+							<span v-if="(item.description1 === '0' && item.description2 !== '0')">Описание</span>
+						</button>
+						<div class="product__price">
+							<div class="product__price--old" v-if="item.sale > 0"> {{ item.price }}.00 руб. </div>
+							<div class="product__price--new">{{ (item.price * ( 1 - item.sale )).toFixed(2) }} руб.</div>
+						</div>
+					</div>
+					<div class="product__secondary product__transition">
+						<button class="button ui basic grey" @click="closeDescription"><i class="ui icon circle close"></i>Закрыть</button>
+						<div class="product__description" v-if="item.description1 !== '0'"><strong>Характериcтики:</strong><br/>{{ item.description1 }}</div>
+						<div class="product__description" v-if="item.description2 !== '0'"><strong>Описание:</strong><br/>{{ item.description2 }}</div>
+					</div>
+					<button class="ui button product__button button--green text-center" :data-id='index' @click="addToCart" :class="item.canAdd">
+						<i class="big shop icon" v-if='item.canAdd == "canAdd"'></i>
+						<i class="big check circle outline icon" v-if='item.canAdd != "canAdd"'></i>
+						<span>{{ item.canAddText }}</span>
+					</button>
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-12 text-center" v-if="countProductRender <= catalogUploaded.length">
+			<div class="product__add">
+				<button class="button--orange ui button secondary" @click="addCountProductRender">
+					<i class="arrow down icon"></i> Показать ещё...
+				</button>
+			</div>
+		</div>
+  </div>
 </template>
 
 <script>
 	import axios from 'axios'
+	import Vue from 'vue'
 	
 	export default {
 		name    : 'CatalogListComponent',
@@ -141,17 +138,40 @@
 		},
 		methods : {
 			
-			goDesc: function (e) {
-				let target = e.currentTarget;
-				let parent = target.closest('.product__item-visible');
-				let next = parent.nextElementSibling;
-				parent.style.cssText = `transform: translate(100%,0)`;
-				next.style.cssText = `transform: translate(0,0)`;
-			},
-			
+			openDescription: function (e) {
+        let target = e.currentTarget;
+        console.log(target);
+        let primary = target.closest('.product__primary');
+        let secondary = primary.nextElementSibling;
+
+        primary.style.cssText = `
+              transform : translate(120%,0);
+				`;
+        secondary.style.cssText = `
+              transform : translate(0,0);
+				`;
+      },
+
+      closeDescription: function (e) {
+        let target = e.currentTarget;
+        let secondary = target.closest('.product__secondary');
+        let primary = secondary.previousElementSibling;
+
+
+        console.log(primary);
+        console.log(secondary);
+
+        primary.style.cssText = `
+              transform : translate(0,0);
+				`;
+        secondary.style.cssText = `
+              transform : translate(-120%,0);
+				`;
+      },
+
 			tester: function (e) {
 				let target = e.currentTarget;
-				let button = target.querySelector('.button');
+				let button = target.querySelector('.product__button');
 				button.classList.add('primary');
 				button.style.cssText = `
 					transform: scale(1.1);
@@ -159,7 +179,7 @@
 			},
 			testerEnd: function (e) {
 				let target = e.currentTarget;
-				let button = target.querySelector('.button');
+				let button = target.querySelector('.product__button');
 				button.classList.remove('primary');
 				button.style.cssText = `
 					transform: scale(1);
@@ -193,12 +213,12 @@
 			// - Метод добавления свойств к продуктовой карточке каталога
 			addPropToCardProduct: function (isStorage, i) {
 				if (isStorage) {
-					i.canAdd = 'noCanAdd secondary';
-					i.canAddText = 'Товар в корзине';
+          Vue.set(i,'canAddText', 'Товар в корзине');
+          Vue.set(i,'canAdd', 'noCanAdd secondary');
 				} else {
-					i.canAdd = 'canAdd';
-					i.canAddText = 'Добавить в корзину';
-					
+					Vue.set(i,'canAddText', 'Добавить в корзину');
+					Vue.set(i,'canAdd', 'canAdd');
+
 					// -/- в зависимости от важности продукта подгружаем нужный размер обёртки
 					i['sizeWrapProduct'] = (i.hasOwnProperty('main')) ? 'col-xs-12' : 'col-md-4 col-sm-6';
 				}
