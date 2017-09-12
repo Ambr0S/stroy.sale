@@ -21,23 +21,26 @@
 							h1 Корзина
 			.wrap-cart-list.cart
 				.container
-					.row
-						.col-md-7.col-sm-12
+					.row(v-if="propCartList.length > 0")
+						.col-md-8.col-sm-12
 							.cart-status
 								.cart-status__wrap-left
 									.cart-status__description Стоимость заказа:<br><span class="cart-status__price">{{ cartListFullCost }}</span> руб.
 								.cart-status__wrap-right
 									router-link.button.ui.primary.right.labeled.icon(to="/order") <i class="right arrow icon large"></i> Оформить заказ
 							cart-list(:propCartList="propCartList")
-						.col-md-5.col-sm-12
-							h3 Также вам может понадобиться
+						.col-md-4.col-sm-12.wrap-additional-products-ist
+							h3.text-center Также вам может понадобиться
 							AdditionalProductsList(:propCartList="propCartList")
-		
-		
+					.row(v-else)
+						.col-md-12
+							span Ваша корзина пуста. Посетите&nbsp;
+							router-link.button.ui.gray(to="/catalog") наш каталог
+							span , чтобы наполнить её товарами
 		
 		
 		// SUBSCRIBE
-		.wrap-subscribe
+		.wrap-subscribe(v-if="propCartList.length > 0")
 			Subscribe
 		// FOOTER
 		.wrap-foooter
@@ -55,7 +58,8 @@
 	export default {
 		name: 'CartComponent',
 		props: [
-			'propCartList'
+			'propCartList',
+			'propCartListFullCost'
 		],
 		components: {
 			MenuComponent,
@@ -67,13 +71,16 @@
 		},
 		data : function () {
 			return {
-
+				cartList: this.propCartList
 			}
 		},
 		computed: {
 			
 			// -высчитываем полную стоимость заказа
 			cartListFullCost() {
+				
+				if (this.propCartList.length === 0) return;
+				
 				let fullCost = (this.propCartList.length > 0) ?
 					this.propCartList.reduce((sum, item) => {
 						return sum + (item.price * (item.count))

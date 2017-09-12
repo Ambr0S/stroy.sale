@@ -10,7 +10,7 @@
 					span
 						button.product-counter__button.button.ui.icon(@click="cartListCounterChange(index,'minus')") <i class="icon minus"></i>
 					span.field
-						input.product-counter__input.ui.input(:value="item.count")
+						input.product-counter__input.ui.input(:value="item.count", v-model="item.count")
 					span
 						button.product-counter__button.button.ui.icon.basic.positive(@click="cartListCounterChange(index,'plus')") <i class="icon plus"></i>
 				.cart-list__price--sum Стоимость: <span>{{ item.price * item.count }}</span>. 00 руб.
@@ -19,6 +19,8 @@
 </template>
 
 <script>
+	import Vue from 'vue'
+	
 	export default {
 		name: 'CartListComponent',
 		props: [
@@ -39,10 +41,15 @@
 			
 			// метод добавления и удаления единицы товара
 			cartListCounterChange(index, symb) {
+				let item = this.propCartList[index];
 				if (symb == 'plus') {
-					this.propCartList[index].count++
+					let value = item.count + 1;
+					console.log(value);
+					Vue.set(item, 'count', value)
 				} else if (symb == 'minus' && this.propCartList[index].count > 1) {
-					this.propCartList[index].count--
+					let value = item.count - 1;
+					console.log(value);
+					Vue.set(item, 'count', value)
 				}
 			},
 			

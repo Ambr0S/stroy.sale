@@ -10,19 +10,19 @@
 							<img :src='item.img | withImage' alt=''>
 						</div>
 						<div class="product__number">Арт. {{ item.number }}</div>
-						<button class="button ui basic grey" v-if="(item.description1 !== '0' || item.description2 !== '0')" @click="openDescription">
+						<button class="button ui basic black" v-if="(item.description1 !== '0' || item.description2 !== '0')" @click="openDescription">
 							<i class="ui icon circle info"></i>
 							<span v-if="(item.description1 !== '0')">Характеристики</span>
 							<span v-if="(item.description1 !== '0' && item.description2 !== '0')">и описание</span>
 							<span v-if="(item.description1 === '0' && item.description2 !== '0')">Описание</span>
 						</button>
 						<div class="product__price">
-							<div class="product__price--old" v-if="item.sale > 0"> {{ item.price }}.00 руб. </div>
+							<div class="product__price--old"> <span v-if="item.sale > 0">{{ item.price }}.00 руб.</span>  </div>
 							<div class="product__price--new">{{ (item.price * ( 1 - item.sale )).toFixed(2) }} руб.</div>
 						</div>
 					</div>
 					<div class="product__secondary product__transition">
-						<button class="button ui basic grey" @click="closeDescription"><i class="ui icon circle close"></i>Закрыть</button>
+						<button class="button ui basic black" @click="closeDescription"><i class="ui icon circle close"></i>Закрыть</button>
 						<div class="product__description" v-if="item.description1 !== '0'"><strong>Характериcтики:</strong><br/>{{ item.description1 }}</div>
 						<div class="product__description" v-if="item.description2 !== '0'"><strong>Описание:</strong><br/>{{ item.description2 }}</div>
 					</div>
@@ -95,6 +95,8 @@
 
 			// - отсортированный каталог
 			sortCatalog() {
+				console.log('Opa, react!');
+
 				let result   = [],
 					  catalog  = this.catalogUploaded,
 					  count    = this.countProductRender;
@@ -104,19 +106,20 @@
 						storageArr = [];
 
 				// -/- сортировка по проценту скидки
-				catalog.sort(function(a,b) {
+				/*catalog.sort(function(a,b) {
 					if (a.sale > b.sale) { return -1; }
 					if (a.sale < b.sale) { return 1; }
 					return 0;
-				});
+				});*/
 
-				// -/- ограничение количества товаров на одной странице
+				// -/- проверяем на наличие дублей
 				catalog.forEach((i,index) => {
 					if ( index < count ) {
 						
 						// добавляем свойства к каждому товару
 						this.addPropToCardProduct(false,i);
 						
+						// если товар в корзине уже есть, то нужно ему проставить стили
 						if (storage) {
 							storageArr = JSON.parse(storage);
 							storageArr.forEach((y) => {
@@ -156,10 +159,6 @@
         let target = e.currentTarget;
         let secondary = target.closest('.product__secondary');
         let primary = secondary.previousElementSibling;
-
-
-        console.log(primary);
-        console.log(secondary);
 
         primary.style.cssText = `
               transform : translate(0,0);
@@ -202,7 +201,7 @@
 				axios.get(jsonFile)
 					.then((response) => {
 							this.catalogUploaded = response.data;
-							this.canAddRendersProducts(response.data, countProductRender)
+							//this.canAddRendersProducts(response.data, countProductRender)
 						},
 						(err) => {
 							console.log(err)
@@ -233,27 +232,20 @@
 			
 			/* UI МЕТОДЫ */
 			
-			// Проверяем, есть ли еще товар для рендеринга
-			canAddRendersProducts : function (jsonFile, validCount) {
-				if (jsonFile.length < validCount) {
-					let button = document.querySelector('.product__add');
-					button.classList.add('hidden');
-				} else {
-					let button = document.querySelector('.product__add');
-					button.classList.remove('hidden');
-				}
-			},
-			
 			// - Метод добавления товара в корзину
 			addToCart: function (e) {
 				
 				// -/- текущая кнопка
 				let target = e.currentTarget;
 				let targetId = target.dataset.id;
+
+				console.log(target);
+				console.log(targetId);
+				console.log('1 ' + this.sortCatalog[targetId].name);
 				
-				// -/- если товар уже добавлен в корзину, то возврат
+
+				// -/- если товар уже добавлен в корзину, то переходим в корзину
 				if (target.classList.contains('noCanAdd')) {
-					console.log(this.$root._router);
 					this.$root._router.push({ path: '/cart' });
 					return
 				}
@@ -263,12 +255,22 @@
 				target.classList.remove('canAdd');
 				target.classList.add('secondary');
 				target.innerHTML = '<i class="big check circle outline icon"></i> Товар в корзине';
-
-        // -/- добавление в корзину выбранный продукт
-				this.cartList.push(this.sortCatalog[targetId]);
 				
 				// -/- устанавливаем количество единиц у выбранного продукта
-				this.cartList.forEach( (i) => i.count = 1);
+				//this.cartList.forEach( (i) => i.count = 1);
+				//this.cartList.forEach( (i) => Vue.set(i,'count', 1));
+				Vue.set(this.sortCatalog[targetId], 'count', 1);
+
+				
+				
+				
+				console.log('2 ' + this.sortCatalog[targetId].name);
+				// -/- добавляем в корзину выбранный продукт
+				this.cartList.push(this.sortCatalog[targetId]);
+				console.log(this.cartList);
+				
+				
+				
 				
 				// -/- добавляем товар в Local Storage
 				if (localStorage.hasOwnProperty('cartList')) {
