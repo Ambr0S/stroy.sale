@@ -47,6 +47,8 @@
 <script>
 	import axios from 'axios'
 	import Vue from 'vue'
+	import _ from 'lodash'
+
 	
 	export default {
 		name    : 'CatalogListComponent',
@@ -214,9 +216,11 @@
 				if (isStorage) {
           Vue.set(i,'canAddText', 'Товар в корзине');
           Vue.set(i,'canAdd', 'noCanAdd secondary');
+          Vue.set(i,'count', 1);
 				} else {
 					Vue.set(i,'canAddText', 'Добавить в корзину');
 					Vue.set(i,'canAdd', 'canAdd');
+          Vue.set(i,'count', 1);
 
 					// -/- в зависимости от важности продукта подгружаем нужный размер обёртки
 					i['sizeWrapProduct'] = (i.hasOwnProperty('main')) ? 'col-xs-12' : 'col-md-4 col-sm-6';
@@ -234,15 +238,12 @@
 			
 			// - Метод добавления товара в корзину
 			addToCart: function (e) {
-				
+
+
 				// -/- текущая кнопка
 				let target = e.currentTarget;
 				let targetId = target.dataset.id;
 
-				console.log(target);
-				console.log(targetId);
-				console.log('1 ' + this.sortCatalog[targetId].name);
-				
 
 				// -/- если товар уже добавлен в корзину, то переходим в корзину
 				if (target.classList.contains('noCanAdd')) {
@@ -250,56 +251,41 @@
 					return
 				}
 
+
 				// -/- деактивация кнопки на выбранном продукте
 				target.classList.add('noCanAdd');
 				target.classList.remove('canAdd');
 				target.classList.add('secondary');
 				target.innerHTML = '<i class="big check circle outline icon"></i> Товар в корзине';
-				
-				// -/- устанавливаем количество единиц у выбранного продукта
-				//this.cartList.forEach( (i) => i.count = 1);
-				//this.cartList.forEach( (i) => Vue.set(i,'count', 1));
-				Vue.set(this.sortCatalog[targetId], 'count', 1);
 
-				
-				
-				
-				console.log('2 ' + this.sortCatalog[targetId].name);
+
 				// -/- добавляем в корзину выбранный продукт
 				this.cartList.push(this.sortCatalog[targetId]);
-				console.log(this.cartList);
-				
-				
-				
-				
+
+
 				// -/- добавляем товар в Local Storage
 				if (localStorage.hasOwnProperty('cartList')) {
-					
+
+
 					// --/-- получаем текущий Local Storage
 					let _localStorage = JSON.parse(localStorage.cartList) || [];
-					
+
+
 					// --/-- получаем текущую корзину
 					let cartList = this.cartList;
-					
+
+
 					// --/-- объединяем локал сторедж и текущую корзину
-					let fullCartList = _localStorage.concat(cartList);
-					
+					//let fullCartList = _localStorage.concat(cartList);
+
+					let fullCartList = _.unionBy(cartList, _localStorage, 'number');
+
 					// --/-- сортируем и фильтруем полную корзину
-					let wrapFullCartList = fullCartList
-						.sort((a,b) => {
-							return (a.number > b.number) ? 1 : -1;
-						})
-						.filter( (i, index) => {
-							if (index + 1 >= fullCartList.length) return true;
-							let a = i.number;
-							let b = fullCartList[index+1].number || '';
-							return (a !== b);
-						});
-					
-					this.cartList = wrapFullCartList;
+
+					this.cartList = fullCartList;
 					
 					// --/-- обновляем корзину в Local Storage
-					localStorage.setItem('cartList', JSON.stringify(wrapFullCartList));
+					localStorage.setItem('cartList', JSON.stringify(fullCartList));
 					
 				} else {
 					localStorage.setItem('cartList', JSON.stringify(this.cartList));

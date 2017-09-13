@@ -44,13 +44,13 @@
 				let item = this.propCartList[index];
 				if (symb == 'plus') {
 					let value = item.count + 1;
-					console.log(value);
-					Vue.set(item, 'count', value)
+					Vue.set(item, 'count', value);
 				} else if (symb == 'minus' && this.propCartList[index].count > 1) {
 					let value = item.count - 1;
-					console.log(value);
-					Vue.set(item, 'count', value)
-				}
+					Vue.set(item, 'count', value);
+        }
+
+        this.$root.eventHub.$emit('carter', this.propCartList);
 			},
 			
 			// метод удаления товара из корзины и Local Storage
