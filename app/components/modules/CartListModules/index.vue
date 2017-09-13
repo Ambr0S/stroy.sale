@@ -10,7 +10,7 @@
 					span
 						button.product-counter__button.button.ui.icon(@click="cartListCounterChange(index,'minus')") <i class="icon minus"></i>
 					span.field
-						input.product-counter__input.ui.input(:value="item.count", v-model="item.count")
+						input.product-counter__input.ui.input(:value="countWatcher[index]", v-model="countWatcher[index]")
 					span
 						button.product-counter__button.button.ui.icon.basic.positive(@click="cartListCounterChange(index,'plus')") <i class="icon plus"></i>
 				.cart-list__price--sum Стоимость: <span>{{ item.price * item.count }}</span>. 00 руб.
@@ -31,23 +31,27 @@
 		},
 		data : function () {
 			return {
-			
+				count: []
 			}
 		},
 		computed: {
-
+			countWatcher() {
+				for (let i = 0; i < this.propCartList; i++) {
+					this.count[i] = this.propCartList[i].count;
+				}
+				return this.count
+			}
 		},
 		methods: {
 			
 			// метод добавления и удаления единицы товара
 			cartListCounterChange(index, symb) {
-				let item = this.propCartList[index];
 				if (symb == 'plus') {
-					let value = item.count + 1;
-					Vue.set(item, 'count', value);
-				} else if (symb == 'minus' && this.propCartList[index].count > 1) {
-					let value = item.count - 1;
-					Vue.set(item, 'count', value);
+					let value = this.count[index] + 1;
+					Vue.set(this.count, index, value);
+				} else if (symb == 'minus' && this.count[index] > 1) {
+					let value = this.count[index] - 1;
+					Vue.set(this.count, index, value);
         }
 
         this.$root.eventHub.$emit('carter', this.propCartList);

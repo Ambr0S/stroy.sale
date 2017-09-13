@@ -67,7 +67,9 @@
 				countProductRender: 18,
 				
 				// список товаров в корзине
-				cartList: []
+				cartList: [],
+				_localStorage: [],
+				fullCartList: []
 				
 			}
 		},
@@ -260,39 +262,30 @@
 
 
 				// -/- добавляем в корзину выбранный продукт
-				this.cartList.push(this.sortCatalog[targetId]);
+				Vue.set(this.cartList, this.cartList.length, this.sortCatalog[targetId])
+				
 
 
 				// -/- добавляем товар в Local Storage
 				if (localStorage.hasOwnProperty('cartList')) {
-
-
-					// --/-- получаем текущий Local Storage
-					let _localStorage = JSON.parse(localStorage.cartList) || [];
-
-
-					// --/-- получаем текущую корзину
-					let cartList = this.cartList;
-
-
+					this._localStorage = JSON.parse(localStorage.cartList);
 					// --/-- объединяем локал сторедж и текущую корзину
 					//let fullCartList = _localStorage.concat(cartList);
 
-					let fullCartList = _.unionBy(cartList, _localStorage, 'number');
-
-					// --/-- сортируем и фильтруем полную корзину
-
-					this.cartList = fullCartList;
+					this.fullCartList = _.unionBy(this.cartList, this._localStorage, 'number');
 					
 					// --/-- обновляем корзину в Local Storage
-					localStorage.setItem('cartList', JSON.stringify(fullCartList));
+					localStorage.setItem('cartList', JSON.stringify(this.fullCartList));
+					
+					// -/- отправка события корневому родителю
+					this.$root.eventHub.$emit('carter', this.fullCartList);
 					
 				} else {
 					localStorage.setItem('cartList', JSON.stringify(this.cartList));
+					this.$root.eventHub.$emit('carter', this.cartList);
 				}
 
-				// -/- отправка события корневому родителю
-				this.$root.eventHub.$emit('carter', this.cartList);
+
 			}
 			
 		},
