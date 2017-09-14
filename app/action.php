@@ -31,10 +31,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	      $upaymentFieldset = "<b>Способ оплаты:</b>";
 	    }
     }
-    if (isset($_POST['form__cost'])) {
-    	if (!empty($_POST['form__cost'])){
-	      $ucost = strip_tags($_POST['form__cost']) . "<br>";
-	      $ucostFieldset = "<b>Полная стоимость (руб.):</b>";
+    if (isset($_POST['form__order'])) {
+    	if (!empty($_POST['form__order'])){
+	      $uorder = strip_tags($_POST['form__order']) . "<br>";
+	      $uorderFieldset = "<b>Весь заказ:</b>";
 	    }
     }
     if (isset($_POST['form__name'])) {
@@ -95,7 +95,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $unameFieldset $uname
                 $unumberFieldset $unumber
                 $uamountFieldset $uamount
-                $ucostFieldset $ucost
+                $uorderFieldset $uorder
                 $upriceFieldset $uprice
                 $usaleFieldset $usale
                 $udeliveryFieldset $udelivery

@@ -136,10 +136,10 @@ gulp.task('build', ['clean'], function () {
 	var buildFont = gulp.src('app/fonts/**/*')
 		.pipe(gulp.dest('dist/fonts'));
 
-	var buildLibsCss = gulp.src('app/libs/**/*.css')
+	var buildLibsCss = gulp.src(['!app/libs/semantic/node_modules/**/*', 'app/libs/**/*.css'])
 		.pipe(gulp.dest('dist/libs'));
 
-	var buildLibs = gulp.src('app/libs/**/*.js')
+	var buildLibs = gulp.src(['!app/libs/semantic/node_modules/**/*', 'app/libs/**/*.js'])
 		.pipe(gulp.dest('dist/libs'));
 
 	var buildJs = gulp.src('app/js/**/*.js')

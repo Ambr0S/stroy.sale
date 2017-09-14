@@ -15,7 +15,7 @@
 					
 					.row
 						.col-sm-12
-							form-order(:propTemplate="'order'", :propCartListFullCost="propCartListFullCost")
+							form-order(:propTemplate="'order'", :propCartList="propCartList", :propCartListFullCost="propCartListFullCost")
 	
 					
 

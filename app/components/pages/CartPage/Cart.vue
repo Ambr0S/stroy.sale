@@ -28,8 +28,8 @@
 									.cart-status__description Стоимость заказа:<br><span class="cart-status__price">{{ cartListFullCost }}</span> руб.
 								.cart-status__wrap-right
 									router-link.button.ui.primary.right.labeled.icon(to="/order") <i class="right arrow icon large"></i> Оформить заказ
-							cart-list(:propCartList="propCartList")
-						.col-md-4.col-sm-12.wrap-additional-products-ist
+							cart-list(:propCartList="computedCartList")
+						.col-md-4.col-sm-12.wrap-additional-products-list
 							h3.text-center Также вам может понадобиться
 							AdditionalProductsList(:propCartList="propCartList")
 					.row(v-else)
@@ -54,6 +54,8 @@
 	import FooterComponent from '../../modules/FooterModules/index.vue'
 	import CartList 			 from '../../modules/CartListModules/index.vue'
 	import AdditionalProductsList from '../../modules/AdditionalProductsList/index.vue'
+  import Vue from 'vue'
+  import _ from 'lodash'
 
 	export default {
 		name: 'CartComponent',
@@ -71,10 +73,22 @@
 		},
 		data : function () {
 			return {
-				cartList: this.propCartList
+
+        // список товаров в корзине
+        cartList: []
 			}
 		},
 		computed: {
+
+		  // возвращаем реактивный список товаров в корзине
+		  computedCartList() {
+        let list = this.propCartList;
+        list = _.uniqBy(list, 'number');
+        for(let i = 0; i < list.length; i++) {
+          Vue.set(this.cartList, i, list[i]);
+        }
+        return this.cartList
+      },
 			
 			// -высчитываем полную стоимость заказа
 			cartListFullCost() {
@@ -83,8 +97,8 @@
 				
 				let fullCost = (this.propCartList.length > 0) ?
 					this.propCartList.reduce((sum, item) => {
-						return sum + (item.price * (item.count))
-					},0) :
+						return sum + (item.price * item.count * (1 - item.sale) )
+					},0).toFixed(2) :
 					0;
 
 				// -/- отправка события корневому родителю

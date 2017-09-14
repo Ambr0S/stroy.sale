@@ -37,9 +37,8 @@
 			div Условия акции действительны только<br>при покупке на сумму от 5 000 рублей
 			
 		fieldset(class="hidden", v-if="propTemplate=='order'")
-			input(name="form__cost", v-bind:value='fullcost')
-			input(name="form__order", v-bind:value='ordernumber')
-			input(name="form__address", v-bind:value='address')
+			input(name="form__order", v-bind:value='propCartList')
+
 </template>
 
 <script>
@@ -48,7 +47,8 @@
 		props: [
 			'propTemplate',
 			'propButtonStyle',
-			'propCartListFullCost'
+			'propCartListFullCost',
+      'propCartList'
 		],
 		data: function () {
 			return {
@@ -126,7 +126,6 @@
 								message.addClass('active');
 								setTimeout(function () {
 									message.removeClass('active');
-									message.css({'background': 'none'});
 									message.html('');
 									$('input').not(':input[type=submit], :input[type=hidden]').val('');
 								}, 30000);

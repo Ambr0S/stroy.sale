@@ -47,6 +47,7 @@
   },
   "dependencies": {
     "axios": "^0.16.2",
+    "lodash": "^4.17.4",
     "vue-bulma-tooltip": "^1.0.4",
     "vue-ui": "^0.1.3"
   }

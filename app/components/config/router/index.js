@@ -14,6 +14,10 @@ export default new Router({
 
 	//mode: 'history',
 	routes: [
+    {
+    	path: '/',
+			redirect: '/catalog/0'
+		},
 		{
 			path: '/catalog/:idCategory/',
 			name: 'Category',
@@ -41,22 +45,26 @@ export default new Router({
 		{
 			path: '/delivery',
 			name: 'DeliveryPage',
-			component: DeliveryPage
+			component: DeliveryPage,
+      meta: { scrollToTop: true }
 		},
 		{
 			path: '/purchase-returns',
 			name: 'PurchaseReturnsPage',
-			component: PurchaseReturnsPage
+			component: PurchaseReturnsPage,
+      meta: { scrollToTop: true }
 		},
 		{
 			path: '/service',
 			name: 'ServicePage',
-			component: ServicePage
+			component: ServicePage,
+      meta: { scrollToTop: true }
 		},
 		{
 			path: '/contacts',
 			name: 'ContactsPage',
-			component: ContactsPage
+			component: ContactsPage,
+      meta: { scrollToTop: true }
 		}
 	],
 	scrollBehavior (to, from, savedPosition) {
