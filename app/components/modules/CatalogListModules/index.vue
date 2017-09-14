@@ -68,8 +68,7 @@
 				
 				// список товаров в корзине
 				cartList: [],
-				_localStorage: [],
-				fullCartList: []
+				_localStorage: []
 				
 			}
 		},
@@ -158,7 +157,6 @@
               transform : translate(0,0);
 				`;
       },
-
       closeDescription: function (e) {
         let target = e.currentTarget;
         let secondary = target.closest('.product__secondary');
@@ -241,18 +239,15 @@
 			// - Метод добавления товара в корзину
 			addToCart: function (e) {
 
-
 				// -/- текущая кнопка
 				let target = e.currentTarget;
 				let targetId = target.dataset.id;
-
 
 				// -/- если товар уже добавлен в корзину, то переходим в корзину
 				if (target.classList.contains('noCanAdd')) {
 					this.$root._router.push({ path: '/cart' });
 					return
 				}
-
 
 				// -/- деактивация кнопки на выбранном продукте
 				target.classList.add('noCanAdd');
@@ -262,30 +257,34 @@
 
 
 				// -/- добавляем в корзину выбранный продукт
-				Vue.set(this.cartList, this.cartList.length, this.sortCatalog[targetId])
-				
-
+				//this.cartList.push(this.sortCatalog[targetId]);
+        Vue.set(this.cartList, this.cartList.length, this.sortCatalog[targetId]);
 
 				// -/- добавляем товар в Local Storage
 				if (localStorage.hasOwnProperty('cartList')) {
-					this._localStorage = JSON.parse(localStorage.cartList);
+
+
+					// --/-- получаем текущий Local Storage
+					this._localStorage = JSON.parse(localStorage.cartList) || [];
+
 					// --/-- объединяем локал сторедж и текущую корзину
 					//let fullCartList = _localStorage.concat(cartList);
 
-					this.fullCartList = _.unionBy(this.cartList, this._localStorage, 'number');
+					let fullCartList = _.unionBy(this.cartList, this._localStorage, 'number');
+
+					// --/-- сортируем и фильтруем полную корзину
+
+					this.cartList = fullCartList;
 					
 					// --/-- обновляем корзину в Local Storage
-					localStorage.setItem('cartList', JSON.stringify(this.fullCartList));
-					
-					// -/- отправка события корневому родителю
-					this.$root.eventHub.$emit('carter', this.fullCartList);
+					localStorage.setItem('cartList', JSON.stringify(fullCartList));
 					
 				} else {
 					localStorage.setItem('cartList', JSON.stringify(this.cartList));
-					this.$root.eventHub.$emit('carter', this.cartList);
 				}
 
-
+				// -/- отправка события корневому родителю
+				this.$root.eventHub.$emit('carter', this.cartList);
 			}
 			
 		},
