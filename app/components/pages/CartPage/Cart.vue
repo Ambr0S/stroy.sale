@@ -22,16 +22,16 @@
 			.wrap-cart-list.cart
 				.container
 					.row(v-if="propCartList.length > 0")
-						.col-md-8.col-sm-12
+						.col-md-12.col-sm-12
 							.cart-status
 								.cart-status__wrap-left
 									.cart-status__description Стоимость заказа:<br><span class="cart-status__price">{{ cartListFullCost }}</span> руб.
 								.cart-status__wrap-right
 									router-link.button.ui.primary.right.labeled.icon(to="/order") <i class="right arrow icon large"></i> Оформить заказ
-							cart-list(:propCartList="computedCartList")
-						.col-md-4.col-sm-12.wrap-additional-products-list
+							cart-list(:propCartList="cartList", v-on:delete="deleteProduct", v-on:increment="changeCountProduct")
+						//.col-md-4.col-sm-12.wrap-additional-products-list
 							h3.text-center Также вам может понадобиться
-							AdditionalProductsList(:propCartList="propCartList")
+							AdditionalProductsList(:propCartList="cartList")
 					.row(v-else)
 						.col-md-12
 							span Ваша корзина пуста. Посетите&nbsp;
@@ -75,20 +75,10 @@
 			return {
 
         // список товаров в корзине
-        cartList: []
+        cartList: this.propCartList
 			}
 		},
 		computed: {
-
-		  // возвращаем реактивный список товаров в корзине
-		  computedCartList() {
-        let list = this.propCartList;
-        list = _.uniqBy(list, 'number');
-        for(let i = 0; i < list.length; i++) {
-          Vue.set(this.cartList, i, list[i]);
-        }
-        return this.cartList
-      },
 			
 			// -высчитываем полную стоимость заказа
 			cartListFullCost() {
@@ -105,6 +95,14 @@
 				this.$root.eventHub.$emit('cartListFullCost', fullCost);
 
 				return fullCost;
+			}
+		},
+		methods: {
+			deleteProduct(i) {
+				this.$emit('delete', i)
+			},
+			changeCountProduct(i) {
+				this.$emit('increment', i)
 			}
 		}
 	}

@@ -1,6 +1,6 @@
 <template lang="jade">
 	.cart-list
-		.cart-list__item(v-for="(item,index) in propCartList", :key="item.key")
+		.cart-list__item(v-for="(item,index) in cartList", :key="item.key")
 			.cart-list__img
 				img(:src='item.img', alt='')
 			.cart-list__description
@@ -15,7 +15,7 @@
 					span
 						button.product-counter__button.button.ui.icon.basic.positive(@click="cartListCounterChange(index,'plus')") <i class="icon plus"></i>
 				.cart-list__price--sum Стоимость: <span class="cart-list__price--sum-new">{{ (item.price * item.count * (1-item.sale)).toFixed(2) }}</span> руб. <span class="cart-list__price--sum-old" v-if="item.sale > 0">{{(item.price * item.count).toFixed(2)}} руб.</span>
-			button.cart-list__button-delete.button.ui.icon.mini(@click="deleteProduct(index)") <i class="icon remove"></i>
+			button.cart-list__button-delete.button.ui.icon.mini(@click="deleteProduct(index)", data-id="index") <i class="icon remove"></i>
 			
 </template>
 
@@ -29,27 +29,26 @@
 		],
 		data : function () {
 			return {
+				cartList: this.propCartList
 			}
 		},
 		methods: {
 			
 			// метод добавления и удаления единицы товара
 			cartListCounterChange(index, symb) {
-			  let value = this.propCartList[index].count;
+			  let value = this.cartList[index].count;
 				if (symb == 'plus') {
 					value++
-				} else if (symb == 'minus' && this.propCartList[index].count > 1) {
+				} else if (symb == 'minus' && this.cartList[index].count > 1) {
           value--
         }
-        Vue.set(this.propCartList[index], 'count', value);
-        this.$root.eventHub.$emit('carter', this.propCartList);
+        Vue.set(this.cartList[index], 'count', value);
+				this.$emit('increment', this.cartList[index]);
 			},
 			
 			// метод удаления товара из корзины и Local Storage
 			deleteProduct(index) {
-				this.propCartList.splice(index,1);
-        this.$root.eventHub.$emit('carter', this.propCartList);
-				localStorage.cartList = JSON.stringify(this.propCartList);
+				this.$emit('delete', index)
 			}
 		}
 	}

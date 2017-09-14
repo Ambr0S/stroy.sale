@@ -5,38 +5,13 @@ import _    			 from 'lodash'
 
 let eventHub = new Vue();
 
-/**
- * TODO(@mtsymlov 14.09.17)
- *
- * Этот колбэк можно реализовать проще:
- * vm.cartList = msg;
- *
- * Но мы потеряем реактивность при изменени количества товаров в корзине.
- * Число товаров будет останавливаться на двух
- *
- */
-eventHub.$on('carter', (msg) => {
-  let list = msg;
-  list = _.uniqBy(list, 'number');
-  list.forEach(function(item,index) {
-    Vue.set(vm.cartList, index, item);
-    for (var key in item) {
-      if (!item.hasOwnProperty(key)) return;
-      Vue.set(item, key, item[key]);
-    }
-  });
-});
-
 eventHub.$on('cartListFullCost', (msg) => {
-  console.log(msg);
 	vm.cartListFullCost = msg;
 });
 
-
-
 let vm = new Vue({
 	el: "#app",
-	template: "<App :rootPropCartList='cartList' :rootPropCartListFullCost='cartListFullCost'></App>",
+	template: "<App :rootPropCartList='cartList' :rootPropCartListFullCost='cartListFullCost' v-on:delete='deleteProduct' v-on:add='addProduct' v-on:increment='changeCountProduct'></App>",
 	router,
 	components: {
 		App
@@ -58,5 +33,26 @@ let vm = new Vue({
 			this.cartList = JSON.parse(localStorage.cartList) || [];
 		}
 
+	},
+
+	methods: {
+		addProduct(item) {
+			Vue.set(this.cartList, this.cartList.length, item);
+			localStorage.setItem('cartList', JSON.stringify(this.cartList));
+		},
+
+		deleteProduct(i) {
+			this.cartList.splice(i,1);
+			localStorage.setItem('cartList', JSON.stringify(this.cartList));
+		},
+
+		changeCountProduct(i) {
+			this.cartList.forEach((item,index) => {
+				if (i.number === item.number) {
+					//console.log(this.cartList);
+					Vue.set(this.cartList, index, i)
+				}
+			})
+		}
 	}
 });
