@@ -2,29 +2,28 @@
 
 var gulp = require('gulp'),
 	browsersync = require('browser-sync'),
-	browserify = require('gulp-browserify'),
-	babel = require('gulp-babel'),
-	babelify = require('babelify'),
-	cache = require('gulp-cache'),
-	cached = require('gulp-cached'),
-	concat = require('gulp-concat'),
-	cssnano = require('gulp-cssnano'),
-	debug = require('gulp-debug'),
-	del = require('del'),
-	imagemin = require('gulp-imagemin'),
-	minify = require('gulp-babel-minify'),
-	newer = require('gulp-newer'),
-	rename = require('gulp-rename-plus'),
-	remember = require('gulp-remember'),
-	pngquant = require('imagemin-pngquant'),
-	prefixer = require('gulp-autoprefixer'),
-	pug = require('gulp-pug'),
-	vueify = require('gulp-vueify'),
-	uglify = require('gulp-uglifyjs'),
-	sass = require('gulp-sass'),
-	source = require('vinyl-source-stream'),
-	sourcemaps = require("gulp-sourcemaps");
-	/*vueMaterial = require("vue-material/dist/vue-material.css");*/
+	browserify  = require('gulp-browserify'),
+	babel       = require('gulp-babel'),
+	babelify    = require('babelify'),
+	cache       = require('gulp-cache'),
+	cached      = require('gulp-cached'),
+	concat      = require('gulp-concat'),
+	cssnano     = require('gulp-cssnano'),
+	debug       = require('gulp-debug'),
+	del         = require('del'),
+	imagemin    = require('gulp-imagemin'),
+	minify      = require('gulp-babel-minify'),
+	newer       = require('gulp-newer'),
+	rename      = require('gulp-rename-plus'),
+	remember    = require('gulp-remember'),
+	pngquant    = require('imagemin-pngquant'),
+	prefixer    = require('gulp-autoprefixer'),
+	pug         = require('gulp-pug'),
+	vueify      = require('gulp-vueify'),
+	uglify      = require('gulp-uglifyjs'),
+	sass        = require('gulp-sass'),
+	source      = require('vinyl-source-stream'),
+	sourcemaps  = require("gulp-sourcemaps");
 
 
 gulp.task('pug', function () {
@@ -37,11 +36,11 @@ gulp.task('allScripts', function () {
 	return gulp.src([
 		'app/libs/jquery/dist/jquery.js',
 		'app/libs/jquery-validation/dist/jquery.validate.min.js'])
-		.pipe(newer('app/js/libs.js'))
+		//.pipe(newer('app/js/libs.js'))
 		.pipe(sourcemaps.init())
 		.pipe(debug())
 		.pipe(concat('libs.js'))
-		//.pipe(minify())
+		.pipe(minify())
 		.pipe(sourcemaps.write("."))
 		.pipe(gulp.dest('app/js'))
 		.pipe(browsersync.reload({stream: true}));
@@ -89,7 +88,7 @@ gulp.task('js', function () {
 		}))
 		.pipe(debug())
 		//.pipe(rename({suffix : 'min.js'}))
-		//.pipe(uglify())
+		.pipe(uglify())
 		.pipe(sourcemaps.write(""))
 		.pipe(gulp.dest('./app/js'))
 		.pipe(browsersync.reload({stream: true}));
@@ -113,27 +112,18 @@ gulp.task('css', ['sass'], function () {
 		.pipe(sourcemaps.init())
 		.pipe(debug())
 		.pipe(cssnano())
-		.pipe(rename({suffix: 'min.css'}))
-		.pipe(sourcemaps.write(""))
-		.pipe(gulp.dest('app/css/min'))
-		.pipe(browsersync.reload({stream: true}));
-});
-
-/*gulp.task('cssLibs', function () {
-	return gulp.src(vueMaterial)
-		.pipe(sourcemaps.init())
-		.pipe(debug())
-		.pipe(cssnano())
+		//.pipe(rename({suffix: 'min.css'}))
 		.pipe(sourcemaps.write(""))
 		.pipe(gulp.dest('app/css'))
-});*/
+		.pipe(browsersync.reload({stream: true}));
+});
 
 
 gulp.task('build', ['clean'], function () {
 	var buildCss = gulp.src('app/css/**/*.css')
 		.pipe(gulp.dest('dist/css'));
 
-	var buildFont = gulp.src('app/fonts/**/*')
+	var buildFont = gulp.src(['app/fonts/**/*', 'app/libs/**/*.woff', 'app/libs/**/*.woff2', 'app/libs/**/*.ttf'])
 		.pipe(gulp.dest('dist/fonts'));
 
 	var buildLibsCss = gulp.src(['!app/libs/semantic/node_modules/**/*', 'app/libs/**/*.css'])

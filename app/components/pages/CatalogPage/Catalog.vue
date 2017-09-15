@@ -26,7 +26,7 @@
 			// - CATALOGLIST
 			.wrap-catalog
 				.container
-					catalog-list(:propCatalogList="catalogList", :propIdCategory="idCategory", :propIdSubCategory="idSubCategory")
+					catalog-list(:propCatalogList="catalogList", :propCartList="cartList", :propIdCategory="idCategory", :propIdSubCategory="idSubCategory", v-on:add='addProduct')
 			// - END CATALOGLIST
 		
 		// SUBSCRIBE
@@ -60,7 +60,7 @@
 		},
 		data: function () {
 			return {
-				cartList: [],
+				cartList: this.propCartList,
 				
 				// список всех категорий
 				catalogList: [
@@ -127,27 +127,27 @@
 					{
 						id: 4,
 						name: 'Малярные работы',
-						jsonFile: 'json/004.json'
+						jsonFile: 'json/0040.json'
 					},
 					{
 						id: 5,
 						name: 'Устройство полов',
-						jsonFile: 'json/005.json'
+						jsonFile: 'json/0050.json'
 					},
 					{
 						id: 6,
 						name: 'Теплоизоляция',
-						jsonFile: 'json/006.json'
+						jsonFile: 'json/0060.json'
 					},
 					{
 						id: 7,
 						name: 'Гидроизоляция',
-						jsonFile: 'json/007.json'
+						jsonFile: 'json/0070.json'
 					},
 					{
 						id: 8,
 						name: 'Инструменты и приспособления',
-						jsonFile: 'json/008.json'
+						jsonFile: 'json/0080.json'
 					},
 				],
 				
@@ -167,6 +167,11 @@
 				return (routeParams.hasOwnProperty('idSubCategory')) ? routeParams['idSubCategory'] : null;
 			},
 			
+		},
+		methods: {
+			addProduct(i) {
+				this.$emit('add', i)
+			},
 		}
 	}
 </script>

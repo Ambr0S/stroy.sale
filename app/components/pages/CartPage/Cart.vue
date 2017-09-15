@@ -25,7 +25,7 @@
 						.col-md-12.col-sm-12
 							.cart-status
 								.cart-status__wrap-left
-									.cart-status__description Стоимость заказа:<br><span class="cart-status__price">{{ cartListFullCost }}</span> руб.
+									.cart-status__description Стоимость заказа:<br><span class="cart-status__price">{{ propCartListFullCost }}</span> руб.
 								.cart-status__wrap-right
 									router-link.button.ui.primary.right.labeled.icon(to="/order") <i class="right arrow icon large"></i> Оформить заказ
 							cart-list(:propCartList="cartList", v-on:delete="deleteProduct", v-on:increment="changeCountProduct")
@@ -55,7 +55,6 @@
 	import CartList 			 from '../../modules/CartListModules/index.vue'
 	import AdditionalProductsList from '../../modules/AdditionalProductsList/index.vue'
   import Vue from 'vue'
-  import _ from 'lodash'
 
 	export default {
 		name: 'CartComponent',
@@ -76,25 +75,6 @@
 
         // список товаров в корзине
         cartList: this.propCartList
-			}
-		},
-		computed: {
-			
-			// -высчитываем полную стоимость заказа
-			cartListFullCost() {
-				
-				if (this.propCartList.length === 0) return;
-				
-				let fullCost = (this.propCartList.length > 0) ?
-					this.propCartList.reduce((sum, item) => {
-						return sum + (item.price * item.count * (1 - item.sale) )
-					},0).toFixed(2) :
-					0;
-
-				// -/- отправка события корневому родителю
-				this.$root.eventHub.$emit('cartListFullCost', fullCost);
-
-				return fullCost;
 			}
 		},
 		methods: {

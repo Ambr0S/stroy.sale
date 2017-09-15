@@ -1,13 +1,8 @@
 import Vue         from "vue/dist/vue"
 import router      from "./config/router/index.js"
 import App         from "./config/App.vue"
-import _    			 from 'lodash'
 
 let eventHub = new Vue();
-
-eventHub.$on('cartListFullCost', (msg) => {
-	vm.cartListFullCost = msg;
-});
 
 let vm = new Vue({
 	el: "#app",
@@ -20,10 +15,19 @@ let vm = new Vue({
 		return {
 			eventHub: eventHub,
 			cartList: [],
-			cartListFullCost: 0
+			//cartListFullCost: 0
 		}
 	},
 	computed: {
+
+		cartListFullCost() {
+			let fullCost = 0;
+			fullCost = this.cartList.reduce( (sum, item) => {
+				return sum + (+item.price * ( 1 - +item.sale )) * item.count;
+			},0);
+
+			return fullCost
+		}
 
 	},
 	mounted() {

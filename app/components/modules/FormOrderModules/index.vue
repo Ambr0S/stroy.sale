@@ -1,5 +1,5 @@
 <template lang="jade">
-	form.form-order.form.ui(:class="classList")
+	form.form-order.form.ui(:class="classList", :id="propTemplate")
 		// статус формы
 		.form-order__msgs
 		
@@ -37,7 +37,7 @@
 			div Условия акции действительны только<br>при покупке на сумму от 5 000 рублей
 			
 		fieldset(class="hidden", v-if="propTemplate=='order'")
-			input(name="form__order", v-bind:value='propCartList')
+			input(name="form__order", v-bind:value='JSON.stringify(propCartList)')
 
 </template>
 
@@ -74,7 +74,7 @@
 
 				console.log('Форма активна')
 				// валидация формы подписки
-				$("#form--subscribe").validate({
+				$("#subscribe").validate({
 					rules: {
 						form__email: {required: true, email: true},
 						form__name: 'required',
@@ -86,7 +86,7 @@
 				});
 
 				// валидация формы заказа
-				$("#form--order").validate({
+				$("#order").validate({
 					rules: {
 						form__email: 'required',
 						form__phone: 'required',
@@ -120,16 +120,15 @@
 								// возможные тексты в .form-order__msgs
 								let messageData = [
 									'Благодарим за доверие! Мы вышлем Вам информацию о наличии товара, как только он появится в сервисе. Пожалуйста, ожидайте оповещение',
-									'Благодарим за заказ! Номер заказа m-' + this.orderNumber + '. В скором времени с Вами свяжется наш менеджер. Пожалуйста, ожидайте!'
+									'Благодарим за заказ! Номер заказа m-' + this.orderNumber.toFixed(0) + '. В скором времени с Вами свяжется наш менеджер. Пожалуйста, ожидайте!'
 								];
 
 								message.text(($(this).hasClass('form--subscribe')) ? messageData[0] : messageData[1]);
 								message.addClass('active');
 								setTimeout(function () {
 									message.removeClass('active');
-									message.html('');
 									$('input').not(':input[type=submit], :input[type=hidden]').val('');
-								}, 30000);
+								}, 3000);
 
 								// получение рандомного числа
 								function randomInteger(min, max) {
@@ -139,10 +138,9 @@
 
 							error: function (jqXHR, text, error) {
 								message.html('Упс...Письмо не отправилось');
-								message.css({'background': 'red'});
+								message.addClass('error');
 								setTimeout(function () {
-									message.html('');
-									message.css({'background': 'none'});
+									message.removeClass('error');
 									$('input').not(':input[type=submit], :input[type=hidden]').val('');
 								}, 3000);
 							}

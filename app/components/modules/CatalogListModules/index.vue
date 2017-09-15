@@ -26,7 +26,7 @@
 						<div class="product__description" v-if="item.description1 !== '0'"><strong>Характериcтики:</strong><br/>{{ item.description1 }}</div>
 						<div class="product__description" v-if="item.description2 !== '0'"><strong>Описание:</strong><br/>{{ item.description2 }}</div>
 					</div>
-					<button class="ui button product__button button--green text-center" :data-id='index' @click="addToCart" :class="item.canAdd">
+					<button class="ui button product__button button--green text-center" :data-id='index' @click="addToCart"  :class="item.canAdd">
 						<i class="big shop icon" v-if='item.canAdd == "canAdd"'></i>
 						<i class="big check circle outline icon" v-if='item.canAdd != "canAdd"'></i>
 						<span>{{ item.canAddText }}</span>
@@ -47,7 +47,6 @@
 <script>
 	import axios from 'axios'
 	import Vue from 'vue'
-	import _ from 'lodash'
 
 	
 	export default {
@@ -55,7 +54,8 @@
 		props   : [
 			'propCatalogList',
 			'propIdCategory',
-			'propIdSubCategory'
+			'propIdSubCategory',
+			'propCartList'
 		],
 		data    : function () {
 			return {
@@ -98,7 +98,6 @@
 
 			// - отсортированный каталог
 			sortCatalog() {
-				console.log('Opa, react!');
 
 				let result   = [],
 					  catalog  = this.catalogUploaded,
@@ -254,37 +253,9 @@
 				target.classList.remove('canAdd');
 				target.classList.add('secondary');
 				target.innerHTML = '<i class="big check circle outline icon"></i> Товар в корзине';
-
-
-				// -/- добавляем в корзину выбранный продукт
-				//this.cartList.push(this.sortCatalog[targetId]);
-        Vue.set(this.cartList, this.cartList.length, this.sortCatalog[targetId]);
-
-				// -/- добавляем товар в Local Storage
-				if (localStorage.hasOwnProperty('cartList')) {
-
-
-					// --/-- получаем текущий Local Storage
-					this._localStorage = JSON.parse(localStorage.cartList) || [];
-
-					// --/-- объединяем локал сторедж и текущую корзину
-					//let fullCartList = _localStorage.concat(cartList);
-
-					let fullCartList = _.unionBy(this.cartList, this._localStorage, 'number');
-
-					// --/-- сортируем и фильтруем полную корзину
-
-					this.cartList = fullCartList;
-					
-					// --/-- обновляем корзину в Local Storage
-					localStorage.setItem('cartList', JSON.stringify(fullCartList));
-					
-				} else {
-					localStorage.setItem('cartList', JSON.stringify(this.cartList));
-				}
-
+				
 				// -/- отправка события корневому родителю
-				this.$root.eventHub.$emit('carter', this.cartList);
+				this.$emit('add', this.sortCatalog[targetId])
 			}
 			
 		},
