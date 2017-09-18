@@ -1,6 +1,5 @@
 'use strict';
-
-var gulp = require('gulp'),
+ let gulp = require('gulp'),
 	browsersync = require('browser-sync'),
 	browserify  = require('gulp-browserify'),
 	babel       = require('gulp-babel'),
@@ -36,7 +35,7 @@ gulp.task('allScripts', function () {
 	return gulp.src([
 		'app/libs/jquery/dist/jquery.js',
 		'app/libs/jquery-validation/dist/jquery.validate.min.js'])
-		//.pipe(newer('app/js/libs.js'))
+		.pipe(newer('app/js/libs.js'))
 		.pipe(sourcemaps.init())
 		.pipe(debug())
 		.pipe(concat('libs.js'))
@@ -120,31 +119,31 @@ gulp.task('css', ['sass'], function () {
 
 
 gulp.task('build', ['clean'], function () {
-	var buildCss = gulp.src('app/css/**/*.css')
+	let buildCss = gulp.src('app/css/**/*.css')
 		.pipe(gulp.dest('dist/css'));
 
-	var buildFont = gulp.src(['app/fonts/**/*', 'app/libs/**/*.woff', 'app/libs/**/*.woff2', 'app/libs/**/*.ttf'])
+	let buildFont = gulp.src(['app/fonts/**/*', 'app/libs/**/*.woff', 'app/libs/**/*.woff2', 'app/libs/**/*.ttf'])
 		.pipe(gulp.dest('dist/fonts'));
 
-	var buildLibsCss = gulp.src(['!app/libs/semantic/node_modules/**/*', 'app/libs/**/*.css'])
+	let buildLibsCss = gulp.src(['!app/libs/semantic/node_modules/**/*', 'app/libs/**/*.css'])
 		.pipe(gulp.dest('dist/libs'));
 
-	var buildLibs = gulp.src(['!app/libs/semantic/node_modules/**/*', 'app/libs/**/*.js'])
+	let buildLibs = gulp.src(['!app/libs/semantic/node_modules/**/*', 'app/libs/**/*.js'])
 		.pipe(gulp.dest('dist/libs'));
 
-	var buildJs = gulp.src('app/js/**/*.js')
+	let buildJs = gulp.src('app/js/**/*.js')
 		.pipe(gulp.dest('dist/js'));
 
-	var buildHtml = gulp.src('app/*.html')
+	let buildHtml = gulp.src('app/*.html')
 		.pipe(gulp.dest('dist'));
 
-	var buildJson = gulp.src('app/json/*.json')
+	let buildJson = gulp.src('app/json/*.json')
 		.pipe(gulp.dest('dist/json'));
 
-	var buildPhp = gulp.src('app/*.php')
+	let buildPhp = gulp.src('app/*.php')
 		.pipe(gulp.dest('dist'));
 
-	var buildImg = gulp.src(['app/img/**/*.png', 'app/img/**/*.jpg'])
+	let buildImg = gulp.src(['app/img/**/*.png', 'app/img/**/*.jpg'])
 		.pipe(gulp.dest('dist/img'));
 });
 

@@ -172,18 +172,14 @@
 			tester: function (e) {
 				let target = e.currentTarget;
 				let button = target.querySelector('.product__button');
+				target.classList.add('product--scale');
 				button.classList.add('primary');
-				button.style.cssText = `
-					transform: scale(1.1);
-				`
 			},
 			testerEnd: function (e) {
 				let target = e.currentTarget;
 				let button = target.querySelector('.product__button');
+        target.classList.remove('product--scale');
 				button.classList.remove('primary');
-				button.style.cssText = `
-					transform: scale(1);
-				`
 			},
 			
 			

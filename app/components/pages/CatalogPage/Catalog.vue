@@ -17,7 +17,7 @@
 		.wrap-header
 			header-component
 		// - END HEADER
-		main
+		main.main--load
 			// - CONTROLLERS
 			.wrap-controllers
 				Controllers(:propCatalogList="catalogList", :propIdCategory="idCategory", :propIdSubCategory="idSubCategory")
@@ -28,7 +28,7 @@
 				.container
 					catalog-list(:propCatalogList="catalogList", :propCartList="cartList", :propIdCategory="idCategory", :propIdSubCategory="idSubCategory", v-on:add='addProduct')
 			// - END CATALOGLIST
-		
+
 		// SUBSCRIBE
 		.wrap-subscribe
 			Subscribe
@@ -168,6 +168,11 @@
 			},
 			
 		},
+    mounted() {
+		  let mainWrap = document.querySelector('.main--load');
+		  mainWrap.classList.remove('main--load');
+		  mainWrap.classList.add('main--success');
+    },
 		methods: {
 			addProduct(i) {
 				this.$emit('add', i)
