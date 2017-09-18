@@ -1,7 +1,7 @@
 <template lang="jade">
-	div
+	div.wrap-app
 		// - HEADER
-		.wrap-header
+		header.wrap-header
 			header-component
 		// - END HEADER
 		

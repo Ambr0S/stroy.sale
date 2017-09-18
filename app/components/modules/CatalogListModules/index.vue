@@ -18,7 +18,7 @@
 						</button>
 						<div class="product__price">
 							<div class="product__price--old"> <span v-if="item.sale > 0">{{ item.price }}.00 руб.</span>  </div>
-							<div class="product__price--new">{{ (item.price * ( 1 - item.sale )).toFixed(2) }} руб.</div>
+							<div class="product__price--new">{{ (item.price * ( 1 - item.sale )).toFixed(2) }} <i class="icon ruble small"></i></div>
 						</div>
 					</div>
 					<div class="product__secondary product__transition">

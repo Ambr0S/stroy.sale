@@ -1,7 +1,7 @@
 <template lang="jade">
-	div
+	div.wrap-app
 		// MENU
-		.wrap-menu
+		nav.wrap-menu
 			.container-fluid
 				.row
 					.col-sm-12.text-left
@@ -9,7 +9,7 @@
 		// - END MENU
 		
 		// - HEADER
-		.wrap-header
+		header.wrap-header
 			header-component
 		// - END HEADER
 		
@@ -25,7 +25,7 @@
 						.col-md-12.col-sm-12
 							.cart-status
 								.cart-status__wrap-left
-									.cart-status__description Стоимость заказа:<br><span class="cart-status__price">{{ propCartListFullCost }}</span> руб.
+									.cart-status__description Стоимость заказа:<br><span class="cart-status__price">{{ propCartListFullCost.toFixed(2) }}</span> руб.
 								.cart-status__wrap-right
 									router-link.button.ui.primary.right.labeled.icon(to="/order") <i class="right arrow icon large"></i> Оформить заказ
 							cart-list(:propCartList="cartList", v-on:delete="deleteProduct", v-on:increment="changeCountProduct")
@@ -35,15 +35,15 @@
 					.row(v-else)
 						.col-md-12
 							span Ваша корзина пуста. Посетите&nbsp;
-							router-link.button.ui.gray(to="/catalog") наш каталог
+							router-link.button.ui.gray(to="/") наш каталог
 							span , чтобы наполнить её товарами
 		
 		
 		// SUBSCRIBE
-		.wrap-subscribe(v-if="propCartList.length > 0")
+		section.wrap-subscribe(v-if="propCartList.length > 0")
 			Subscribe
 		// FOOTER
-		.wrap-foooter
+		footer.wrap-footer
 			footer-component
 </template>
 

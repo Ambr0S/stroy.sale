@@ -1,7 +1,7 @@
 <template lang="jade">
-	div
+	div.wrap-app
 		// MENU
-		.wrap-menu
+		nav.wrap-menu
 			.container-fluid
 				.row
 					.col-sm-12.text-left
@@ -9,7 +9,7 @@
 		// - END MENU
 		
 		// - HEADER
-		.wrap-header
+		header.wrap-header
 			header-component
 		// - END HEADER
 		
@@ -56,7 +56,7 @@
 		//.wrap-subscribe
 			Subscribe
 		// FOOTER
-		.wrap-foooter
+		footer.wrap-footer
 			footer-component
 </template>
 

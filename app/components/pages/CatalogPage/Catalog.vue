@@ -1,7 +1,7 @@
 <template lang="jade">
-	div
+	div.wrap-app
 		// MENU
-		.wrap-menu
+		nav.wrap-menu
 			.container-fluid
 				.row
 					.col-sm-8.text-left
@@ -10,30 +10,33 @@
 						.wrap-menu__content.menu
 							ul.menu__list.menu__list--cart
 								li.menu__item
-									router-link.menu__link.menu__link--cart(to="/cart") <i class="big in cart icon"></i> В корзине {{ propCartList.length }} тов.
+									router-link.menu__link.menu__link--cart(to="/cart")
+										i.large.in.cart.icon(v-if="propCartList.length > 0")
+										i.large.cart.icon(v-if="propCartList.length == 0")
+										span В корзине {{ propCartList.length }} тов.
 		// - END MENU
 		
 		// - HEADER
-		.wrap-header
+		header.wrap-header
 			header-component
 		// - END HEADER
-		main.main--load
+		main
 			// - CONTROLLERS
 			.wrap-controllers
 				Controllers(:propCatalogList="catalogList", :propIdCategory="idCategory", :propIdSubCategory="idSubCategory")
 			// - END CONTROLLERS
 			
 			// - CATALOGLIST
-			.wrap-catalog
+			.wrap-catalog.main--load
 				.container
 					catalog-list(:propCatalogList="catalogList", :propCartList="cartList", :propIdCategory="idCategory", :propIdSubCategory="idSubCategory", v-on:add='addProduct')
 			// - END CATALOGLIST
 
 		// SUBSCRIBE
-		.wrap-subscribe
+		section.wrap-subscribe
 			Subscribe
 		// FOOTER
-		.wrap-foooter
+		footer.wrap-foooter
 			footer-component
 </template>
 
@@ -158,18 +161,20 @@
 			// получение из роутера id текущей категории товаров
 			idCategory() {
 				let routeParams = this.$route.params;
+				console.log('Изменился ID категории');
 				return (routeParams.hasOwnProperty('idCategory')) ? routeParams['idCategory'] : null;
 			},
 			
 			// получение из роутера id текущей подкатегории товаров
 			idSubCategory() {
 				let routeParams = this.$route.params;
+				console.log('Изменился ID подкатегории');
 				return (routeParams.hasOwnProperty('idSubCategory')) ? routeParams['idSubCategory'] : null;
 			},
 			
 		},
     mounted() {
-		  let mainWrap = document.querySelector('.main--load');
+		  let mainWrap = document.querySelector('.wrap-catalog');
 		  mainWrap.classList.remove('main--load');
 		  mainWrap.classList.add('main--success');
     },

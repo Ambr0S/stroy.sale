@@ -32,7 +32,7 @@
 				option(value="3") Наличными при получении
 				option(value="4") Безналичная оплата по счёту
 		fieldset.form-order__full-cost(v-if="propTemplate=='order'")
-			legend <i class="ui icon big ruble"></i><span>Стоимость заказа:</span> 	<strong>{{ propCartListFullCost }}</strong> руб.
+			legend <i class="ui icon big ruble"></i><span>Стоимость заказа:</span> 	<strong>{{ propCartListFullCost.toFixed(2) }}</strong> руб.
 			button.button.ui.primary.button.form-order__button-submit(type="submit", @click="sendOrder") <i class="big check circle outline icon"></i>  Заказать
 			div Условия акции действительны только<br>при покупке на сумму от 5 000 рублей
 			
