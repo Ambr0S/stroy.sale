@@ -28,7 +28,7 @@
 									.cart-status__description Стоимость заказа:<br><span class="cart-status__price">{{ propCartListFullCost.toFixed(2) }}</span> руб.
 								.cart-status__wrap-right
 									router-link.button.ui.primary.right.labeled.icon(to="/order") <i class="right arrow icon large"></i> Оформить заказ
-							cart-list(:propCartList="cartList", v-on:delete="deleteProduct", v-on:increment="changeCountProduct")
+							cart-list(:propCartList="propCartList", v-on:delete="deleteProduct", v-on:increment="changeCountProduct")
 						//.col-md-4.col-sm-12.wrap-additional-products-list
 							h3.text-center Также вам может понадобиться
 							AdditionalProductsList(:propCartList="cartList")

@@ -1,7 +1,7 @@
 <template>
-  <div class="row">
-    <div v-for="(item, index) in sortCatalog" :class="item.sizeWrapProduct" :key="item.id">
-			<div class="product" @mousemove="tester" @mouseleave="testerEnd">
+  <transition-group appear v-on:appear="scrollCatalog" class="row" tag="div">
+    <div v-for="(item, index) in sortCatalog" :class="item.sizeWrapProduct" :key="index">
+			<div class="product" @mousemove="hoverProduct" @mouseleave="hoverProduct">
 				<div class="product__item">
 					<div class="product__sale" v-if="item.sale > 0"> Скидка {{ item.sale | setSale }}%</div>
 					<div class="product__name">{{item.name}}</div>
@@ -41,7 +41,7 @@
 				</button>
 			</div>
 		</div>
-  </div>
+  </transition-group>
 </template>
 
 <script>
@@ -87,10 +87,12 @@
 			propIdCategory : function () {
 				this.countProductRender = 18;
 				this.loadCatalog();
+				this.findElWithDesc(this.closeDescription)
 			},
 			propIdSubCategory : function() {
 				this.countProductRender = 18;
 				this.loadCatalog();
+				this.findElWithDesc(this.closeDescription)
 			}
 			
 		},
@@ -142,46 +144,6 @@
 			
 		},
 		methods : {
-			
-			openDescription: function (e) {
-        let target = e.currentTarget;
-        console.log(target);
-        let primary = target.closest('.product__primary');
-        let secondary = primary.nextElementSibling;
-
-        primary.style.cssText = `
-              transform : translate(120%,0);
-				`;
-        secondary.style.cssText = `
-              transform : translate(0,0);
-				`;
-      },
-      closeDescription: function (e) {
-        let target = e.currentTarget;
-        let secondary = target.closest('.product__secondary');
-        let primary = secondary.previousElementSibling;
-
-        primary.style.cssText = `
-              transform : translate(0,0);
-				`;
-        secondary.style.cssText = `
-              transform : translate(-120%,0);
-				`;
-      },
-
-			tester: function (e) {
-				let target = e.currentTarget;
-				let button = target.querySelector('.product__button');
-				target.classList.add('product--scale');
-				button.classList.add('primary');
-			},
-			testerEnd: function (e) {
-				let target = e.currentTarget;
-				let button = target.querySelector('.product__button');
-        target.classList.remove('product--scale');
-				button.classList.remove('primary');
-			},
-			
 			
 			/* ВНУТРЕННИЕ МЕТОДЫ */
 			
@@ -252,6 +214,75 @@
 				
 				// -/- отправка события корневому родителю
 				this.$emit('add', this.sortCatalog[targetId])
+			},
+
+			// Метод отображения и закрытия описания
+			openDescription: function (e) {
+				let target = e.currentTarget;
+				let primary = target.closest('.product__primary');
+				let secondary = primary.nextElementSibling;
+
+				primary.classList.add('descriptionActive');
+				primary.style.cssText = `
+              transform : translate(120%,0);
+				`;
+				secondary.style.cssText = `
+              transform : translate(0,0);
+				`;
+			},
+			closeDescription: function (e) {
+				// аргумент e может быть событием или dom-элементом
+				
+				let primary   = null,
+					  secondary = null,
+					  target 		= null;
+				
+				if (e.target) {
+					target = e.currentTarget;
+					secondary = target.closest('.product__secondary');
+					primary = secondary.previousElementSibling;
+				} else {
+					primary = e;
+					secondary = primary.nextElementSibling;
+				}
+
+				primary.classList.remove('descriptionActive');
+				primary.style.cssText = `
+              transform : translate(0,0);
+				`;
+				secondary.style.cssText = `
+              transform : translate(-120%,0);
+				`;
+			},
+			
+			// Метод поиск элементов с активным описанием, и выполнения действия над ним
+			findElWithDesc(fn) {
+				let elWithActiveDesc = document.querySelectorAll('.descriptionActive');
+
+				elWithActiveDesc.forEach((item) => {
+					fn(item);
+				});
+			},
+			
+			// Метод анимации при наведении на карточку
+			hoverProduct: function (e) {
+				let target = e.currentTarget;
+				let button = target.querySelector('.product__button');
+				
+				if (e.type === 'mousemove') {
+					target.classList.add('product--scale');
+					button.classList.add('primary');
+				} else if (e.type === 'mouseleave') {
+					target.classList.remove('product--scale');
+					button.classList.remove('primary');
+				}
+			},
+
+			scrollCatalog() {
+				console.log('Опааа')
+				let mainWrap = document.querySelector('.wrap-catalog');
+				mainWrap.classList.remove('main--load');
+				mainWrap.classList.add('main--success');
 			}
 			
 		},

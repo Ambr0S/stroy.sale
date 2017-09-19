@@ -161,27 +161,23 @@
 			// получение из роутера id текущей категории товаров
 			idCategory() {
 				let routeParams = this.$route.params;
-				console.log('Изменился ID категории');
 				return (routeParams.hasOwnProperty('idCategory')) ? routeParams['idCategory'] : null;
 			},
 			
 			// получение из роутера id текущей подкатегории товаров
 			idSubCategory() {
 				let routeParams = this.$route.params;
-				console.log('Изменился ID подкатегории');
 				return (routeParams.hasOwnProperty('idSubCategory')) ? routeParams['idSubCategory'] : null;
 			},
 			
 		},
     mounted() {
-		  let mainWrap = document.querySelector('.wrap-catalog');
-		  mainWrap.classList.remove('main--load');
-		  mainWrap.classList.add('main--success');
+	    //this.scrollCatalog();
     },
 		methods: {
 			addProduct(i) {
 				this.$emit('add', i)
-			},
+			}
 		}
 	}
 </script>
