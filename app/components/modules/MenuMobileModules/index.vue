@@ -2,10 +2,10 @@
 
   .menu-mobile.menu-mobile--close
     .menu-mobile__button-close.text-center(@click="closeMenuMobile")
-      i.close.icon.ui.big
+      i.close.icon
       span Закрыть
-    controllers-component.controllers--row(:propCatalogList="catalogList", :propIdCategory="idCategory", :propIdSubCategory="idSubCategory", :propMenuMobile="true")
-    menu-component.menu--column(v-on:closeMenu='closeMenuMobile')
+    controllers-component.controllers--row(:propCatalogList="catalogList", :propIdCategory="idCategory", :propIdSubCategory="idSubCategory", :propMenuMobile="true", v-on:closeMenu="closeMenuMobile")
+    menu-component.menu--column(v-on:closeMenu="closeMenuMobile")
 
 
 </template>
@@ -133,7 +133,7 @@
 
     methods: {
       closeMenuMobile() {
-        let menu = document.querySelector('.menu-mobile');
+	      let menu = document.querySelector('.menu-mobile');
         let app = document.querySelector('.wrap-app');
 
         menu.classList.remove('menu-mobile--open');

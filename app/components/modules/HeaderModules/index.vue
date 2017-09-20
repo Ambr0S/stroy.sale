@@ -2,20 +2,23 @@
   <div class="header">
     <div class="container">
       <div class="row" v-if="!isMobile">
-        <div class="col-12 text-left">
-          <div class="logo header__logo">
+        <div class="col-sm-12 header__logo text-left">
+          <div class="logo ">
             <img src="img/logo.png" alt="" class="logo__img">
           </div>
         </div>
       </div>
       <div class="row" v-if="isMobile">
-        <div class="col-xs-4 header__button-menu" @click="openMenuMobile">
-          <i class="icon menu big"></i>
+        <div class="col-xs-3 header__button-menu" @click="openMenuMobile">
+          <i class="icon sidebar big"></i>
         </div>
-        <div class="col-xs-8">
-          <div class="logo header__logo">
+        <div class="col-xs-6 header__logo header__logo--mobile">
+          <div class="logo">
             <img src="img/logo.png" alt="" class="logo__img">
           </div>
+        </div>
+        <div class="col-xs-3 header__button-cart">
+          <i class="icon cart big"></i>
         </div>
       </div>
     </div>
@@ -29,11 +32,20 @@
 		},
 		data: function () {
 			return {
-			  isMobile: false
+			  isMobile: false,
+        clientWidth: document.documentElement.clientWidth
       }
 		},
     mounted() {
-		  this.isMobile = true
+	    window.onresize = () => {
+				console.log('resize')
+				this.clientWidth = document.documentElement.clientWidth;
+				if (this.clientWidth < 992) {
+					this.isMobile = true
+				} else {
+					this.isMobile = false
+				}
+			}
     },
     methods: {
 		  openMenuMobile() {

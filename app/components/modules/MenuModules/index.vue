@@ -2,15 +2,15 @@
 	.menu(:class="classList")
 		ul.menu__list
 			li.menu__item
-				router-link(to="/catalog/0", @click="closeMenuMobile").menu__link Каталог
+				router-link(to="/catalog/0", @click.native="closeMenuMobile").menu__link Каталог
 			li.menu__item
-				router-link(to="/delivery", @click="closeMenuMobile").menu__link Доставка и оплата
+				router-link(to="/delivery", @click.native="closeMenuMobile").menu__link Доставка и оплата
 			li.menu__item
-				router-link(to="/purchase-returns", @click="closeMenuMobile").menu__link Возврат товара
+				router-link(to="/purchase-returns", @click.native="closeMenuMobile").menu__link Возврат товара
 			//li.menu__item
 				router-link(to="/blog").menu__link Блог
 			li.menu__item
-				router-link(to="/contacts", @click="closeMenuMobile").menu__link Контакты
+				router-link(to="/contacts", @click.native="closeMenuMobile").menu__link Контакты
 </template>
 
 <script>
