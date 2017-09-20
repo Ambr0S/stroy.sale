@@ -1,0 +1,48 @@
+@import '../../../sass/variables'
+
+.menu-mobile
+  height: auto
+  width: 100%
+  min-height: 100%
+  background-color: #fff
+  border-right: 1px solid $gray-l
+  transition-delay: 0.1s
+  transition-timing-function: ease
+  transition-duration: 0.3s
+  position: fixed
+  z-index: 1000
+  overflow: auto
+  box-shadow:         13px 0px 30px 0px rgba(50, 50, 50, 0.5)
+  font-weight: 400
+
+  &--open
+    display: block
+    transform: translate(0, 0)
+
+  &--close
+    display: none
+    transform: translate(0, -100%)
+
+  .controllers
+    width: 100%
+
+    &__category, &__subCategory
+      width: 100%
+      flex-direction: row
+
+      .controllers__item.ui.button
+        width: 100%
+        box-shadow: none
+        margin: 0 0 0 0
+        text-align: left
+        border-bottom: 1px solid $gray-d
+        font-weight: 700
+
+      .controllers__item.ui.button:first-of-type
+        border-top: 1px solid $gray-d
+
+  .menu
+    &__item
+      text-align: center
+    &__link
+      font-size: 1.8rem
