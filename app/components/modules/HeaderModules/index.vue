@@ -17,8 +17,10 @@
             <img src="img/logo.png" alt="" class="logo__img">
           </div>
         </div>
-        <div class="col-xs-3 header__button-cart">
-          <i class="icon cart big"></i>
+        <div class="col-xs-3 header__button-cart" v-if="elHeaderIsVisible">
+          <router-link to="/cart">
+            <i class="icon cart big"></i>
+          </router-link>
         </div>
       </div>
     </div>
@@ -33,9 +35,20 @@
 		data: function () {
 			return {
 			  isMobile: false,
-        clientWidth: document.documentElement.clientWidth
+        clientWidth: document.documentElement.clientWidth,
+        routeName: this.$route.name
       }
 		},
+    computed: {
+			elHeaderIsVisible() {
+				if (this.routeName == 'Cart' || this.routeName == 'Order') {
+          return false
+				}
+				return true
+      }
+
+
+    },
     mounted() {
       this.setMobile();
 	    window.onresize = () => {
