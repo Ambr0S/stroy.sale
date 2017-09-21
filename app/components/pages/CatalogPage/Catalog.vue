@@ -21,11 +21,15 @@
 			header-component
 		// - END HEADER
 		main
+			.container(v-if="propIsMobile")
+				.row
+					.col-sm-12
+						h1.text-center {{ categoryName }}
 			// - CONTROLLERS
 			.wrap-controllers
 				Controllers(:propCatalogList="catalogList", :propIdCategory="idCategory", :propIdSubCategory="idSubCategory")
 			// - END CONTROLLERS
-			
+
 			// - CATALOGLIST
 			.wrap-catalog.main--load
 				.container
@@ -52,7 +56,8 @@
 	export default {
 		name: 'Catalog',
 		props: [
-			'propCartList'
+			'propCartList',
+      'propIsMobile'
 		],
 		components: {
 			MenuComponent,
@@ -154,7 +159,9 @@
 						jsonFile: 'json/0080.json'
 					},
 				],
-				
+
+        isMobile: this.propIsMobile
+
 			}
 		},
 		computed: {
@@ -170,10 +177,14 @@
 				let routeParams = this.$route.params;
 				return (routeParams.hasOwnProperty('idSubCategory')) ? routeParams['idSubCategory'] : null;
 			},
+
+      categoryName() {
+        return this.catalogList[this.idCategory].name
+      }
 			
 		},
     mounted() {
-	    //this.scrollCatalog();
+
     },
 		methods: {
 			addProduct(i) {

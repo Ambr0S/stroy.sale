@@ -2,7 +2,7 @@
   #app
     menu-mobile-component
     // - ROUTER
-    router-view(:propCartList="rootPropCartList", :propCartListFullCost="rootPropCartListFullCost", v-on:delete='deleteProduct', v-on:add='addProduct', v-on:increment="changeCountProduct")
+    router-view(:propCartList="rootPropCartList", :propIsMobile="rootIsMobile", :propCartListFullCost="rootPropCartListFullCost", v-on:delete='deleteProduct', v-on:add='addProduct', v-on:increment="changeCountProduct")
     // - END ROUTER
 </template>
 
@@ -15,7 +15,8 @@
     },
     props: [
       'rootPropCartList',
-	    'rootPropCartListFullCost'
+	    'rootPropCartListFullCost',
+      'rootIsMobile'
     ],
 	  methods: {
 		  addProduct(i) {

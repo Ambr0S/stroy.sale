@@ -6,7 +6,7 @@ let eventHub = new Vue();
 
 let vm = new Vue({
 	el: "#app",
-	template: "<App :rootPropCartList='cartList' :rootPropCartListFullCost='cartListFullCost' v-on:delete='deleteProduct' v-on:add='addProduct' v-on:increment='changeCountProduct'></App>",
+	template: "<App :rootPropCartList='cartList' :rootIsMobile='isMobile' :rootPropCartListFullCost='cartListFullCost' v-on:delete='deleteProduct' v-on:add='addProduct' v-on:increment='changeCountProduct'></App>",
 	router,
 	components: {
 		App
@@ -15,7 +15,8 @@ let vm = new Vue({
 		return {
 			eventHub: eventHub,
 			cartList: [],
-			//cartListFullCost: 0
+      isMobile: false,
+      clientWidth: document.documentElement.clientWidth
 		}
 	},
 	computed: {
@@ -32,6 +33,12 @@ let vm = new Vue({
 	},
 	mounted() {
 
+    this.setMobile();
+    window.onresize = () => {
+      this.clientWidth = document.documentElement.clientWidth;
+      this.setMobile()
+    };
+
 		// добавляем в корзину товар из Local Storage, если он там есть
 		if (localStorage.hasOwnProperty('cartList')) {
 			this.cartList = JSON.parse(localStorage.cartList) || [];
@@ -40,6 +47,14 @@ let vm = new Vue({
 	},
 
 	methods: {
+    setMobile() {
+      if (this.clientWidth < 992) {
+        this.isMobile = true
+      } else {
+        this.isMobile = false
+      }
+    },
+
 		addProduct(item) {
 			Vue.set(this.cartList, this.cartList.length, item);
 			localStorage.setItem('cartList', JSON.stringify(this.cartList));

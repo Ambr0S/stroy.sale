@@ -37,17 +37,20 @@
       }
 		},
     mounted() {
+      this.setMobile();
 	    window.onresize = () => {
-				console.log('resize')
 				this.clientWidth = document.documentElement.clientWidth;
-				if (this.clientWidth < 992) {
-					this.isMobile = true
-				} else {
-					this.isMobile = false
-				}
+        this.setMobile()
 			}
     },
     methods: {
+		  setMobile() {
+        if (this.clientWidth < 992) {
+          this.isMobile = true
+        } else {
+          this.isMobile = false
+        }
+      },
 		  openMenuMobile() {
         let menu = document.querySelector('.menu-mobile');
         let app = document.querySelector('.wrap-app');
