@@ -52,7 +52,6 @@
 	import FooterComponent from '../../modules/FooterModules/index.vue'
 	import CatalogList 		 from '../../modules/CatalogListModules/index.vue'
 
-	
 	export default {
 		name: 'Catalog',
 		props: [

@@ -1,9 +1,9 @@
 <template lang="jade">
 
   .menu-mobile.menu-mobile--close
-    .menu-mobile__button-close.text-center(@click="closeMenuMobile")
-      i.close.icon
-      span Закрыть
+    .menu-mobile__button-close(@click="closeMenuMobile")
+      span Назад&nbsp;
+      i.arrow.right.icon
     controllers-component.controllers--row(:propCatalogList="catalogList", :propIdCategory="idCategory", :propIdSubCategory="idSubCategory", :propMenuMobile="true", v-on:closeMenu="closeMenuMobile")
     menu-component.menu--column(v-on:closeMenu="closeMenuMobile")
 
@@ -138,7 +138,7 @@
 
         menu.classList.remove('menu-mobile--open');
         menu.classList.add('menu-mobile--close');
-        app.style.cssText = `overflow: hidden`
+        document.body.style.overflow = '';
       }
     }
   }

@@ -57,20 +57,17 @@
 			}
     },
     methods: {
-		  setMobile() {
-        if (this.clientWidth < 992) {
-          this.isMobile = true
-        } else {
-          this.isMobile = false
-        }
+      setMobile() {
+        this.isMobile = this.clientWidth < 992;
+
       },
-		  openMenuMobile() {
+      openMenuMobile() {
         let menu = document.querySelector('.menu-mobile');
         let app = document.querySelector('.wrap-app');
 
-		    menu.classList.add('menu-mobile--open');
-		    menu.classList.remove('menu-mobile--close');
-		    app.style.cssText = `overflow: hidden`
+        menu.classList.add('menu-mobile--open');
+        menu.classList.remove('menu-mobile--close');
+        document.body.style.overflow = 'hidden'
       }
     }
 	}

@@ -45,7 +45,6 @@ let vm = new Vue({
 		}
 
 	},
-
 	methods: {
     setMobile() {
       if (this.clientWidth < 992) {
