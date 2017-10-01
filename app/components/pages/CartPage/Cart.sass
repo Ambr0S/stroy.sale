@@ -1,0 +1,32 @@
+@import '../../../sass/variables'
+
+.cart-status
+  margin: 2rem 0
+  display: flex
+
+  &__price
+    font-size: 3rem
+    font-family: $font-family-intro
+  &__wrap-left
+    margin-right: 2rem
+  &__description
+    width: 170px
+
+@media screen and (max-width: 767px)
+  .cart-status
+    display: flex
+    flex-direction: column
+    &__wrap-left
+      width: 100%
+      text-align: center
+      margin-bottom: 2rem
+    &__wrap-right
+      width: 100%
+      text-align: center
+    &__description
+      width: 100%
+
+.wrap-additional-products-list
+  h3
+    font-size: 1.5rem
+    margin-top: 3.75rem

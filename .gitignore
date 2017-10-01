@@ -1,4 +1,4 @@
-*.zip
+-f*.zip
 *.log
 *.pdf
 *.xls
@@ -6,5 +6,6 @@
 
 /node_modules
 /dist
-/app/libs
 /.idea
+app/img
+

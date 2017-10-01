@@ -1,62 +1,24 @@
 @import "variables"
+@import "../libs/semantic/dist/components/button.min.css"
+@import "../libs/semantic/dist/components/icon.min.css"
+@import "../libs/semantic/dist/components/input.min.css"
+@import "../libs/semantic/dist/components/form.min.css"
+@import "../libs/semantic/dist/components/dropdown.min.css"
 @import "fonts"
-@import "../components/Menu/Menu"
-@import "../components/Header/Header"
-@import "../components/Subscribe/Subscribe"
+@import "main"
+@import "../components/modules/MenuModules/style"
+@import "../components/modules/MenuMobileModules/style"
+@import "../components/modules/FormOrderModules/style"
+@import "../components/modules/HeaderModules/style"
+@import "../components/modules/SubscribeModules/style"
+@import "../components/modules/SocialApiModules/style"
+@import "../components/modules/FooterModules/style"
+@import "../components/pages/CatalogPage/Catalog"
+@import "../components/pages/CartPage/Cart"
+@import "../components/pages/OrderPage/Order"
+@import "../components/pages/ContactsPage/style"
+@import "../components/modules/CatalogListModules/style"
+@import "../components/modules/ControllersModules/style"
+@import "../components/modules/CartListModules/style"
+@import "../components/modules/AdditionalProductsList/style"
 @import "../libs/bootstrap-sass-grid/sass/bootstrap-sass-grid"
-
-form
-  input[type="text"]
-    display: block
-    height: 30px
-    font-size: 16px
-    padding: 10px
-    border: none
-    width: 250px
-    background: $gray-l
-    color: $black
-    border-bottom: 1px solid
-    border-bottom-color: mix(black, $gray, 30% )
-    margin: 0px 10px 10px 10px
-
-    &:focus
-      background: #fff
-      outline-style: none
-
-  input[type="text"].error
-    border-bottom: 1px solid red !important
-
-  select
-    margin: 10px
-
-  label.error
-    display: none !important
-
-  input.catalog-unfound__input[type="text"]
-    margin: 15px auto !important
-    background: rgba(255,255,255,0.3)
-    height: 50px
-    width: 500px
-    font-family: $font-family-intro
-    color: $black
-    border-bottom: 1px solid #fff
-    font-size: 18px
-
-  input::-webkit-input-placeholder
-    color: $black !important
-  input::-moz-placeholder
-    color: #fff !important
-  input::-moz-placeholder
-    color: #fff !important
-  input:-ms-input-placeholder
-    color: #fff !important
-
-  input.catalog-unfound__input[type="submit"]
-    background: rgba(255,255,255,0.3)
-    height: 50px
-    font-size: 16px !important
-    width: 486px !important
-    font-family: $font-family-intro
-    color: #fff
-    border: none
-    margin: 15px !important

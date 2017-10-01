@@ -1,0 +1,37 @@
+@import '../../../sass/variables'
+
+/* - SUBSCRIBE */
+
+.subscribe
+  height: 440px
+  @include bgi("../../../img/background-unfound.jpg")
+  padding: 60px 0
+  margin: 0 50px 0
+
+  &__header
+    font-family: $font-family-intro
+    text-transform: uppercase
+    font-size: 4.2rem
+    color: $black
+
+  &__description
+    margin: 15px 0 0
+    color: #fff
+    font-size: 2.4rem
+    font-family: $font-family-intro
+    text-transform: uppercase
+
+  &__input
+    margin: 0 auto
+    background: rgba(255,255,255,0.5)
+
+@media screen and (max-width: 991px)
+
+  .subscribe
+    &__header
+      font-size: 2rem
+    &__description
+      font-size: 1.5rem
+      line-height: 1.2
+
+/* - END SUBSCRIBE */

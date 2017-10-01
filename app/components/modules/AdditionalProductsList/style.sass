@@ -1,0 +1,42 @@
+@import '../../../sass/variables'
+
+.additional-products
+  display: flex
+  height: auto
+  margin: 20px 0
+  flex-direction: column
+
+  &__item
+    display: flex
+    background: #fff
+    margin: 0 0 2rem
+    padding: 0.2rem
+    height: 100px
+    box-sizing: border-box
+    border: 1px solid $gray-l
+    position: relative
+    align-items: center
+
+  &__name
+    font-size: 1.2rem
+    line-height: 1.1
+
+  &__price
+    padding: 0.2em 0
+
+  &__button
+    padding: 5px !important
+    line-height: 1 !important
+    min-width: 100px
+
+  &__img
+    display: flex
+    justify-content: center
+    align-items: center
+    margin: 0 1rem
+    max-height: 90px
+
+    img
+      height: 90px
+      max-width: 170px
+      align-self: center

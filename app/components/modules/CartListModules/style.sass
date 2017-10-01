@@ -1,0 +1,81 @@
+@import '../../../sass/variables'
+
+.cart-list
+  display: flex
+  height: auto
+  margin: 20px 0
+  flex-direction: column
+
+
+  &__item
+    display: flex
+    background: #fff
+    margin: 0 0 2rem
+    padding: 1rem 2.8rem 1rem 0.5rem
+    min-height: 170px
+    box-sizing: border-box
+    border: 1px solid $gray-l
+    position: relative
+
+  &__name
+    font-family: $font-family-intro
+
+  &__sale
+    color: $orange
+    font-weight: bold
+
+  &__price--sum
+    border-top: 2px dashed $gray-d
+    padding: 0.5em 0 0
+    margin-top: 1.5em
+    .cart-list__price--sum-new
+      font-family: $font-family-intro
+      font-size: 2.5rem
+      margin: 0 .2em
+    .cart-list__price--sum-old
+      text-decoration: line-through
+      color: $orange
+      font-weight: bold
+
+
+  &__img
+    display: flex
+    justify-content: center
+    align-items: center
+    min-width: 170px
+    margin-right: 1rem
+
+    img
+      height: 100px
+      max-width: 170px
+      align-self: center
+
+  &__button-delete.button.ui.icon
+    position: absolute
+    top: 2px
+    right: 0
+    padding: 0 8px
+
+@media screen and (max-width: 767px)
+  .cart-list
+    text-align: center
+    &__item
+      flex-direction: column
+      padding-right: 0.5rem
+      padding-top: 2rem
+    &__name
+      text-align: center
+      margin: 1.5rem 0
+
+.product-counter
+  padding: .5em 0
+  &__input
+    border-top: none
+    border-right: none
+    border-left: none
+    width: 50px
+    text-align: center
+
+
+  button.product-counter__button.button.icon
+    padding: 5px 11px

@@ -1,0 +1,156 @@
+@import '../../../sass/variables'
+
+
+
+.product
+  display: flex
+  margin: 20px
+  box-sizing: border-box
+  padding: 15px
+  background: #fff
+  border: 1px solid $gray
+  position: relative
+  min-height: 500px
+  justify-content: center
+  text-align: center
+  font-size: 1.6rem
+  overflow: hidden
+  transition-delay: 0.1s
+  transition-timing-function: ease
+  transition-duration: 0.3s
+  box-shadow: none
+
+  &__item
+    &--left
+      width: 40%
+    &--right
+      width: 60%
+      display: flex
+      flex-direction: column
+
+  &__primary
+    height: 320px
+    button.ui.button
+      padding: 0 .6em
+
+  &__secondary
+    position: absolute
+    color: $black
+    top: 100px
+    left: 0
+    width: 100%
+    padding: .7rem
+    height: 320px
+    transform: translate(-120%,0%)
+    overflow: auto
+    button.ui.button
+      padding: 0 .6em
+
+    .product__description
+      font-size: 14px
+      line-height: 1.2
+      font-weight: 400
+      text-align: left
+      &
+        margin-top: 1rem
+
+  &__transition
+    transition-delay: 0.1s
+    transition-timing-function: cubic-bezier(.93,1.91,0,.91)
+    transition-duration: 0.3s
+
+  &__add
+    margin-top: 2.5rem
+
+  &__sale
+    padding: 0 10px 0px 11px
+    background: $orange-l
+    font-weight: bold
+    font-size: 1.2rem
+    color: $black
+    position: absolute
+    top: -1px
+    right: 10px
+    text-transform: uppercase
+    border-bottom: 4px solid mix($black, $orange-l, 10%)
+
+  &__number
+    margin: 0.5em
+
+  &__text
+    margin: 0.5em
+
+  &__name
+    margin-top: 20px
+    font-weight: 700
+    height: 70px
+    line-height: 1.3
+    text-align: left
+    font-family: $font-family-intro
+    font-size: 1.4rem
+
+    &--main
+      font-size: 2.5rem
+      margin: 3rem 0 1rem
+
+  &__img
+    text-align: center
+    height: 170px
+    display: flex
+    align-items: center
+    justify-content: center
+    margin-bottom: 10px
+
+    &--main
+      width: 100%
+      height: 100%
+
+      img
+        height: 90%
+
+  &__price
+    font-weight: 700
+    text-align: center
+    font-size: 1.5rem
+    border-top: 1px solid #ecf0f1
+    margin-top: 10px
+    margin-bottom: 10px
+    padding-top: 5px
+    height: 75px
+
+    &--old
+      font-size: 1.3rem
+      text-decoration: line-through
+      color: #d35400
+      font-weight: 700
+      height: 27px
+
+    &--new
+      font-size: 2.5rem
+      font-weight: 700
+      font-family: $font-family-intro
+
+    &--main
+      font-size: 3.5rem
+      text-align: left
+      font-family: $font-family-intro
+      margin: 2rem 0
+
+  &__benefits
+    img
+      width: 100%
+
+  &__compare
+    text-align: left
+
+  &__description--main
+    text-align: left
+
+  &--scale
+    transform: scale(1.02)
+    box-shadow: 0px 0px 30px 0px rgba(50, 50, 50, 0.2)
+
+
+@media screen and (max-width: 767px)
+  .product
+    margin: 20px 0

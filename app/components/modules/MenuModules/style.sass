@@ -1,0 +1,77 @@
+@import '../../../sass/variables'
+
+/* - MENU */
+@media screen and (max-width: 991px)
+  .wrap-menu
+    display: none
+
+
+.menu
+  background: #fff
+
+.menu
+  &__list
+    display: flex
+    padding: 0
+    height: 100%
+    margin: 0
+  &__list--cart
+    float: right
+  &__item
+    list-style: none
+    margin: 20px
+  &__link
+    margin-top: 10px
+    font-size: 1.6rem
+    padding: .1em 0
+    color: $black
+    text-transform: uppercase
+    font-family: $font-family-intro
+
+    &:hover, &:focus
+      border-bottom: 2px solid $orange
+      text-decoration: none
+      color: $black
+
+
+.menu--column
+  .menu__item
+    margin: 7px
+
+.menu--column .menu__list
+  flex-direction: column
+
+.menu__item.small
+  position: fixed
+  top: 5px
+  right: 10px
+  background-color: rgba(255, 255, 255, 0.76)
+  z-index: 1000
+
+.menu__link--cart:hover
+  border-bottom: none
+  opacity: 0.5
+
+
+@media screen and (max-width: 1366px)
+  .menu
+    &__item
+      margin: 15px
+    &__link
+      font-size: 1.2rem
+
+@media screen and (max-width: 1050px)
+  .menu
+    &__item
+      margin: 10px
+    &__link
+      font-size: 1.2rem
+
+
+@media screen and (max-width: 991px)
+  .menu
+    &__link
+      font-size: 2rem
+      line-height: 1.6
+
+/* - END MENU */

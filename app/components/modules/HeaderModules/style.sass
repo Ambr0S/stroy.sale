@@ -1,0 +1,39 @@
+@import '../../../sass/variables'
+
+/* HEADER*/
+
+.header
+  height: 100px
+  @include bgi("/img/background.jpg")
+  &__logo
+    height: 100%
+    display: flex
+    align-items: center
+    &__logo--mobile
+      align-items: center
+      justify-content: center
+  .container, .row
+    height: 100%
+
+.header__button-menu, .header__button-cart
+  color: $black
+  height: 100%
+  display: flex
+  align-items: center
+  justify-content: center
+
+  a
+    color: $black
+
+.logo__img
+  width: 100%
+  max-width: 220px
+
+.h1__description
+  margin: 10px 0
+.h1__description p
+  padding: 5px
+  background: #fff
+  display: inline-block
+
+/*end HEADER*/
