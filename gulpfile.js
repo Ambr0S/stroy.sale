@@ -2,26 +2,20 @@
  let gulp = require('gulp'),
 	browsersync = require('browser-sync'),
 	browserify  = require('gulp-browserify'),
-	babel       = require('gulp-babel'),
 	babelify    = require('babelify'),
 	cache       = require('gulp-cache'),
-	cached      = require('gulp-cached'),
 	concat      = require('gulp-concat'),
-	cssnano     = require('gulp-cssnano'),
 	debug       = require('gulp-debug'),
 	del         = require('del'),
 	imagemin    = require('gulp-imagemin'),
 	minify      = require('gulp-babel-minify'),
 	newer       = require('gulp-newer'),
-	rename      = require('gulp-rename-plus'),
-	remember    = require('gulp-remember'),
 	pngquant    = require('imagemin-pngquant'),
 	prefixer    = require('gulp-autoprefixer'),
 	pug         = require('gulp-pug'),
 	vueify      = require('gulp-vueify'),
 	uglify      = require('gulp-uglifyjs'),
 	sass        = require('gulp-sass'),
-	source      = require('vinyl-source-stream'),
 	sourcemaps  = require("gulp-sourcemaps");
 
 
@@ -110,7 +104,6 @@ gulp.task('css', ['sass'], function () {
 	return gulp.src('app/css/style.css')
 		.pipe(sourcemaps.init())
 		.pipe(debug())
-		.pipe(cssnano())
 		//.pipe(rename({suffix: 'min.css'}))
 		.pipe(sourcemaps.write(""))
 		.pipe(gulp.dest('app/css'))
